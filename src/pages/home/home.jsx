@@ -1,12 +1,23 @@
 import styled from "styled-components";
 import "../../styles/color.css";
+
 const Home = () => {
-  return <Wrapper>home</Wrapper>;
+  return (
+    <Wrapper>
+      home
+      {/* <TitleBox />
+      <ImgsWrapper />
+      <LevelBox />
+      <NotificationWrapper /> */}
+    </Wrapper>
+  );
 };
 
 export default Home;
 
 const Wrapper = styled.div`
-  background-color: var(--red-600);
-  height: 100vh;
+  background-color: #00ff80;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 `;
