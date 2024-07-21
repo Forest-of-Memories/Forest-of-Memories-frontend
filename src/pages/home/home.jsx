@@ -1,23 +1,53 @@
 import styled from "styled-components";
 import "../../styles/color.css";
+import Tree from "../../components/home/tree";
+import LevelGauge from "../../components/home/level-gauge";
+import Notifications from "../../components/home/notifications";
 
 const Home = () => {
   return (
     <Wrapper>
-      home
-      {/* <TitleBox />
-      <ImgsWrapper />
-      <LevelBox />
-      <NotificationWrapper /> */}
+      <DurationBox>
+        <div className="date">2024.07.17</div>
+        <div className="desc">부터 키우고 있어요</div>
+      </DurationBox>
+      <Title>
+        <div>매일 질문에 대한 답을 남기며</div>
+        <div>
+          <span>우리 가족만의 나무</span>를 키워보아요!
+        </div>
+      </Title>
+      <Tree />
+      <LevelGauge />
+      <Notifications />
     </Wrapper>
   );
 };
 
 export default Home;
 
-const Wrapper = styled.div`
-  background-color: #00ff80;
+const Title = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: center;
+  background-color: yellow;
+`;
+
+const DurationBox = styled.div`
+  display: flex;
+  background-color: blue;
+  color: var(--red-600);
+  align-items: end;
+  .date {
+    font-size: 32px;
+  }
+  .desc {
+  }
+`;
+
+const Wrapper = styled.div`
+  background-color: #ffffff;
   height: 100%;
+  display: grid;
+  grid-template-rows: 1fr 2fr 10fr 2fr 6fr;
 `;
