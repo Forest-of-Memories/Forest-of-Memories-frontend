@@ -29,19 +29,29 @@ export default Home;
 const Title = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
-  background-color: yellow;
+  div {
+    font-weight: 800;
+    font-size: 1.5rem;
+    line-height: 1.8rem;
+    span {
+      color: var(--red-600);
+    }
+  }
 `;
 
 const DurationBox = styled.div`
   display: flex;
-  background-color: blue;
+  justify-content: center;
   color: var(--red-600);
   align-items: end;
   .date {
     font-size: 32px;
+    font-weight: 800;
   }
   .desc {
+    font-weight: 700;
   }
 `;
 

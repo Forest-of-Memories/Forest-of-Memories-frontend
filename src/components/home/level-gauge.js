@@ -1,5 +1,6 @@
 import { useState } from "react";
 import styled from "styled-components";
+import "../../styles/color.css";
 
 const levelNames = ["-", "씨앗", "새싹", "묘목", "작은 나무", "큰 나무"];
 
@@ -30,19 +31,23 @@ const LevelNameBox = styled.div`
   width: 100%;
   display: flex;
   justify-content: space-between;
+  div {
+    color: var(--red-600);
+    font-weight: 800;
+  }
 `;
 
 const GaugeDetail = styled.div`
-  background-color: violet;
-  width: 19.3%;
-  height: 65%;
+  background-color: var(--red-600);
+  width: 19.4%;
+  height: 60%;
   &.key0 {
     border-radius: 24px 0 0 24px;
-    background-color: blue;
+    /* background-color: blue; */
   }
   &.key4 {
     border-radius: 0 24px 24px 0;
-    background-color: blue;
+    /* background-color: blue; */
   }
 `;
 
@@ -51,25 +56,22 @@ const GaugeBox = styled.div`
   justify-content: center;
   width: 100%;
   height: 25px;
-  background-color: bisque;
+  margin-bottom: 10px;
   .gauge {
-    background-color: grey;
+    background-color: var(--gray-200);
     width: 90%;
     border-radius: 20px;
     height: 90%;
     display: flex;
-    justify-content: center;
     overflow: hidden;
     align-items: center;
-    /* padding: 0 2%; */
-    /* border-left: 5px solid grey;
-    border-right: 5px solid grey; */
+    padding-left: 12px;
   }
 `;
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: center;
   padding: 0 20px;
   width: 100%;
-  background-color: aliceblue;
 `;
