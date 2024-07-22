@@ -1,0 +1,15 @@
+.footer {
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
+  max-width: 500px;
+  padding: 5px;
+  background-color: #f8f8f8;
+  align-items: center;
+  height: 8vh;
+}
+
+.footer img {
+  width: 30px; /* 아이콘 크기 조정 */
+  height: 30px;
+}
