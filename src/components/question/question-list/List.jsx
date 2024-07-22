@@ -32,7 +32,9 @@ const List = ({ questions, onQuestionClick, showOnlyLiked }) => {
             <span className="question-number">#{questions.length - index}</span>
             <span className="question-text">{question}</span>
             <img
-              src={liked[index] ? "./like_full.png" : "./like_empty.png"}
+              src={
+                liked[index] ? "/imgs/like_full.png" : "/imgs/like_empty.png"
+              }
               alt="heart icon"
               className="heart-icon"
               onClick={(e) => {

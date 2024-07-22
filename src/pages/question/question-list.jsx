@@ -3,7 +3,6 @@ import styled from "styled-components";
 import "../../styles/color.css";
 import Header from "../../components/question/question-list/Header";
 import List from "../../components/question/question-list/List";
-import Footer from "../../components/question/question-list/Footer";
 import questionData from "../../components/question/question-list/questionData";
 
 const QuestionList = () => {
@@ -19,13 +18,12 @@ const QuestionList = () => {
 
   return (
     <Wrapper>
-      <Header onShowOnlyLiked={handleShowOnlyLiked} />
+      {/* <Header onShowOnlyLiked={handleShowOnlyLiked} /> */}
       <List
         questions={questionData}
         onQuestionClick={handleQuestionClick}
         showOnlyLiked={showOnlyLiked}
       />
-      <Footer />
     </Wrapper>
   );
 };
@@ -34,5 +32,5 @@ export default QuestionList;
 
 const Wrapper = styled.div`
   background-color: var(--red-600);
-  height: 100vh;
+  height: 100%;
 `;
