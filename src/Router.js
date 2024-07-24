@@ -7,6 +7,7 @@ import MainLayout from "./components/common/main-layout";
 import ProtectedRoute from "./components/common/protected-route";
 import StoreDecoration from "./pages/store/store-decoration";
 import StoreTree from "./pages/store/store-tree";
+import QuestionList from "./pages/question/question-list";
 
 const Router = createBrowserRouter([
   {
@@ -28,6 +29,10 @@ const Router = createBrowserRouter([
       {
         path: "/store-tree",
         element: <StoreTree />,
+      },
+      {
+        path: "/question/list",
+        element: <QuestionList />,
       },
     ],
   },

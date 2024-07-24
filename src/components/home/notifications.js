@@ -18,8 +18,8 @@ const Notifications = () => {
         <div className="titlebox">
           <Title>나만의 질문을 만들어보세요!</Title>
           <Desc>
-            평소에 궁금했던 점을 질문하거나 부끄러워 하지 못했던
-            <br /> 깊은 이야기를 나누어보세요!
+            평소에 궁금했던 점을 질문하거나
+            <br /> 부끄러워 하지 못했던 깊은 이야기를 나누어보세요!
           </Desc>
         </div>
       </QuestionBox>
@@ -35,18 +35,19 @@ const Title = styled.div`
 const Desc = styled.div`
   color: white;
   font-size: 12px;
-  line-height: 1.2rem;
+  line-height: 1rem;
 `;
 const QuestionBox = styled.div`
   background-color: var(--red-600);
   width: 80%;
-  padding: 20px 25px;
-  border-radius: 15px;
+  padding: 15px 15px;
+  border-radius: 20px;
   display: flex;
+  justify-content: center;
   align-items: center;
   cursor: pointer;
   svg {
-    width: 50px;
+    width: 40px;
     height: 50px;
     margin-right: 20px;
   }

@@ -20,6 +20,11 @@ const StoreDecoration = () => {
     }
   };
 
+  // 카드 배열로 추가
+  const themeSets = ["크리스마스", "벚꽃나무", "하와이", "단풍나무"];
+  const backgrounds = ["설경", "여름햇살", "바다", "노을"];
+  const objects = ["선물상자", "강아지", "고양이"];
+
   return (
     <Wrapper>
       <StoreHeader activeTab="decoration" onTabClick={handleTabClick} />
@@ -27,43 +32,31 @@ const StoreDecoration = () => {
         <Section>
           <SectionTitle>테마 세트</SectionTitle>
           <CardList>
-            <Card>
-              <CardText>크리스마스</CardText>
-            </Card>
-            <Card>
-              <CardText>벚꽃나무</CardText>
-            </Card>
-            <Card>
-              <CardText>하와이</CardText>
-            </Card>
+            {themeSets.map((cardText, index) => (
+              <Card key={index}>
+                <CardText>{cardText}</CardText>
+              </Card>
+            ))}
           </CardList>
         </Section>
         <Section>
           <SectionTitle>배경</SectionTitle>
           <CardList>
-            <Card>
-              <CardText>설경</CardText>
-            </Card>
-            <Card>
-              <CardText>쨍쨍한 여름햇살</CardText>
-            </Card>
-            <Card>
-              <CardText>노을</CardText>
-            </Card>
+            {backgrounds.map((cardText, index) => (
+              <Card key={index}>
+                <CardText>{cardText}</CardText>
+              </Card>
+            ))}
           </CardList>
         </Section>
         <Section>
           <SectionTitle>오브제</SectionTitle>
           <CardList>
-            <Card>
-              <CardText>선물상자</CardText>
-            </Card>
-            <Card>
-              <CardText>강아지</CardText>
-            </Card>
-            <Card>
-              <CardText>고양이</CardText>
-            </Card>
+            {objects.map((cardText, index) => (
+              <Card key={index}>
+                <CardText>{cardText}</CardText>
+              </Card>
+            ))}
           </CardList>
         </Section>
       </Content>
@@ -80,7 +73,6 @@ const Wrapper = styled.div`
   width: 56.25vh;
   height: 100vh;
   background-color: var(--gray-50);
-  /*margin: 0 auto; 이거 하면 안보이네*/
 `;
 
 const Content = styled.div`
@@ -103,10 +95,11 @@ const CardList = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: 15px;
+  justify-content: flex-start; /* 왼쪽 정렬 */
 `;
 
 const Card = styled.div`
-  flex: 1 1 calc(25% - 20px);
+  flex: 0 1 calc(33.333% - 10px); /* 카드 너비를 3등분하여 고정 */
   background-color: var(--gray-400);
   height: 120px;
   display: flex;
