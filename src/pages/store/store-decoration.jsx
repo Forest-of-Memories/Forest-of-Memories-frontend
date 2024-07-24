@@ -95,11 +95,11 @@ const CardList = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: 15px;
-  justify-content: flex-start; /* 왼쪽 정렬 */
+  justify-content: flex-start;
 `;
 
 const Card = styled.div`
-  flex: 0 1 calc(33.333% - 10px); /* 카드 너비를 3등분하여 고정 */
+  flex: 0 1 calc(33.333% - 10px);
   background-color: var(--gray-400);
   height: 120px;
   display: flex;

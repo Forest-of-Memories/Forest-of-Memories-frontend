@@ -20,6 +20,10 @@ const StoreTree = () => {
     }
   };
 
+  // 카드 배열로 추가
+  const seeds = ["크리스마스 트리", "벚꽃나무", "야자수", "단풍나무"];
+  const smallTreeSets = ["크리스마스 트리", "벚꽃나무", "야자수", "단풍나무"];
+
   return (
     <Wrapper>
       <StoreHeader activeTab="tree" onTabClick={handleTabClick} />
@@ -27,29 +31,21 @@ const StoreTree = () => {
         <Section>
           <SectionTitle>나무 씨앗</SectionTitle>
           <CardList>
-            <Card>
-              <CardText>크리스마스 트리</CardText>
-            </Card>
-            <Card>
-              <CardText>벚꽃나무</CardText>
-            </Card>
-            <Card>
-              <CardText>야자수</CardText>
-            </Card>
+            {seeds.map((cardText, index) => (
+              <Card key={index}>
+                <CardText>{cardText}</CardText>
+              </Card>
+            ))}
           </CardList>
         </Section>
         <Section>
           <SectionTitle>나무 묘목</SectionTitle>
           <CardList>
-            <Card>
-              <CardText>크리스마스 트리</CardText>
-            </Card>
-            <Card>
-              <CardText>벚꽃나무</CardText>
-            </Card>
-            <Card>
-              <CardText>야자수</CardText>
-            </Card>
+            {smallTreeSets.map((cardText, index) => (
+              <Card key={index}>
+                <CardText>{cardText}</CardText>
+              </Card>
+            ))}
           </CardList>
         </Section>
       </Content>
@@ -66,7 +62,6 @@ const Wrapper = styled.div`
   width: 56.25vh;
   height: 100vh;
   background-color: var(--gray-50);
-  /*margin: 0 auto; 이거 하면 안보이네*/
 `;
 
 const Content = styled.div`
@@ -89,10 +84,11 @@ const CardList = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: 15px;
+  justify-content: flex-start;
 `;
 
 const Card = styled.div`
-  flex: 1 1 calc(25% - 20px);
+  flex: 0 1 calc(33.333% - 10px);
   background-color: var(--gray-400);
   height: 120px;
   display: flex;
