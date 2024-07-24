@@ -8,9 +8,9 @@ import ProtectedRoute from "./components/common/protected-route";
 
 import QuestionList from "./pages/question/question-list";
 
-import StoreDecoration from "./pages/store/store-decoration";
 import StoreTree from "./pages/store/store-tree";
-import StorePoint from "./pages/store/store-point";
+import StoreBackground from "./pages/store/store-background";
+import StoreObject from "./pages/store/store-object";
 
 const Router = createBrowserRouter([
   {
@@ -30,16 +30,16 @@ const Router = createBrowserRouter([
         element: <QuestionList />,
       },
       {
-        path: "/store-decoration",
-        element: <StoreDecoration />,
-      },
-      {
         path: "/store-tree",
         element: <StoreTree />,
       },
       {
-        path: "/store-point",
-        element: <StorePoint />,
+        path: "/store-background",
+        element: <StoreBackground />,
+      },
+      {
+        path: "/store-object",
+        element: <StoreObject />,
       },
     ],
   },

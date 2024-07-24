@@ -4,44 +4,33 @@ import { useNavigate } from "react-router-dom";
 import StoreHeader from "./store-header";
 import "../../styles/color.css";
 
-const StorePoint = () => {
+const StoreObject = () => {
   const navigate = useNavigate();
 
   const handleTabClick = (tab) => {
     switch (tab) {
-      case "tree":
-        navigate("/store-tree");
+      case "background":
+        navigate("/store-background");
         break;
-      case "point":
-        navigate("/store-point");
+      case "object":
+        navigate("/store-object");
         break;
       default:
-        navigate("/store-decoration");
+        navigate("/store-tree");
     }
   };
 
   // 카드 배열로 추가
-  const seeds = ["산소 x 50", "산소 x 100"];
-  const smallTreeSets = ["물", "비료"];
+  const objects = ["선물상자", "강아지", "고양이"];
 
   return (
     <Wrapper>
-      <StoreHeader activeTab="point" onTabClick={handleTabClick} />
+      <StoreHeader activeTab="object" onTabClick={handleTabClick} />
       <Content>
         <Section>
-          <SectionTitle>산소</SectionTitle>
+          <SectionTitle>오브제</SectionTitle>
           <CardList>
-            {seeds.map((cardText, index) => (
-              <Card key={index}>
-                <CardText>{cardText}</CardText>
-              </Card>
-            ))}
-          </CardList>
-        </Section>
-        <Section>
-          <SectionTitle>물/비료?</SectionTitle>
-          <CardList>
-            {smallTreeSets.map((cardText, index) => (
+            {objects.map((cardText, index) => (
               <Card key={index}>
                 <CardText>{cardText}</CardText>
               </Card>
@@ -53,7 +42,7 @@ const StorePoint = () => {
   );
 };
 
-export default StorePoint;
+export default StoreObject;
 
 const Wrapper = styled.div`
   display: flex;

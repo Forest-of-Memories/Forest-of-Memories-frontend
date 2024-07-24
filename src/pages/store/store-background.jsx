@@ -4,55 +4,33 @@ import { useNavigate } from "react-router-dom";
 import StoreHeader from "./store-header";
 import "../../styles/color.css";
 
-const StoreDecoration = () => {
+const StoreBackground = () => {
   const navigate = useNavigate();
 
   const handleTabClick = (tab) => {
     switch (tab) {
-      case "tree":
-        navigate("/store-tree");
+      case "background":
+        navigate("/store-background");
         break;
-      case "point":
-        navigate("/store-point");
+      case "object":
+        navigate("/store-object");
         break;
       default:
-        navigate("/store-decoration");
+        navigate("/store-tree");
     }
   };
 
   // 카드 배열로 추가
-  const themeSets = ["크리스마스", "벚꽃나무", "하와이", "단풍나무"];
   const backgrounds = ["설경", "여름햇살", "바다", "노을"];
-  const objects = ["선물상자", "강아지", "고양이"];
 
   return (
     <Wrapper>
-      <StoreHeader activeTab="decoration" onTabClick={handleTabClick} />
+      <StoreHeader activeTab="background" onTabClick={handleTabClick} />
       <Content>
-        <Section>
-          <SectionTitle>테마 세트</SectionTitle>
-          <CardList>
-            {themeSets.map((cardText, index) => (
-              <Card key={index}>
-                <CardText>{cardText}</CardText>
-              </Card>
-            ))}
-          </CardList>
-        </Section>
         <Section>
           <SectionTitle>배경</SectionTitle>
           <CardList>
             {backgrounds.map((cardText, index) => (
-              <Card key={index}>
-                <CardText>{cardText}</CardText>
-              </Card>
-            ))}
-          </CardList>
-        </Section>
-        <Section>
-          <SectionTitle>오브제</SectionTitle>
-          <CardList>
-            {objects.map((cardText, index) => (
               <Card key={index}>
                 <CardText>{cardText}</CardText>
               </Card>
@@ -64,7 +42,7 @@ const StoreDecoration = () => {
   );
 };
 
-export default StoreDecoration;
+export default StoreBackground;
 
 const Wrapper = styled.div`
   display: flex;
