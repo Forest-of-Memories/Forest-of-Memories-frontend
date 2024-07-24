@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-const StoreHeader = ({ activeTab, onTabClick }) => {
+const StoreTabs = ({ activeTab, onTabClick }) => {
   return (
     <Tabs>
       <Tab active={activeTab === "tree"} onClick={() => onTabClick("tree")}>
@@ -20,19 +20,19 @@ const StoreHeader = ({ activeTab, onTabClick }) => {
   );
 };
 
-export default StoreHeader;
+export default StoreTabs;
 
 const Tabs = styled.div`
   display: flex;
   justify-content: space-around;
-  padding: 3px;
+  padding: 0 5px;
   background-color: white;
 `;
 
 const Tab = styled.div`
   flex: 1;
   text-align: center;
-  padding: 10px 0;
+  padding: 9px 0;
   font-size: 21px;
   border-bottom: ${({ active }) =>
     active ? "2px solid var(--red-600)" : "none"};

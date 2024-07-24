@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
-import StoreHeader from "./store-header";
+import StoreTabs from "../../components/store/store-tabs";
 import "../../styles/color.css";
 
 const StoreObject = () => {
@@ -25,7 +25,7 @@ const StoreObject = () => {
 
   return (
     <Wrapper>
-      <StoreHeader activeTab="object" onTabClick={handleTabClick} />
+      <StoreTabs activeTab="object" onTabClick={handleTabClick} />
       <Content>
         <Section>
           <SectionTitle>오브제</SectionTitle>
