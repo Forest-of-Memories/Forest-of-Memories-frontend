@@ -6,6 +6,9 @@ import SignUp from "./pages/sign-up";
 import MainLayout from "./components/common/main-layout";
 import ProtectedRoute from "./components/common/protected-route";
 import QuestionList from "./pages/question/question-list";
+import QuestionDetail from "./pages/question/question-detail";
+import MyPage from "./pages/mypage/mypage-setting";
+import TutorialPage from "./pages/Tutorial/tutorial";
 
 const Router = createBrowserRouter([
   {
@@ -20,10 +23,6 @@ const Router = createBrowserRouter([
         path: "",
         element: <Home />,
       },
-      {
-        path: "/question/list",
-        element: <QuestionList />,
-      },
     ],
   },
   {
@@ -33,6 +32,22 @@ const Router = createBrowserRouter([
   {
     path: "/sign-up",
     element: <SignUp />,
+  },
+  {
+    path: "/question/list",
+    element: <QuestionList />,
+  },
+  {
+    path: "/question/detail/:index",
+    element: <QuestionDetail />,
+  },
+  {
+    path: "/mypage",
+    element: <MyPage />,
+  },
+  {
+    path: "/tutorial",
+    element: <TutorialPage />,
   },
 ]);
 export default Router;

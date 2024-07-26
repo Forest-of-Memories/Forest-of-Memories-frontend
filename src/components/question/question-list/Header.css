@@ -1,27 +1,39 @@
 /* Header.css */
 .header {
   display: flex;
-  justify-content: center; /* 중앙 정렬 */
-  align-items: center; /* 수직 중앙 정렬 */
+  justify-content: center;
+  align-items: center;
   padding: 10px;
   background-color: #f8f8f8;
-  height: 8vh; /* 헤더 높이 설정 */
+  height: 8vh;
 }
 
 .title {
-  flex: 1; /* 제목이 가능한 공간을 차지하도록 설정 */
-  text-align: center; /* 제목을 중앙 정렬 */
-  margin: 0; /* 기본 마진 제거 */
+  flex: 1;
+  text-align: center;
+  margin: 0;
 }
 
 .header-icons {
   display: flex;
-  gap: 20px; /* 아이콘 간의 간격 설정 */
+  gap: 20px;
 }
 
 .header-icons img {
-  width: 30px; /* 아이콘 크기 설정 */
+  width: 30px;
   height: 30px;
   cursor: pointer;
   pointer-events: auto;
+}
+
+.header-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.header-item span {
+  margin-top: 5px;
+  font-size: 12px;
+  color: #333;
 }

@@ -8,9 +8,18 @@ const Header = ({ onShowOnlyLiked }) => {
     <header className="header">
       <h1 className="title">List</h1>
       <div className="header-icons">
-        <img src="/service_question.png" alt="Service Question icon" />
-        <img src="/user_question.png" alt="User Question icon" />
-        <img src="/saved.png" alt="Save icon" onClick={onShowOnlyLiked} />
+        <div className="header-item">
+          <img src="/imgs/service_question.png" alt="Service Question icon" />
+          <span>서비스 질문</span>
+        </div>
+        <div className="header-item">
+          <img src="/imgs/user_question.png" alt="User Question icon" />
+          <span>내 질문</span>
+        </div>
+        <div className="header-item" onClick={onShowOnlyLiked}>
+          <img src="/imgs/like_full.png" alt="Save icon" />
+          <span>좋아요</span>
+        </div>
       </div>
     </header>
   );

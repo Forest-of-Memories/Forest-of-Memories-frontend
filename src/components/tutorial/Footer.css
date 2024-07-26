@@ -1,0 +1,43 @@
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.back-button,
+.next-button {
+  background-color: #ff8b8b;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 16px;
+}
+
+.back-button:disabled,
+.next-button:disabled {
+  background-color: gray;
+  cursor: not-allowed;
+}
+
+.step-indicator {
+  display: flex;
+  gap: 5px;
+}
+
+.indicator-dot {
+  width: 10px;
+  height: 10px;
+  background-color: lightgray;
+  border-radius: 50%;
+}
+
+.indicator-dot.active {
+  background-color: #ff8b8b;
+}
