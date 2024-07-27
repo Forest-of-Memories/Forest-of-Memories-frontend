@@ -9,8 +9,8 @@ const Modal = ({ show, handleClose, children }) => {
   return (
     <ModalOverlay onClick={handleClose}>
       <ModalContent onClick={(e) => e.stopPropagation()}>
+        <CloseButton onClick={handleClose}>×</CloseButton>
         {children}
-        <CloseButton onClick={handleClose}>닫기</CloseButton>
       </ModalContent>
     </ModalOverlay>
   );
@@ -38,15 +38,16 @@ const ModalContent = styled.div`
   width: 100%;
   max-height: 80vh;
   overflow-y: auto;
+  position: relative; /* 추가: CloseButton을 절대 위치로 설정하기 위함 */
 `;
 
 const CloseButton = styled.button`
-  background: #ff8b8b;
-  color: white;
+  background: none;
+  color: #333;
   border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
+  font-size: 1.5rem;
+  position: absolute; /* 추가: 모달 내용의 절대 위치 설정 */
+  top: 10px; /* 모달 내용 상단에서 10px */
+  right: 10px; /* 모달 내용 우측에서 10px */
   cursor: pointer;
-  margin-top: 20px;
-  float: right;
 `;

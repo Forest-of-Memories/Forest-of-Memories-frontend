@@ -9,6 +9,9 @@ import QuestionList from "./pages/question/question-list";
 import QuestionDetail from "./pages/question/question-detail";
 import MyPage from "./pages/mypage/mypage-setting";
 import TutorialPage from "./pages/Tutorial/tutorial";
+import StoreTree from "./pages/store/store-tree";
+import StoreBackground from "./pages/store/store-background";
+import StoreObject from "./pages/store/store-object";
 
 const Router = createBrowserRouter([
   {
@@ -22,6 +25,18 @@ const Router = createBrowserRouter([
       {
         path: "",
         element: <Home />,
+      },
+      {
+        path: "/store-tree",
+        element: <StoreTree />,
+      },
+      {
+        path: "/store-background",
+        element: <StoreBackground />,
+      },
+      {
+        path: "/store-object",
+        element: <StoreObject />,
       },
     ],
   },

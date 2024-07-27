@@ -70,16 +70,13 @@ const MyPageComponent = () => {
       </div>
       <ul className="options">
         <li onClick={handleEditClick}>닉네임 변경</li>
-        <li>나를 추가한 사용자</li>
+        <li>가족 코드</li>
         <li className="section-title">활동내역</li>
         <li>내가 작성한 질문</li>
-        <li>내가 답한 질문</li>
         <li>내가 좋아한 질문</li>
-        <li>차단한 사용자</li>
         <li>내 테마</li>
         <li className="section-title">고객센터</li>
         <li>자주하는 질문</li>
-        <li>1:1 문의</li>
       </ul>
     </div>
   );

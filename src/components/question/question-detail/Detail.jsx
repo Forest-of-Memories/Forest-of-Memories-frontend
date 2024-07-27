@@ -33,6 +33,7 @@ const Detail = () => {
       const newCommentObject = {
         author: "익명", // 예시
         text: newComment.trim(),
+        date: new Date().toLocaleString(),
       };
 
       setComments([...comments, newCommentObject]);
@@ -92,6 +93,7 @@ const Detail = () => {
             <Comment key={idx}>
               <CommentHeader>
                 <h3>{comment.author}</h3>
+                <CommentDate>{comment.date}</CommentDate>
                 <DeleteButton onClick={() => handleCommentDelete(idx)}>
                   삭제
                 </DeleteButton>
@@ -193,6 +195,12 @@ const CommentHeader = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+`;
+
+const CommentDate = styled.span`
+  font-size: 12px;
+  color: #888;
+  margin-left: 220px;
 `;
 
 const DeleteButton = styled.button`
