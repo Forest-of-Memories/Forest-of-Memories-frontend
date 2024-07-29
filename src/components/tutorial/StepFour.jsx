@@ -4,10 +4,10 @@ import "./TutorialPage.css";
 import "./StepFour.css";
 
 const StepFour = () => {
-  const navigate = useNavigate(); // useNavigate 훅을 사용하여 navigate 함수를 생성합니다
+  const navigate = useNavigate();
 
   const goToHome = () => {
-    navigate("/"); // 홈 화면의 라우트 경로로 이동합니다
+    navigate("/");
   };
 
   return (

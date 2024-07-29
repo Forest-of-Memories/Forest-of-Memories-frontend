@@ -20,25 +20,25 @@ export default Modal;
 
 const ModalOverlay = styled.div`
   position: fixed;
-  top: 0;
+  bottom: 0;
   left: 0;
   width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5);
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-end;
+  background: transparent;
+  box-shadow: rgba(0, 0, 0, 0.65) 0px 5px 15px;
 `;
 
 const ModalContent = styled.div`
   background: white;
   padding: 20px;
-  border-radius: 5px;
+  border-radius: 5px 5px 0 0;
   max-width: 500px;
   width: 100%;
-  max-height: 80vh;
+  max-height: 70vh;
   overflow-y: auto;
-  position: relative; /* 추가: CloseButton을 절대 위치로 설정하기 위함 */
+  position: relative;
 `;
 
 const CloseButton = styled.button`
@@ -46,8 +46,8 @@ const CloseButton = styled.button`
   color: #333;
   border: none;
   font-size: 1.5rem;
-  position: absolute; /* 추가: 모달 내용의 절대 위치 설정 */
-  top: 10px; /* 모달 내용 상단에서 10px */
-  right: 10px; /* 모달 내용 우측에서 10px */
+  position: absolute;
+  top: 10px;
+  right: 10px;
   cursor: pointer;
 `;
