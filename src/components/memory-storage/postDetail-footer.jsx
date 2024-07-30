@@ -2,22 +2,22 @@ import React from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 
-const WriteFooter = () => {
+const PostDetailFooter = () => {
   const navigate = useNavigate();
 
-  const handleGalleryClick = () => {
+  const handleCommentClick = () => {
     // 갤러리 앱으로 이동하는 로직 추가
-    console.log("갤러리 버튼 클릭");
+    console.log("댓글 버튼 클릭");
   };
 
   return (
     <Footer>
-      <GalleryButton onClick={handleGalleryClick}>🖼️</GalleryButton>
+      <CommentButton onClick={handleCommentClick}>💬</CommentButton>
     </Footer>
   );
 };
 
-export default WriteFooter;
+export default PostDetailFooter;
 
 const Footer = styled.footer`
   display: flex;
@@ -32,7 +32,7 @@ const Footer = styled.footer`
   padding: 0 20px;
 `;
 
-const GalleryButton = styled.button`
+const CommentButton = styled.button`
   background: none;
   border: none;
   cursor: pointer;

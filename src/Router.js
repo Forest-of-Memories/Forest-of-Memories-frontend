@@ -12,6 +12,7 @@ import StoreTree from "./pages/store/store-tree";
 import StorageGallery from "./pages/memory-storage/storage-gallery";
 import StorageGalleryWrite from "./pages/memory-storage/storage-gallery-write";
 import LocationSearch from "./pages/memory-storage/LocationSearch";
+import PostDetail from "./pages/memory-storage/postDetail";
 
 const Router = createBrowserRouter([
   {
@@ -55,6 +56,10 @@ const Router = createBrowserRouter([
   {
     path: "/storage-gallery/write/location",
     element: <LocationSearch />,
+  },
+  {
+    path: "/storage-gallery/PostDetail/:id",
+    element: <PostDetail />,
   },
 ]);
 export default Router;

@@ -1,98 +1,24 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import "../../styles/color.css";
 
 import StoredTree from "../../components/memory-storage/stored-tree";
 import TreeInfo from "../../components/memory-storage/stored-treeinfo";
 import PostList from "../../components/memory-storage/PostList";
 
-import bigTreeImg from "../../assets/imgs/bigtree.png";
-import bigtreeImg2 from "../../assets/imgs/bigtree2.png"; // 예시로 추가된 이미지
-import bigtreeImg3 from "../../assets/imgs/bigtree3.png";
-import bigtreeImg4 from "../../assets/imgs/bigtree4.png";
-
-import busan from "../../assets/imgs/busan.png";
-import postdog from "../../assets/imgs/postdog.png";
+import treeData from "../../components/memory-storage/treeData";
 
 const StorageGallery = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const [currentIndex, setCurrentIndex] = useState(0);
-  const treeData = [
-    {
-      image: bigtreeImg4,
-      num: 4,
-      dates: "2024.06.29 ~ 2024.07.27",
-      days: 105,
-      posts: [
-        {
-          id: 5,
-          title: "집앞 외식",
-          date: "2024.04.12",
-          people: "엄마, 아빠, 나, 혈육",
-          image: "path/to/image5.jpg", // 실제 이미지 경로를 사용하세요
-          description: "봄날의 산책",
-        },
-      ],
-    },
-    {
-      image: bigtreeImg3,
-      num: 3,
-      dates: "2023.12.23 ~ 2024.06.28",
-      days: 105,
-      posts: [
-        {
-          id: 4,
-          title: "산책",
-          date: "2024.04.12",
-          people: "엄마, 아빠",
-          image: "path/to/image4.jpg", // 실제 이미지 경로를 사용하세요
-          description: "봄날의 산책",
-        },
-      ],
-    },
 
-    {
-      image: bigtreeImg2,
-      num: 2,
-      dates: "2023.05.30 ~ 2023.12.22",
-      days: 110,
-      posts: [
-        {
-          id: 3,
-          title: "해변 여행",
-          date: "2023.06.15 ~ 2023.06.18",
-          people: "엄마, 나",
-          image: "path/to/image3.jpg", // 실제 이미지 경로를 사용하세요
-          description: "해변에서 신나는 시간!",
-        },
-      ],
-    },
-    {
-      image: bigTreeImg,
-      num: 1,
-      dates: "2023.01.01 ~ 2023.05.29",
-      days: 260,
-      posts: [
-        {
-          id: 2,
-          title: "부산 여행",
-          date: "2023.02.08 ~ 2023.02.12",
-          people: "엄마, 아빠, 나, 혈육",
-          image: busan, // 실제 이미지 경로를 사용하세요
-          description: "부산 여행에 다녀왔어요!",
-        },
-        {
-          id: 1,
-          title: "강아지",
-          date: "2023.01.12",
-          people: "강아지",
-          image: postdog, // 실제 이미지 경로를 사용하세요
-          description: "우리 강아지의 귀여운 모습이에요!",
-        },
-      ],
-    },
-  ];
+  useEffect(() => {
+    if (location.state && location.state.treeIndex !== undefined) {
+      setCurrentIndex(location.state.treeIndex);
+    }
+  }, [location.state]);
 
   const handlePrevious = () => {
     setCurrentIndex((prevIndex) =>
@@ -113,6 +39,12 @@ const StorageGallery = () => {
     navigate("/storage-gallery/write");
   };
 
+  const handlePostClick = (id) => {
+    navigate(`/storage-gallery/PostDetail/${id}`, {
+      state: { treeIndex: currentIndex },
+    });
+  };
+
   return (
     <Wrapper>
       <StoredTree
@@ -126,7 +58,7 @@ const StorageGallery = () => {
         days={currentTree.days}
         postsCount={currentTree.posts.length}
       />
-      <PostList posts={currentTree.posts} />
+      <PostList posts={currentTree.posts} onPostClick={handlePostClick} />
 
       <WriteButton onClick={handleAddPost}>+</WriteButton>
     </Wrapper>
@@ -143,6 +75,7 @@ const Wrapper = styled.div`
   height: 100%;
   background-color: var(--gray-50);
   position: relative;
+  overflow-y: auto;
 `;
 
 const WriteButton = styled.button`

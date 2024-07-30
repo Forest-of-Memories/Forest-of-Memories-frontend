@@ -32,7 +32,7 @@ const TreeImage = styled.div`
   align-items: center;
 
   width: 75%;
-  height: 380px;
+  height: 330px;
 
   background-color: var(--gray-400);
   img {
