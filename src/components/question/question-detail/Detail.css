@@ -1,0 +1,47 @@
+.wrapper {
+  padding: 20px;
+  background-color: #f5f5f5;
+  height: 100vh;
+  max-height: 100vh;
+  overflow-y: auto;
+  font-family: "Nanum Pen Script", cursive;
+}
+
+h2 {
+  margin-top: 30px;
+  font-size: 18px;
+  margin-bottom: 30px;
+  color: #333;
+}
+
+img {
+  width: 410px;
+  height: auto;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  justify-content: center;
+}
+
+.answers {
+  margin-top: 30px;
+}
+
+.answer {
+  margin-bottom: 30px;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.answer h3 {
+  margin: 0 0 15px 0;
+  font-size: 20px;
+  color: #ff8a80;
+}
+
+.answer p {
+  margin: 0;
+  font-size: 15px;
+  color: #666;
+}

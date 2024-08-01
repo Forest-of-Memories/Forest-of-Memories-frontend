@@ -36,11 +36,11 @@ const StorageGallery = () => {
 
   const handleAddPost = () => {
     // 글쓰기 버튼 클릭 시의 동작 정의
-    navigate("/storage-gallery/write");
+    navigate("/storage/post/write");
   };
 
   const handlePostClick = (id) => {
-    navigate(`/storage-gallery/PostDetail/${id}`, {
+    navigate(`/storage/post-detail/${id}`, {
       state: { treeIndex: currentIndex },
     });
   };

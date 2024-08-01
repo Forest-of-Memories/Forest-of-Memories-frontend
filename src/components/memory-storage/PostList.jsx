@@ -6,7 +6,7 @@ const PostList = ({ posts }) => {
   const navigate = useNavigate();
 
   const handlePostClick = (id) => {
-    navigate(`/storage-gallery/PostDetail/${id}`);
+    navigate(`/storage/post-detail/${id}`);
   };
 
   return (

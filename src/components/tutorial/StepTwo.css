@@ -1,0 +1,55 @@
+.step-container {
+  border-radius: 10px;
+  padding: 20px;
+  max-width: 600px;
+  margin: 20px 0;
+  height: 84vh;
+  text-align: center;
+}
+
+.step-header {
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+.icon {
+  width: 40px;
+  height: 40px;
+  margin-bottom: 10px;
+}
+
+.step-title {
+  font-size: 24px;
+  color: #3a3a3a;
+  margin: 50px 0;
+}
+
+.step-subtitle {
+  font-size: 16px;
+  color: #3a3a3a;
+}
+
+.login-buttons {
+  margin: 20px 0;
+}
+
+.header-img {
+  width: 100%;
+  max-width: 500px;
+  height: auto;
+  margin-top: 20px;
+}
+
+.kakao-login-button img {
+  width: 200px;
+  height: 50px;
+  margin-top: 20px;
+  margin-right: 10px;
+  align-items: center;
+}
+
+.tip {
+  font-size: 14px;
+  color: #4a4a4a;
+  margin-top: 20px;
+}

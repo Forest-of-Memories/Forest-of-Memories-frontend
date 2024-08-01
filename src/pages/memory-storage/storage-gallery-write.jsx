@@ -29,7 +29,7 @@ const StorageGalleryWrite = () => {
   };
 
   const handleLocationClick = () => {
-    navigate("/storage-gallery/write/location"); // 장소 검색 페이지로 이동
+    navigate("/storage/write/location"); // 장소 검색 페이지로 이동
   };
 
   return (
