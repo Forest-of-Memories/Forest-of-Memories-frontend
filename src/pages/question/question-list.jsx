@@ -4,6 +4,7 @@ import "../../styles/color.css";
 import Header from "../../components/question/question-list/Header";
 import List from "../../components/question/question-list/List";
 import questionData from "../../components/question/question-list/questionData";
+import Footer from "../../components/common/footer";
 
 const QuestionList = () => {
   const handleQuestionClick = (index) => {
@@ -18,12 +19,13 @@ const QuestionList = () => {
 
   return (
     <Wrapper>
-      {/* <Header onShowOnlyLiked={handleShowOnlyLiked} /> */}
+      <Header onShowOnlyLiked={handleShowOnlyLiked} />
       <List
         questions={questionData}
         onQuestionClick={handleQuestionClick}
         showOnlyLiked={showOnlyLiked}
       />
+      <Footer />
     </Wrapper>
   );
 };

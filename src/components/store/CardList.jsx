@@ -1,8 +1,27 @@
+import React from "react";
 import React, { useState } from "react";
 import styled from "styled-components";
 
 import o2Image from "../../assets/imgs/o2.png";
 
+const CardList = ({ cards, handleCardClick, isTreePurchased }) => (
+  <List>
+    {cards.map((item, index) => (
+      <Card
+        key={index}
+        onClick={() => handleCardClick(item)}
+        purchased={isTreePurchased(item.name)}
+      >
+        <CardImage src={item.image} alt={item.name} />
+        <CardText>{item.name}</CardText>
+        <CardPrice>
+          <O2Icon src={o2Image} alt="O2" />
+          {item.price}
+        </CardPrice>
+      </Card>
+    ))}
+  </List>
+);
 const CardList = ({ cards, handleCardClick, isTreePurchased }) => {
   const [checkedItems, setCheckedItems] = useState({});
 
