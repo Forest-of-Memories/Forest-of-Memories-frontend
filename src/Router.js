@@ -5,18 +5,22 @@ import Login from "./pages/login";
 import SignUp from "./pages/sign-up";
 import MainLayout from "./components/common/main-layout";
 import ProtectedRoute from "./components/common/protected-route";
-
 import QuestionList from "./pages/question/question-list";
+<<<<<<<<< Temporary merge branch 1
+import QuestionDetail from "./pages/question/question-detail";
+import MyPage from "./pages/mypage/mypage-setting";
+import TutorialPage from "./pages/Tutorial/tutorial";
+import StoreTree from "./pages/store/store-tree";
+import StoreBackground from "./pages/store/store-background";
+import StoreObject from "./pages/store/store-object";
+=========
 import QuestionCreate from "./pages/question/question-create";
-
 import StoreTree from "./pages/store/store-tree";
 import StorageGallery from "./pages/memory-storage/storage-gallery";
 import StorageGalleryWrite from "./pages/memory-storage/storage-gallery-write";
 import LocationSearch from "./pages/memory-storage/LocationSearch";
 import PostDetail from "./pages/memory-storage/postDetail";
-import MyPage from "./pages/mypage/mypage-setting";
-import Detail from "./components/question/question-detail/Detail";
-import TutorialPage from "./pages/Tutorial/tutorial";
+>>>>>>>>> Temporary merge branch 2
 
 const Router = createBrowserRouter([
   {
@@ -59,8 +63,9 @@ const Router = createBrowserRouter([
     element: <SignUp />,
   },
   {
-    path: "/storage-gallery/write",
-    element: <StorageGalleryWrite />,
+<<<<<<<<< Temporary merge branch 1
+    path: "/question/list",
+    element: <QuestionList />,
   },
   {
     path: "/storage-gallery/write/location",
@@ -72,22 +77,18 @@ const Router = createBrowserRouter([
   },
 
   {
+    path: "/tutorial",
+    element: <TutorialPage />,
+=========
+
     path: "/question/create",
     element: (
       <ProtectedRoute>
         <QuestionCreate />
       </ProtectedRoute>
     ),
-  },
 
-  {
-    path: "/question/detail/:index",
-    element: <Detail />,
-  },
-
-  {
-    path: "/tutorial",
-    element: <TutorialPage />,
+>>>>>>>>> Temporary merge branch 2
   },
 ]);
 export default Router;

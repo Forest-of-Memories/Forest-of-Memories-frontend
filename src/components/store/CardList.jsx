@@ -1,8 +1,33 @@
+<<<<<<< HEAD
+=======
+import React from "react";
+>>>>>>> 2a90d0cd033118bf9e351e2934019cebb362429e
 import React, { useState } from "react";
 import styled from "styled-components";
 
 import o2Image from "../../assets/imgs/o2.png";
 
+<<<<<<< HEAD
+=======
+const CardList = ({ cards, handleCardClick, isTreePurchased }) => (
+  <List>
+    {cards.map((item, index) => (
+      <Card
+        key={index}
+        onClick={() => handleCardClick(item)}
+        purchased={isTreePurchased(item.name)}
+      >
+        <CardImage src={item.image} alt={item.name} />
+        <CardText>{item.name}</CardText>
+        <CardPrice>
+          <O2Icon src={o2Image} alt="O2" />
+          {item.price}
+        </CardPrice>
+      </Card>
+    ))}
+  </List>
+);
+>>>>>>> 2a90d0cd033118bf9e351e2934019cebb362429e
 const CardList = ({ cards, handleCardClick, isTreePurchased }) => {
   const [checkedItems, setCheckedItems] = useState({});
 
