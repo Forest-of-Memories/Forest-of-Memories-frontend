@@ -21,6 +21,10 @@ const Router = createBrowserRouter([
         path: "",
         element: <Home />,
       },
+      {
+        path: "/question/list",
+        element: <QuestionList />,
+      },
     ],
   },
   {
@@ -38,10 +42,6 @@ const Router = createBrowserRouter([
         <QuestionCreate />
       </ProtectedRoute>
     ),
-  },
-  {
-    path: "/question/list",
-    element: <QuestionList />,
   },
 ]);
 export default Router;
