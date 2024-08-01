@@ -74,7 +74,7 @@ const Detail = () => {
 
       setComments([...comments, newCommentObject]);
       setNewComment("");
-      setShowCommentInput(false);
+      // setShowCommentInput(false);
     }
   };
 
@@ -159,22 +159,6 @@ const Detail = () => {
           ))}
         </AnswerSections>
       </AnswerSectionsWrapper>
-      <CommentsWrapper>
-        <CommentsContainer>
-          {comments.map((comment, idx) => (
-            <Comment key={idx}>
-              <CommentHeader>
-                <CommentAuthor>{comment.author}</CommentAuthor>
-                <CommentDate>{comment.date}</CommentDate>
-                <DeleteButton onClick={() => handleCommentDelete(idx)}>
-                  삭제
-                </DeleteButton>
-              </CommentHeader>
-              <CommentText>{comment.text}</CommentText>
-            </Comment>
-          ))}
-        </CommentsContainer>
-      </CommentsWrapper>
       <Modal
         show={showAnswerInput}
         handleClose={() => setShowAnswerInput(false)}
@@ -206,6 +190,20 @@ const Detail = () => {
           />
           <SubmitButton onClick={handleCommentSubmit}>댓글 달기</SubmitButton>
         </InputSection>
+        <CommentsContainer>
+          {comments.map((comment, idx) => (
+            <Comment key={idx}>
+              <CommentHeader>
+                <CommentAuthor>{comment.author}</CommentAuthor>
+                <CommentDate>{comment.date}</CommentDate>
+                <DeleteButton onClick={() => handleCommentDelete(idx)}>
+                  삭제
+                </DeleteButton>
+              </CommentHeader>
+              <CommentText>{comment.text}</CommentText>
+            </Comment>
+          ))}
+        </CommentsContainer>
       </Modal>
       {showDeleteConfirmation && (
         <DeleteConfirmationModal>
@@ -397,11 +395,12 @@ const CommentHeader = styled.div`
 
 const CommentAuthor = styled.h3`
   margin: 0;
-  font-size: 20px;
+  font-size: 17px;
 `;
 
 const CommentDate = styled.span`
   font-size: 12px;
+  margin-left: 160px;
   color: #888;
 `;
 
