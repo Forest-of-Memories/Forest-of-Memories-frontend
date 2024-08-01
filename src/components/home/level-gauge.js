@@ -4,9 +4,8 @@ import "../../styles/color.css";
 
 const levelNames = ["-", "씨앗", "새싹", "묘목", "작은 나무", "큰 나무"];
 
-const LevelGauge = () => {
+const LevelGauge = ({ progress }) => {
   const [level, setLevel] = useState(3);
-  const [progress, setProgress] = useState(5); // 40 / 100
   return (
     <Wrapper>
       <GaugeBox>

@@ -2,18 +2,20 @@ import styled from "styled-components";
 import { ReactComponent as BellIcon } from "../../assets/icons/bell.svg";
 import { ReactComponent as PencilIcon } from "../../assets/icons/pencil.svg";
 import "../../styles/color.css";
+import { useNavigate } from "react-router-dom";
 
 const Notifications = () => {
+  const navigate = useNavigate();
   return (
     <Wrapper>
-      <QuestionBox>
+      <QuestionBox onClick={() => navigate("/question/detail/1")}>
         <BellIcon />
         <div className="titlebox">
           <Title>띵동! 오늘의 질문이 도착했어요!</Title>
           <Desc>오늘은 가족의 어떤 새로운 점을 알게 될까요?</Desc>
         </div>
       </QuestionBox>
-      <QuestionBox>
+      <QuestionBox onClick={() => navigate("/question/create")}>
         <PencilIcon />
         <div className="titlebox">
           <Title>나만의 질문을 만들어보세요!</Title>
