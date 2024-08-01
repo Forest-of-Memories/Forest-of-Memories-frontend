@@ -5,8 +5,7 @@ const StepTwo = () => {
     <div className="step-container">
       <div className="step-header">
         <h2 className="step-title">로그인을 해주세요</h2>
-        <img src="/imgs/trees.png" alt="trees" />
-        {/* <p className="step-subtitle">(카카오 로그인)</p> */}
+        <img src="/imgs/trees.png" alt="trees" className="header-img" />
       </div>
       <div className="login-buttons">
         <button className="kakao-login-button">

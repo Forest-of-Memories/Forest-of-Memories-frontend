@@ -14,6 +14,9 @@ import StorageGallery from "./pages/memory-storage/storage-gallery";
 import StorageGalleryWrite from "./pages/memory-storage/storage-gallery-write";
 import LocationSearch from "./pages/memory-storage/LocationSearch";
 import PostDetail from "./pages/memory-storage/postDetail";
+import MyPage from "./pages/mypage/mypage-setting";
+import Detail from "./components/question/question-detail/Detail";
+import TutorialPage from "./pages/Tutorial/tutorial";
 
 const Router = createBrowserRouter([
   {
@@ -28,10 +31,7 @@ const Router = createBrowserRouter([
         path: "",
         element: <Home />,
       },
-      {
-        path: "/question/list",
-        element: <QuestionList />,
-      },
+
       {
         path: "/store-tree",
         element: <StoreTree />,
@@ -39,6 +39,14 @@ const Router = createBrowserRouter([
       {
         path: "/storage-gallery",
         element: <StorageGallery />,
+      },
+      {
+        path: "/question/list",
+        element: <QuestionList />,
+      },
+      {
+        path: "/mypage",
+        element: <MyPage />,
       },
     ],
   },
@@ -51,14 +59,35 @@ const Router = createBrowserRouter([
     element: <SignUp />,
   },
   {
+    path: "/storage-gallery/write",
+    element: <StorageGalleryWrite />,
+  },
+  {
+    path: "/storage-gallery/write/location",
+    element: <LocationSearch />,
+  },
+  {
+    path: "/storage-gallery/PostDetail/:id",
+    element: <PostDetail />,
+  },
 
+  {
     path: "/question/create",
     element: (
       <ProtectedRoute>
         <QuestionCreate />
       </ProtectedRoute>
     ),
+  },
 
+  {
+    path: "/question/detail/:index",
+    element: <Detail />,
+  },
+
+  {
+    path: "/tutorial",
+    element: <TutorialPage />,
   },
 ]);
 export default Router;

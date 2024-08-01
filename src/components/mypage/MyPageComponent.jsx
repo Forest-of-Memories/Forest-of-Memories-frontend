@@ -6,6 +6,7 @@ const MyPageComponent = () => {
   const [name, setName] = useState("이세림");
   const [email, setEmail] = useState("reems0815@sogang.ac.kr");
   const [isEditing, setIsEditing] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleNameChange = (e) => {
     setName(e.target.value);
@@ -23,6 +24,14 @@ const MyPageComponent = () => {
     if (e.key === "Enter") {
       handleSaveClick();
     }
+  };
+
+  const handleFamilyCodeClick = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
   };
 
   return (
@@ -69,15 +78,28 @@ const MyPageComponent = () => {
         </div>
       </div>
       <ul className="options">
+        <li className="section-title"> 내 정보</li>
         <li onClick={handleEditClick}>닉네임 변경</li>
-        <li>가족 코드</li>
-        <li className="section-title">활동내역</li>
+        <li onClick={handleFamilyCodeClick}>가족 코드</li>
+        {/* <li className="section-title">활동내역</li>
         <li>내가 작성한 질문</li>
         <li>내가 좋아한 질문</li>
-        <li>내 테마</li>
+        <li>내 테마</li> */}
         <li className="section-title">고객센터</li>
         <li>자주하는 질문</li>
       </ul>
+
+      {isModalOpen && (
+        <div>
+          <div className="modal-overlay" onClick={handleCloseModal}></div>
+          <div className="modal">
+            <p>가족 코드: Xhgdieu1564</p>
+            <button onClick={handleCloseModal} className="modal-close">
+              닫기
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

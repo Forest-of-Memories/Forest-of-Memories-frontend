@@ -4,7 +4,6 @@ import "../../styles/color.css";
 import Header from "../../components/question/question-list/Header";
 import List from "../../components/question/question-list/List";
 import questionData from "../../components/question/question-list/serviceQuestions";
-import Footer from "../../components/common/footer";
 
 const QuestionList = () => {
   const handleQuestionClick = (index) => {
@@ -25,7 +24,6 @@ const QuestionList = () => {
         onQuestionClick={handleQuestionClick}
         showOnlyLiked={showOnlyLiked}
       />
-      <Footer />
     </Wrapper>
   );
 };

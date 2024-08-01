@@ -6,7 +6,7 @@ import styled from "styled-components";
 const MainLayout = () => {
   return (
     <Container>
-      <Header />
+      {/* <Header /> */}
       <Outlet />
       <Footer />
     </Container>
