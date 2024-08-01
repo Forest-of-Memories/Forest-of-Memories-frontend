@@ -3,8 +3,21 @@ import "../../styles/color.css";
 import Tree from "../../components/home/tree";
 import LevelGauge from "../../components/home/level-gauge";
 import Notifications from "../../components/home/notifications";
-
+import PictureSelect from "../../components/home/picture-select";
+import { useState } from "react";
+const imgUrls = [
+  "https://cafe24.poxo.com/ec01/wbskinramudali/HOvhRhvOk+Cp2KY4JuusAlHhNnmah66F2yGVAu2J1sWfERGpMMgqq+V9hZaChQo+UMQHi7H1JnIpdUOgkLEc5w==/_/web/product/big/202205/5efed93f9ef8712ac155c23c1c43f4a7.jpg",
+  "https://flexible.img.hani.co.kr/flexible/normal/960/960/imgdb/resize/2019/0121/00501111_20190121.JPG",
+  "https://www.fitpetmall.com/wp-content/uploads/2023/10/image-26.png",
+];
 const Home = () => {
+  const [isClicked, setIsClicked] = useState(false);
+  const [clickedId, setClickedId] = useState();
+  const [imgUrlList, setImgUrlList] = useState(imgUrls);
+  const [progress, setProgress] = useState(0);
+  const handleClick = () => {
+    setIsClicked((prev) => !prev);
+  };
   return (
     <Wrapper>
       <DurationBox>
@@ -17,14 +30,57 @@ const Home = () => {
           <span>우리 가족만의 나무</span>를 키워보아요!
         </div>
       </Title>
-      <Tree level={5} />
-      <LevelGauge />
+      <Tree
+        setProgress={setProgress}
+        setClickedId={setClickedId}
+        imgUrlList={imgUrlList}
+        level={5}
+        handleClick={handleClick}
+      />
+      <LevelGauge progress={progress} />
       <Notifications />
+      {isClicked ? (
+        <PopUpWrapper>
+          <button onClick={handleClick}>닫기</button>
+          <PictureSelect
+            setImgUrlList={setImgUrlList}
+            clickedId={clickedId}
+            imgUrlList={imgUrlList}
+            handleClick={handleClick}
+          />
+        </PopUpWrapper>
+      ) : null}
     </Wrapper>
   );
 };
 
 export default Home;
+
+const PopUpWrapper = styled.div`
+  @keyframes Position {
+    from {
+      bottom: -90%;
+    }
+    to {
+      bottom: -10%;
+    }
+  }
+  position: absolute;
+  bottom: -8vh;
+  width: 100%;
+  height: 90%;
+  background-color: var(--gray-200);
+  border-radius: 30px 30px 0 0;
+  box-shadow: rgba(0, 0, 0, 0.65) 0px 5px 15px;
+  animation: ease-out 0.3s Position;
+`;
+
+const Wrapper = styled.div`
+  position: relative;
+  background-color: #ffffff;
+  height: 100%;
+  display: grid;
+`;
 
 const Title = styled.div`
   display: flex;
@@ -53,11 +109,4 @@ const DurationBox = styled.div`
   .desc {
     font-weight: 700;
   }
-`;
-
-const Wrapper = styled.div`
-  background-color: #ffffff;
-  height: 100%;
-  display: grid;
-  /* grid-template-rows: 1fr 2fr 10fr 2fr 6fr; */
 `;
