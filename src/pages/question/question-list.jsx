@@ -25,7 +25,6 @@ const QuestionList = () => {
         onQuestionClick={handleQuestionClick}
         showOnlyLiked={showOnlyLiked}
       />
-      <Footer />
     </Wrapper>
   );
 };

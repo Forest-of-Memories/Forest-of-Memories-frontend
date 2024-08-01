@@ -1,10 +1,9 @@
-import React, { useState } from "react";
-import { useParams, Link } from "react-router-dom";
+import React, { useState, useRef, useEffect } from "react";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import "../../../styles/color.css";
-import questionData from "../../question/question-list/questionData";
+import questionData from "../question-list/questionData";
 import Modal from "./Modal";
-import "./Detail.css";
 
 const Detail = () => {
   const { index } = useParams();
@@ -15,7 +14,7 @@ const Detail = () => {
   const [newComment, setNewComment] = useState("");
   const [comments, setComments] = useState([]);
   const [showCommentInput, setShowCommentInput] = useState(false);
-
+  const navigate = useNavigate();
   if (!question) {
     return (
       <Wrapper>
@@ -60,45 +59,45 @@ const Detail = () => {
   return (
     <Wrapper>
       <Header>
-        <BackLink to="/question/list">← 돌아가기</BackLink>
+        <BackLink onClick={() => navigate(-1)}>← 돌아가기</BackLink>
         <CommentButton onClick={toggleCommentInput}>
           <img src="/imgs/comment.png" alt="Comment Icon" />
           댓글 달기
         </CommentButton>
       </Header>
-      <h2>{question.text}</h2>
-      <img src="/imgs/watercolor.avif" alt="List Icon" />
-      <div className="answers">
+      <Title>{question.text}</Title>
+      <Image src="/imgs/watercolor.avif" alt="List Icon" />
+      <Answers>
         {question.answers.map((answer, idx) => (
           <Answer key={idx}>
-            <h3>{answer.author}</h3>
-            <p>{answer.text}</p>
+            <AnswerAuthor>{answer.author}</AnswerAuthor>
+            <AnswerText>{answer.text}</AnswerText>
           </Answer>
         ))}
-      </div>
+      </Answers>
       <Modal show={showCommentInput} handleClose={toggleCommentInput}>
-        <h2>댓글 달기</h2>
+        <ModalTitle>댓글 달기</ModalTitle>
         <InputSection>
-          <input
+          <Input
             type="text"
             value={newComment}
             onChange={handleCommentChange}
             onKeyDown={handleKeyDown}
             placeholder="댓글을 입력하세요"
           />
-          <button onClick={handleCommentSubmit}>댓글 달기</button>
+          <SubmitButton onClick={handleCommentSubmit}>댓글 달기</SubmitButton>
         </InputSection>
         <CommentsContainer>
           {comments.map((comment, idx) => (
             <Comment key={idx}>
               <CommentHeader>
-                <h3>{comment.author}</h3>
+                <CommentAuthor>{comment.author}</CommentAuthor>
                 <CommentDate>{comment.date}</CommentDate>
                 <DeleteButton onClick={() => handleCommentDelete(idx)}>
                   삭제
                 </DeleteButton>
               </CommentHeader>
-              <p>{comment.text}</p>
+              <CommentText>{comment.text}</CommentText>
             </Comment>
           ))}
         </CommentsContainer>
@@ -111,9 +110,11 @@ export default Detail;
 
 const Wrapper = styled.div`
   padding: 20px;
-  background-color: #ffffff;
+  background-color: #f5f5f5;
   height: 100vh;
+  max-height: 100vh;
   overflow-y: auto;
+  position: relative;
 `;
 
 const Header = styled.div`
@@ -153,48 +154,63 @@ const ErrorMessage = styled.p`
   font-size: 18px;
 `;
 
-const Answer = styled.div`
+const Title = styled.h2`
+  margin-top: 30px;
+  font-size: 18px;
+  margin-bottom: 30px;
+  color: #333;
+`;
+
+const Image = styled.img`
+  width: 410px;
+  height: auto;
   margin-bottom: 20px;
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+`;
 
-  h3 {
-    margin: 0;
-    font-size: 20px;
-    color: #202020;
-  }
+const Answers = styled.div`
+  margin-top: 30px;
+`;
 
-  p {
-    margin: 5px 0 0 0;
-    font-size: 18px;
-    color: #7c7c7c;
-  }
+const Answer = styled.div`
+  margin-bottom: 30px;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+`;
+
+const AnswerAuthor = styled.h3`
+  margin: 0 0 15px 0;
+  font-size: 20px;
+  color: #ff8a80;
+`;
+
+const AnswerText = styled.p`
+  margin: 0;
+  font-size: 15px;
+  color: #666;
 `;
 
 const CommentsContainer = styled.div`
   margin-top: 20px;
-
-  .comment {
-    margin-bottom: 20px;
-  }
 `;
 
 const Comment = styled.div`
   margin-bottom: 20px;
-
-  h3 {
-    margin: 0;
-    font-size: 20px;
-  }
-
-  p {
-    margin: 5px 0 0 0;
-    font-size: 16px;
-  }
 `;
 
 const CommentHeader = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+`;
+
+const CommentAuthor = styled.h3`
+  margin: 0;
+  font-size: 20px;
 `;
 
 const CommentDate = styled.span`
@@ -215,30 +231,41 @@ const DeleteButton = styled.button`
   }
 `;
 
+const CommentText = styled.p`
+  margin: 5px 0 0 0;
+  font-size: 16px;
+`;
+
 const InputSection = styled.div`
   display: flex;
   flex-direction: column;
   margin-top: 20px;
+`;
 
-  input {
-    padding: 10px;
-    font-size: 16px;
-    margin-bottom: 20px;
-    border: 1px solid #cccccc;
-    border-radius: 5px;
-  }
+const Input = styled.input`
+  padding: 10px;
+  font-size: 16px;
+  margin-bottom: 20px;
+  border: 1px solid #cccccc;
+  border-radius: 5px;
+`;
 
-  button {
-    padding: 10px;
-    font-size: 16px;
-    color: #ffffff;
-    background-color: #ff8b8b;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
+const SubmitButton = styled.button`
+  padding: 10px;
+  font-size: 16px;
+  color: #ffffff;
+  background-color: #ff8b8b;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
 
-  button:hover {
+  &:hover {
     background-color: #f6f6f6;
   }
+`;
+
+const ModalTitle = styled.h2`
+  font-size: 18px;
+  color: #333;
+  margin-bottom: 20px;
 `;

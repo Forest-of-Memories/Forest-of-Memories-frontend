@@ -8,12 +8,12 @@ const PostDetailHeader = () => {
 
   const handleCancel = () => {
     if (location.state && location.state.treeIndex !== undefined) {
-      navigate("/storage-gallery", {
+      navigate("/storage", {
         state: { treeIndex: location.state.treeIndex },
       });
       console.log("if절이다");
     } else {
-      navigate("/storage-gallery");
+      navigate("/storage");
       console.log("else절이다.");
     }
   };

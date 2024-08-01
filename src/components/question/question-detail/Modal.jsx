@@ -19,7 +19,7 @@ const Modal = ({ show, handleClose, children }) => {
 export default Modal;
 
 const ModalOverlay = styled.div`
-  position: fixed;
+  position: absolute;
   bottom: 0;
   left: 0;
   width: 100%;
@@ -27,13 +27,14 @@ const ModalOverlay = styled.div`
   justify-content: center;
   align-items: flex-end;
   background: transparent;
+  border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.65) 0px 5px 15px;
 `;
 
 const ModalContent = styled.div`
   background: white;
   padding: 20px;
-  border-radius: 5px 5px 0 0;
+  border-radius: 10px 10px 10px 10px;
   max-width: 500px;
   width: 100%;
   max-height: 70vh;
