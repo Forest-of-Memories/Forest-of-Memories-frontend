@@ -31,6 +31,6 @@ const PostImage = styled.img`
 
 const Description = styled.p`
   font-size: 16px;
-  line-height: 1.5;
+  line-height: 1.4;
   margin-bottom: 10px;
 `;

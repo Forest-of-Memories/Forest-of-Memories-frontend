@@ -1,12 +1,12 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import { useParams } from "react-router-dom";
+import { useParam, useParams, useLocation } from "react-router-dom";
 import "../../styles/color.css";
 
 import PostDetailHeader from "./../../components/memory-storage/postDetail-header";
-import PostDetailFooter from "../../components/memory-storage/postDetail-footer";
 import PostDetailInfo from "../../components/memory-storage/postDetail-info";
 import PostDetailContent from "../../components/memory-storage/postDetail-content";
+import PostDetailComment from "../../components/memory-storage/postDetail-comment";
 
 import treeData from "../../components/memory-storage/treeData";
 
@@ -38,7 +38,7 @@ const PostDetail = () => {
         people={post.people}
       />
       <PostDetailContent content={post.content} />
-      <PostDetailFooter />
+      <PostDetailComment />
     </Wrapper>
   );
 };
