@@ -7,6 +7,7 @@ import MainLayout from "./components/common/main-layout";
 import ProtectedRoute from "./components/common/protected-route";
 
 import QuestionList from "./pages/question/question-list";
+import QuestionCreate from "./pages/question/question-create";
 
 import StoreTree from "./pages/store/store-tree";
 import StorageGallery from "./pages/memory-storage/storage-gallery";
@@ -50,16 +51,14 @@ const Router = createBrowserRouter([
     element: <SignUp />,
   },
   {
-    path: "/storage-gallery/write",
-    element: <StorageGalleryWrite />,
-  },
-  {
-    path: "/storage-gallery/write/location",
-    element: <LocationSearch />,
-  },
-  {
-    path: "/storage-gallery/PostDetail/:id",
-    element: <PostDetail />,
+
+    path: "/question/create",
+    element: (
+      <ProtectedRoute>
+        <QuestionCreate />
+      </ProtectedRoute>
+    ),
+
   },
 ]);
 export default Router;
