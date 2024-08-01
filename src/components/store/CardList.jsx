@@ -1,4 +1,5 @@
 import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 
 import o2Image from "../../assets/imgs/o2.png";
@@ -21,6 +22,39 @@ const CardList = ({ cards, handleCardClick, isTreePurchased }) => (
     ))}
   </List>
 );
+const CardList = ({ cards, handleCardClick, isTreePurchased }) => {
+  const [checkedItems, setCheckedItems] = useState({});
+
+  const toggleCheck = (name) => {
+    setCheckedItems((prev) => ({
+      ...prev,
+      [name]: !prev[name],
+    }));
+  };
+
+  return (
+    <List>
+      {cards.map((item, index) => (
+        <Card
+          key={index}
+          onClick={() => {
+            handleCardClick(item);
+            toggleCheck(item.name);
+          }}
+          purchased={isTreePurchased(item.name)}
+        >
+          <Checkbox checked={checkedItems[item.name] || false} readOnly />
+          <CardImage src={item.image} alt={item.name} />
+          <CardText>{item.name}</CardText>
+          <CardPrice>
+            <O2Icon src={o2Image} alt="O2" />
+            {item.price}
+          </CardPrice>
+        </Card>
+      ))}
+    </List>
+  );
+};
 
 export default CardList;
 
@@ -47,10 +81,19 @@ const Card = styled.div`
   border: 1px solid
     ${({ purchased }) => (purchased ? "var(--gray-600)" : "var(--gray-400)")};
   cursor: pointer;
+  position: relative; /* for checkbox positioning */
+`;
+
+const Checkbox = styled.input.attrs({ type: "checkbox" })`
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  pointer-events: none; /* make the checkbox unclickable */
 `;
 
 const CardImage = styled.img`
   height: 68%;
+  width: 100%;
   object-fit: contain;
   margin-bottom: 2px;
 `;

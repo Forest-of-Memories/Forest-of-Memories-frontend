@@ -3,19 +3,37 @@ import bigTreeImg from "../../assets/imgs/bigtree.png";
 import "../../styles/color.css";
 
 const pos = [
-  { left: "50%", top: "10%", deg: "30deg" },
+  { left: "50%", top: "5%", deg: "30deg" },
   { left: "30%", top: "20%", deg: "45deg" },
   { left: "50%", top: "40%", deg: "-30deg" },
 ];
 
-const Tree = ({ level }) => {
+const Tree = ({
+  setProgress,
+  setClickedId,
+  imgUrlList,
+  level,
+  handleClick,
+}) => {
   return (
     <Wrapper>
       <TreeImg src={bigTreeImg} alt="" />
-      <WaterImg>물뿌리개</WaterImg>
+      <WaterImg onClick={() => setProgress((prev) => (prev + 1) % 6)}>
+        물뿌리개
+      </WaterImg>
       <FertilizerImg>비료주머니</FertilizerImg>
       {pos.map((el, key) => (
-        <Pictures key={key} deg={el.deg} left={el.left} top={el.top}>
+        <Pictures
+          bgImage={imgUrlList[key]}
+          onClick={() => {
+            handleClick();
+            setClickedId(key);
+          }}
+          key={key}
+          deg={el.deg}
+          left={el.left}
+          top={el.top}
+        >
           {key}
         </Pictures>
       ))}
@@ -26,16 +44,25 @@ const Tree = ({ level }) => {
 export default Tree;
 
 const Pictures = styled.div`
-  width: 80px;
-  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  width: 90px;
+  height: 90px;
   background-color: var(--red-600);
   position: absolute;
   top: ${(props) => props.top};
   left: ${(props) => props.left};
   transform: rotateZ(${(props) => props.deg});
+  background-image: url(${(props) => props.bgImage});
+  background-size: cover;
   cursor: pointer;
   &:hover {
-    background-color: var(--gray-200);
+    filter: saturate(0.5);
+  }
+  &:active {
+    scale: 0.9;
   }
 `;
 
@@ -55,6 +82,13 @@ const WaterImg = styled.div`
   justify-content: center;
   align-items: center;
   cursor: pointer;
+  &:hover {
+    background-color: var(--gray-600);
+    color: white;
+  }
+  &:active {
+    scale: 0.9;
+  }
 `;
 
 const FertilizerImg = styled.div`
