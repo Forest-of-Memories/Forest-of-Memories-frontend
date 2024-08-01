@@ -11,18 +11,18 @@ const Footer = () => {
         <img src="/imgs/footer_list.png" alt="List Icon" />
         <span>질문 리스트</span>
       </Link>
-      <div className="footer-item">
+      <Link to="/storage-gallery" className="footer-item">
         <img src="/imgs/footer_storage.png" alt="Storage Icon" />
         <span>추억 저장소</span>
-      </div>
+      </Link>
       <Link to="/" className="footer-item">
         <img src="/imgs/footer_home.png" alt="Home Icon" />
         <span>홈</span>
       </Link>
-      <div className="footer-item">
+      <Link to="/store-tree" className="footer-item">
         <img src="/imgs/footer_cart.png" alt="Cart Icon" />
         <span>장바구니</span>
-      </div>
+      </Link>
       <Link to="/mypage" className="footer-item">
         <img src="/imgs/footer_mypage.png" alt="My Page Icon" />
         <span>마이페이지</span>

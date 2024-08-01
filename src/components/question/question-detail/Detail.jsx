@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import styled from "styled-components";
 import "../../../styles/color.css";
-import questionData from "../../question/question-list/questionData";
+import questionData from "../question-list/serviceQuestions";
 import Modal from "./Modal";
 import "./Detail.css";
 

@@ -11,26 +11,27 @@ import mapleTreeImage from "../../assets/imgs/maple-tree.png";
 import baobopTreeImage from "../../assets/imgs/baobop-tree.png";
 import o2Image from "../../assets/imgs/o2.png";
 
+import snowImage from "../../assets/imgs/snow-bg.png";
+import beachImage from "../../assets/imgs/beach-bg.png";
+import sunsetImage from "../../assets/imgs/sunset-bg.png";
+
+import giftboxImage from "../../assets/imgs/giftbox-oj.png";
+import lampImage from "../../assets/imgs/lamp-oj.png";
+import dogImage from "../../assets/imgs/dog-oj.png";
+import fountainImage from "../../assets/imgs/fountain-oj.png";
+
 import TreeImageContainer from "../../components/store/TreeImageContainer";
 import CardList from "../../components/store/CardList";
 
 const StoreTree = () => {
   const navigate = useNavigate();
-  const [selectedTree, setSelectedTree] = useState(null);
+  const [selectedItem, setSelectedItem] = useState(null);
   const [showModal, setShowModal] = useState(false);
-  const [purchasedTrees, setPurchasedTrees] = useState([]);
+  const [purchasedItems, setPurchasedItems] = useState([]);
+  const [activeTab, setActiveTab] = useState("tree");
 
   const handleTabClick = (tab) => {
-    switch (tab) {
-      case "background":
-        navigate("/store-background");
-        break;
-      case "object":
-        navigate("/store-object");
-        break;
-      default:
-        navigate("/store-tree");
-    }
+    setActiveTab(tab);
   };
 
   // 카드 배열로 추가
@@ -42,8 +43,21 @@ const StoreTree = () => {
     { name: "바오밥나무", price: "250", image: baobopTreeImage },
   ];
 
-  const handleCardClick = (tree) => {
-    setSelectedTree(tree);
+  const backgroundSets = [
+    { name: "눈", price: "100", image: snowImage },
+    { name: "해변", price: "300", image: beachImage },
+    { name: "노을", price: "150", image: sunsetImage },
+  ];
+
+  const objectSets = [
+    { name: "선물상자", price: "50", image: giftboxImage },
+    { name: "조명", price: "50", image: lampImage },
+    { name: "강아지", price: "100", image: dogImage },
+    { name: "분수", price: "200", image: fountainImage },
+  ];
+
+  const handleCardClick = (item) => {
+    setSelectedItem(item);
   };
 
   const handleBuyClick = () => {
@@ -55,26 +69,38 @@ const StoreTree = () => {
   };
 
   const handleConfirmBuy = () => {
-    if (selectedTree && !purchasedTrees.includes(selectedTree.name)) {
-      setPurchasedTrees([...purchasedTrees, selectedTree.name]);
+    if (selectedItem && !purchasedItems.includes(selectedItem.name)) {
+      setPurchasedItems([...purchasedItems, selectedItem.name]);
     }
     setShowModal(false);
   };
 
-  const isTreePurchased = (treeName) => {
-    return purchasedTrees.includes(treeName);
+  const isTreePurchased = (itemName) => {
+    return purchasedItems.includes(itemName);
   };
+
+  let cards;
+  switch (activeTab) {
+    case "background":
+      cards = backgroundSets;
+      break;
+    case "object":
+      cards = objectSets;
+      break;
+    default:
+      cards = treeSets;
+  }
 
   return (
     <Wrapper>
       <TreeImageContainer
-        selectedTree={selectedTree}
+        selectedTree={selectedItem}
         isTreePurchased={isTreePurchased}
         handleBuyClick={handleBuyClick}
       />
-      <StoreTabs activeTab="tree" onTabClick={handleTabClick} />
+      <StoreTabs activeTab={activeTab} onTabClick={handleTabClick} />
       <CardList
-        cards={treeSets}
+        cards={cards}
         handleCardClick={handleCardClick}
         isTreePurchased={isTreePurchased}
       />
@@ -83,8 +109,8 @@ const StoreTree = () => {
           <ModalContent>
             <p>구매 확정하시겠습니까?</p>
             <ModalPrice>
-              {selectedTree.name} : <O2Icon src={o2Image} alt="O2" />
-              {selectedTree.price}
+              {selectedItem.name} : <O2Icon src={o2Image} alt="O2" />
+              {selectedItem.price}
             </ModalPrice>
             <BalancePoint>
               현재 잔여 산소 : <O2Icon src={o2Image} alt="O2" />

@@ -51,6 +51,7 @@ const Card = styled.div`
 
 const CardImage = styled.img`
   height: 68%;
+  width: 100%;
   object-fit: contain;
   margin-bottom: 2px;
 `;

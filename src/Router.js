@@ -13,6 +13,10 @@ import StoreTree from "./pages/store/store-tree";
 import StoreBackground from "./pages/store/store-background";
 import StoreObject from "./pages/store/store-object";
 
+import StorageGallery from "./pages/memory-storage/storage-gallery";
+import StorageGalleryWrite from "./pages/memory-storage/storage-gallery-write";
+import LocationSearch from "./pages/memory-storage/LocationSearch";
+
 const Router = createBrowserRouter([
   {
     path: "/",
@@ -37,6 +41,14 @@ const Router = createBrowserRouter([
       {
         path: "/store-object",
         element: <StoreObject />,
+      },
+      {
+        path: "/store-tree",
+        element: <StoreTree />,
+      },
+      {
+        path: "/storage-gallery",
+        element: <StorageGallery />,
       },
     ],
   },
@@ -63,6 +75,14 @@ const Router = createBrowserRouter([
   {
     path: "/tutorial",
     element: <TutorialPage />,
+  },
+  {
+    path: "/storage-gallery/write",
+    element: <StorageGalleryWrite />,
+  },
+  {
+    path: "/storage-gallery/write/location",
+    element: <LocationSearch />,
   },
 ]);
 export default Router;
