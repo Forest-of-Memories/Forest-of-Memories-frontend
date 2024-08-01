@@ -6,6 +6,7 @@ import SignUp from "./pages/sign-up";
 import MainLayout from "./components/common/main-layout";
 import ProtectedRoute from "./components/common/protected-route";
 import QuestionList from "./pages/question/question-list";
+import QuestionCreate from "./pages/question/question-create";
 
 const Router = createBrowserRouter([
   {
@@ -33,6 +34,14 @@ const Router = createBrowserRouter([
   {
     path: "/sign-up",
     element: <SignUp />,
+  },
+  {
+    path: "/question/create",
+    element: (
+      <ProtectedRoute>
+        <QuestionCreate />
+      </ProtectedRoute>
+    ),
   },
 ]);
 export default Router;

@@ -8,14 +8,20 @@ const pos = [
   { left: "50%", top: "40%", deg: "-30deg" },
 ];
 
-const Tree = ({ level }) => {
+const Tree = ({ level, handleClick }) => {
   return (
     <Wrapper>
       <TreeImg src={bigTreeImg} alt="" />
       <WaterImg>물뿌리개</WaterImg>
       <FertilizerImg>비료주머니</FertilizerImg>
       {pos.map((el, key) => (
-        <Pictures key={key} deg={el.deg} left={el.left} top={el.top}>
+        <Pictures
+          onClick={handleClick}
+          key={key}
+          deg={el.deg}
+          left={el.left}
+          top={el.top}
+        >
           {key}
         </Pictures>
       ))}
