@@ -19,7 +19,7 @@
   display: flex;
   align-items: center;
   padding: 20px;
-  background-color: #ff8b8b;
+  background-color: rgba(254, 185, 198);
   color: #f6f6f6;
 }
 
@@ -51,8 +51,8 @@
 
 .edit-button,
 .save-button {
-  padding: 5px 10px;
-  font-size: 14px;
+  padding: 2px 7px;
+  font-size: 13px;
   border: none;
   border-radius: 5px;
   background-color: #ffffff;
@@ -111,4 +111,56 @@
   background-color: #f6f6f6;
   padding: 10px 20px;
   font-weight: bold;
+}
+
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.1);
+  z-index: 999;
+}
+
+.button-group {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 10px;
+}
+
+.modal-copy,
+.modal-close {
+  cursor: pointer;
+  padding: 5px 10px;
+  border: none;
+  font-size: 16px;
+  border-radius: 5px;
+}
+
+.modal-copy {
+  background-color: rgba(254, 185, 198);
+  color: white;
+}
+
+.modal-close {
+  background-color: rgba(254, 185, 198);
+  color: white;
+}
+
+.modal-copy:hover,
+.modal-close:hover {
+  background-color: rgba(255, 164, 179, 0.9);
 }
