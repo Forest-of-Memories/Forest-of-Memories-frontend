@@ -81,7 +81,7 @@ const DateInput = React.forwardRef(({ value, onClick }, ref) => (
 
 const Wrapper = styled.div`
   width: 100%;
-  height: 100vh;
+  height: 100%;
 `;
 
 const Form = styled.form`

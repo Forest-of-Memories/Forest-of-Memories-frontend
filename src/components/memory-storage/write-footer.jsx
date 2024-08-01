@@ -23,12 +23,13 @@ const Footer = styled.footer`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: fixed;
+  bottom: 0;
   margin: 0 auto;
   width: 56.25vh;
   height: 8vh;
   background-color: var(--gray-50);
   padding: 0 20px;
-  margin: 0 auto;
 `;
 
 const GalleryButton = styled.button`
