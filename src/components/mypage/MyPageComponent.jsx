@@ -3,6 +3,8 @@ import "./MyPageComponent.css";
 import { Link } from "react-router-dom";
 
 const MyPageComponent = () => {
+  const FAMILY_CODE = "Xhgdieu1564";
+
   const [name, setName] = useState("이세림");
   const [email, setEmail] = useState("reems0815@sogang.ac.kr");
   const [isEditing, setIsEditing] = useState(false);
@@ -93,7 +95,7 @@ const MyPageComponent = () => {
         <div>
           <div className="modal-overlay" onClick={handleCloseModal}></div>
           <div className="modal">
-            <p>가족 코드: Xhgdieu1564</p>
+            <p>가족 코드: {FAMILY_CODE}</p>
             <button onClick={handleCloseModal} className="modal-close">
               닫기
             </button>

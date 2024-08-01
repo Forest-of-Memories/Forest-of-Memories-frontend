@@ -24,15 +24,6 @@ const TreeImageContainer = ({
         <img src={bigTreeImg} alt="My Tree" />
       )}
     </TreeImage>
-<<<<<<< HEAD
-=======
-    {selectedTree &&
-      (isTreePurchased(selectedTree.name) ? (
-        <ApplyButton>적용하기</ApplyButton>
-      ) : (
-        <BuyButton onClick={handleBuyClick}>구매하기</BuyButton>
-      ))}
->>>>>>> 2a90d0cd033118bf9e351e2934019cebb362429e
     {selectedObjects.map((object, index) => (
       <ObjectImage key={index} src={object.image} alt={object.name} />
     ))}
@@ -57,20 +48,9 @@ const Container = styled.div`
 
 const TreeImage = styled.div`
   width: 50%;
-<<<<<<< HEAD
   display: flex;
   justify-content: center;
   align-items: center;
-=======
-  height: 230px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: var(--gray-400);
-  display: flex;
-  justify-content: center;
-  align-items: center;
->>>>>>> 2a90d0cd033118bf9e351e2934019cebb362429e
   img {
     max-height: 100%;
     max-width: 100%;
@@ -105,12 +85,5 @@ const BuyButton = styled.button`
   border-radius: 7px;
   cursor: pointer;
   font-size: 11px;
-<<<<<<< HEAD
-=======
-`;
-
-const ApplyButton = styled(BuyButton)`
-  background-color: var(--gray-600); /* 적용하기 버튼의 색상 변경 */
->>>>>>> 2a90d0cd033118bf9e351e2934019cebb362429e
   z-index: 3;
 `;

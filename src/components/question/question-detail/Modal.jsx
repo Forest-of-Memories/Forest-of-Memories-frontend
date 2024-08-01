@@ -19,7 +19,7 @@ const Modal = ({ show, handleClose, children }) => {
 export default Modal;
 
 const ModalOverlay = styled.div`
-  position: fixed;
+  position: absolute;
   bottom: 0;
   left: 0;
   width: 100%;
