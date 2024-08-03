@@ -16,8 +16,8 @@ import {
 
 const StoreTree = () => {
   const navigate = useNavigate();
-  const [selectedTree, setSelectedTree] = useState(null);
-  const [selectedBackground, setSelectedBackground] = useState(null);
+  const [selectedTrees, setSelectedTrees] = useState([]);
+  const [selectedBackgrounds, setSelectedBackgrounds] = useState([]);
   const [selectedObjects, setSelectedObjects] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [purchasedItems, setPurchasedItems] = useState([]);
@@ -30,13 +30,17 @@ const StoreTree = () => {
   const handleCardClick = (item) => {
     switch (activeTab) {
       case "tree":
-        setSelectedTree((prevTree) =>
-          prevTree?.name === item.name ? null : item
+        setSelectedTrees((prevTrees) =>
+          prevTrees.some((tree) => tree.name === item.name)
+            ? prevTrees.filter((tree) => tree.name !== item.name)
+            : [...prevTrees, item]
         );
         break;
       case "background":
-        setSelectedBackground((prevBackground) =>
-          prevBackground?.name === item.name ? null : item
+        setSelectedBackgrounds((prevBackgrounds) =>
+          prevBackgrounds.some((bg) => bg.name === item.name)
+            ? prevBackgrounds.filter((bg) => bg.name !== item.name)
+            : [...prevBackgrounds, item]
         );
         break;
       case "object":
@@ -61,15 +65,16 @@ const StoreTree = () => {
 
   const handleConfirmBuy = () => {
     const newPurchasedItems = [...purchasedItems];
-    if (selectedTree && !newPurchasedItems.includes(selectedTree.name)) {
-      newPurchasedItems.push(selectedTree.name);
-    }
-    if (
-      selectedBackground &&
-      !newPurchasedItems.includes(selectedBackground.name)
-    ) {
-      newPurchasedItems.push(selectedBackground.name);
-    }
+    selectedTrees.forEach((item) => {
+      if (!newPurchasedItems.includes(item.name)) {
+        newPurchasedItems.push(item.name);
+      }
+    });
+    selectedBackgrounds.forEach((item) => {
+      if (!newPurchasedItems.includes(item.name)) {
+        newPurchasedItems.push(item.name);
+      }
+    });
     selectedObjects.forEach((item) => {
       if (!newPurchasedItems.includes(item.name)) {
         newPurchasedItems.push(item.name);
@@ -85,8 +90,12 @@ const StoreTree = () => {
 
   const calculateTotalPrice = () => {
     let total = 0;
-    if (selectedTree) total += parseInt(selectedTree.price, 10);
-    if (selectedBackground) total += parseInt(selectedBackground.price, 10);
+    selectedTrees.forEach((tree) => {
+      total += parseInt(tree.price, 10);
+    });
+    selectedBackgrounds.forEach((bg) => {
+      total += parseInt(bg.price, 10);
+    });
     selectedObjects.forEach((obj) => {
       total += parseInt(obj.price, 10);
     });
@@ -108,8 +117,8 @@ const StoreTree = () => {
   return (
     <Wrapper>
       <TreeImageContainer
-        selectedTree={selectedTree}
-        selectedBackground={selectedBackground}
+        selectedTrees={selectedTrees}
+        selectedBackgrounds={selectedBackgrounds}
         selectedObjects={selectedObjects}
         isTreePurchased={isTreePurchased}
         handleBuyClick={handleBuyClick}
@@ -122,8 +131,8 @@ const StoreTree = () => {
       />
       {showModal && (
         <Modal
-          selectedTree={selectedTree}
-          selectedBackground={selectedBackground}
+          selectedTrees={selectedTrees}
+          selectedBackgrounds={selectedBackgrounds}
           selectedObjects={selectedObjects}
           handleCloseModal={handleCloseModal}
           handleConfirmBuy={handleConfirmBuy}
@@ -142,5 +151,4 @@ const Wrapper = styled.div`
   justify-content: flex-start;
   width: 56.25vh;
   height: 100%;
-  background-color: var(--gray-50);
 `;

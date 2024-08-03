@@ -4,13 +4,13 @@ import styled from "styled-components";
 const StoredTree = ({ image, handlePrevious, handleNext }) => (
   <Container>
     <ArrowButton direction="left" onClick={handlePrevious}>
-      ←
+      ◀
     </ArrowButton>
     <TreeImage>
       <img src={image} alt="Stored Tree" />
     </TreeImage>
     <ArrowButton direction="right" onClick={handleNext}>
-      →
+      ▶
     </ArrowButton>
   </Container>
 );
@@ -32,7 +32,7 @@ const TreeImage = styled.div`
   align-items: center;
 
   width: 75%;
-  height: 330px;
+  height: 340px;
 
   background-color: var(--gray-400);
   img {
@@ -47,8 +47,9 @@ const ArrowButton = styled.button`
   top: 50%;
   ${({ direction }) => (direction === "left" ? "left: 10px;" : "right: 10px;")}
   transform: translateY(-50%);
-  background-color: var(--gray-800);
-  color: white;
+  //background-color: beige;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  color: var(--pink-main);
   border: none;
   padding: 10px;
   border-radius: 50%;
