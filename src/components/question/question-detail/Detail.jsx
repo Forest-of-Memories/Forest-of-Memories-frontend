@@ -255,11 +255,16 @@ const CommentButton = styled.button`
   cursor: pointer;
   display: flex;
   align-items: center;
+  transition: background-color 0.3s;
 
   img {
     width: 20px;
     height: 20px;
     margin-right: 10px;
+  }
+
+  &:hover {
+    background-color: #0a6847;
   }
 `;
 
@@ -315,11 +320,10 @@ const AnswersContainer = styled.div`
 `;
 
 const Answer = styled.div`
-  margin-bottom: 10px;
+  margin-bottom: 25px;
 `;
 
 const AnswerText = styled.p`
-  margin: 0;
   font-size: 15px;
   color: #666;
 `;
@@ -335,6 +339,7 @@ const AddAnswerButton = styled.button`
   border: none;
   border-radius: 50%;
   cursor: pointer;
+  transition: background-color 0.4s;
 
   &:hover {
     background-color: #0a6847;
@@ -345,13 +350,14 @@ const EditAnswerButton = styled.button`
   position: absolute;
   bottom: 10px;
   right: 10px;
-  padding: 5px 10px;
+  padding: 5px 8px;
   font-size: 12px;
   color: #fff;
   background-color: #75a47f;
   border: none;
   border-radius: 10px;
   cursor: pointer;
+  transition: background-color 0.4s;
 
   &:hover {
     background-color: #0a6847;
@@ -367,6 +373,7 @@ const DeleteAnswerButton = styled.button`
   background-color: transparent;
   border: none;
   cursor: pointer;
+  transition: background-color 0.3s;
 
   &:hover {
     text-decoration: underline;
@@ -395,12 +402,12 @@ const CommentHeader = styled.div`
 
 const CommentAuthor = styled.h3`
   margin: 0;
-  font-size: 17px;
+  font-size: 15px;
 `;
 
 const CommentDate = styled.span`
   font-size: 12px;
-  margin-left: 160px;
+  margin-left: 150px;
   color: #888;
 `;
 
@@ -410,6 +417,7 @@ const DeleteButton = styled.button`
   color: #75a47f;
   cursor: pointer;
   font-size: 14px;
+  transition: background-color 0.3s;
 
   &:hover {
     text-decoration: underline;
@@ -443,6 +451,7 @@ const SubmitButton = styled.button`
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  transition: background-color 0.3s;
 
   &:hover {
     background-color: #0a6847;
@@ -481,6 +490,7 @@ const ConfirmButton = styled.button`
   border: none;
   border-radius: 10px;
   cursor: pointer;
+  transition: background-color 0.3s;
 
   &:hover {
     background-color: #0a6847;
@@ -495,6 +505,7 @@ const CancelButton = styled.button`
   border: none;
   border-radius: 10px;
   cursor: pointer;
+  transition: background-color 0.3s;
 
   &:hover {
     background-color: #b3b3b3;
