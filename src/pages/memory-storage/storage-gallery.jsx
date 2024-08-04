@@ -59,8 +59,6 @@ const StorageGallery = () => {
         postsCount={currentTree.posts.length}
       />
       <PostList posts={currentTree.posts} onPostClick={handlePostClick} />
-
-      <WriteButton onClick={handleAddPost}>+</WriteButton>
     </Wrapper>
   );
 };

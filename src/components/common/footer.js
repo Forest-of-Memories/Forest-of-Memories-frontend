@@ -6,6 +6,10 @@ import { ReactComponent as ArchiveIcon } from "../../assets/icons/archive.svg";
 import { ReactComponent as HomeIcon } from "../../assets/icons/home.svg";
 import { ReactComponent as ListIcon } from "../../assets/icons/list.svg";
 import { ReactComponent as MypageIcon } from "../../assets/icons/mypage.svg";
+import { ReactComponent as GreenArchiveIcon } from "../../assets/icons/greenstorage.svg";
+import { ReactComponent as GreenHomeIcon } from "../../assets/icons/greenhome.svg";
+import { ReactComponent as GreenListIcon } from "../../assets/icons/greenlist.svg";
+import { ReactComponent as GreenMypageIcon } from "../../assets/icons/greenmypage.svg";
 import { ReactComponent as FooterPlusIcon } from "../../assets/icons/footerplus.svg";
 import { useLocation, useNavigate } from "react-router-dom";
 
@@ -29,7 +33,6 @@ const Footer = () => {
     if (pathname === "") {
       homeRef.current.style.borderTop = "2px solid var(--green-main)";
       homeRef.current.querySelector("span").style.color = "var(--green-main)";
-      homeRef.current.querySelector("svg").style.stroke = "var(--green-main)";
     } else if (pathname === "storage") {
       storageRef.current.style.borderTop = "2px solid var(--green-main)";
       storageRef.current.querySelector("span").style.color =
@@ -43,27 +46,36 @@ const Footer = () => {
     }
   }, [location]);
 
+  const renderIcon = (defaultIcon, greenIcon, path) => {
+    const pathname = location.pathname.split("/")[1];
+    return pathname === path ? greenIcon : defaultIcon;
+  };
+
   return (
     <Wrapper>
-      <Div id="home" ref={homeRef}>
-        <HomeIcon onClick={() => navigate("/")} />
+      <Div id="home" ref={homeRef} onClick={() => navigate("/")}>
+        {renderIcon(<HomeIcon />, <GreenHomeIcon />, "")}
         <span>홈</span>
       </Div>
-      <Div id="storage" ref={storageRef}>
-        <ArchiveIcon onClick={() => navigate("/storage")} />
+      <Div id="storage" ref={storageRef} onClick={() => navigate("/storage")}>
+        {renderIcon(<ArchiveIcon />, <GreenArchiveIcon />, "storage")}
         <span>추억 저장소</span>
       </Div>
-      <Div className="plus">
-        <div onClick={() => navigate("/storage/post/image")}>
+      <Div className="plus" onClick={() => navigate("/storage/post/image")}>
+        <div>
           <FooterPlusIcon />
         </div>
       </Div>
-      <Div id="question" ref={listRef}>
-        <ListIcon onClick={() => navigate("/question/list")} />
+      <Div
+        id="question"
+        ref={listRef}
+        onClick={() => navigate("/question/list")}
+      >
+        {renderIcon(<ListIcon />, <GreenListIcon />, "question")}
         <span>질문 리스트</span>
       </Div>
-      <Div id="mypage" ref={myRef}>
-        <MypageIcon onClick={() => navigate("/mypage")} />
+      <Div id="mypage" ref={myRef} onClick={() => navigate("/mypage")}>
+        {renderIcon(<MypageIcon />, <GreenMypageIcon />, "mypage")}
         <span>마이페이지</span>
       </Div>
     </Wrapper>

@@ -257,11 +257,10 @@ const CommentButton = styled.button`
   display: flex;
   align-items: center;
   transition: background-color 0.3s;
-
-  img {
-    width: 20px;
-    height: 20px;
-    margin-right: 10px;
+  svg {
+    &:hover {
+      filter: brightness(0.9);
+    }
   }
 `;
 
@@ -278,6 +277,8 @@ const Title = styled.h2`
   display: flex;
   justify-content: center;
   text-align: center;
+  margin-bottom: 10px;
+  line-height: 1.2rem;
 `;
 
 const Image = styled.img`
@@ -341,14 +342,14 @@ const AddAnswerButton = styled.button`
   padding: 5px 10px;
   font-size: 20px;
   color: #fff;
-  background-color: var(--green-main);
+  background-color: var(--pink-main);
   border: none;
   border-radius: 50%;
   cursor: pointer;
   transition: background-color 0.4s;
 
   &:hover {
-    background-color: #0a6847;
+    background-color: var(--pink-main);
   }
 `;
 
@@ -364,9 +365,9 @@ const EditAnswerButton = styled.button`
   border-radius: 10px;
   cursor: pointer;
   transition: background-color 0.4s;
-
+  letter-spacing: -1.5px;
   &:hover {
-    background-color: #0a6847;
+    background-color: var(--pink-main);
   }
 `;
 
@@ -378,6 +379,7 @@ const DeleteAnswerButton = styled.button`
   color: var(--green-main);
   background-color: transparent;
   border: none;
+  letter-spacing: -1.5px;
   cursor: pointer;
   transition: background-color 0.3s;
 
@@ -453,14 +455,14 @@ const SubmitButton = styled.button`
   padding: 10px;
   font-size: 16px;
   color: #fff;
-  background-color: var(--green-main);
+  background-color: var(--pink-main);
   border: none;
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s;
 
   &:hover {
-    background-color: #0a6847;
+    background-color: var(--green-main);
   }
 `;
 
@@ -497,9 +499,9 @@ const ConfirmButton = styled.button`
   border-radius: 10px;
   cursor: pointer;
   transition: background-color 0.3s;
-
+  letter-spacing: -1.5px;
   &:hover {
-    background-color: #0a6847;
+    background-color: var(--green-main);
   }
 `;
 

@@ -52,8 +52,11 @@ const PostDetailContent = ({ content }) => {
 export default PostDetailContent;
 
 const ContentContainer = styled.div`
-  padding: 6px 20px;
+  /* padding: 6px 20px; */
   letter-spacing: -1.5px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
 `;
 
 const ImageContainer = styled.div`
@@ -61,8 +64,7 @@ const ImageContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 100%;
-  margin: 10px 0;
+  /* margin: 10px 0; */
 `;
 
 const ImageWrapper = styled.div`
@@ -85,7 +87,6 @@ const ArrowButton = styled.button`
   border-radius: 50%;
   cursor: pointer;
   padding: 10px;
-
   &:hover {
     /* background: rgba(0, 0, 0, 0.8); */
   }
@@ -104,4 +105,6 @@ const Description = styled.p`
   font-size: 18px;
   line-height: 1.5;
   margin-bottom: 10px;
+  padding: 0 10px;
+  letter-spacing: -1.5px;
 `;
