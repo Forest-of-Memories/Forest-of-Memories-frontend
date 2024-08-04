@@ -1,4 +1,5 @@
 .settings-page {
+  letter-spacing: -1.5px;
   background-color: #ffffff;
   height: 100vh;
   display: flex;
@@ -37,8 +38,8 @@
 }
 
 .mypage-wrapper {
-  background-color: #ffffff;
-  height: 92vh;
+  /* background-color: #ff0000; */
+  height: 100%;
   overflow-y: auto;
   width: 100%;
 }
@@ -58,8 +59,10 @@
   display: flex;
   align-items: center;
   padding: 20px;
-  background-color: rgba(120, 167, 90, 0.3); /* Use #78A75A color */
-  color: #f6f6f6;
+  background-color: white;
+  color: black;
+  font-weight: 700;
+  border-top: 2px solid var(--pink-main);
 }
 
 .profile-icon {
@@ -67,6 +70,9 @@
   height: 50px;
   border-radius: 50%;
   margin-right: 10px;
+  padding: 10px;
+  border: 2px solid var(--green-main);
+  /* background-color: white; */
 }
 
 .profile-info {
@@ -94,8 +100,8 @@
   font-size: 13px;
   border: none;
   border-radius: 5px;
-  background-color: #ffffff;
-  color: #78a75a;
+  background-color: var(--pink-main);
+  color: white;
   cursor: pointer;
   transition: background-color 0.3s;
 }
@@ -103,6 +109,7 @@
 .edit-button:hover,
 .save-button:hover {
   background-color: #f0f0f0;
+  color: var(--pink-main);
 }
 
 .profile-info h2 {
@@ -125,10 +132,11 @@
 
 .profile-stats span {
   font-size: 12px;
-  background-color: #f6f6f6;
-  color: #78a75a;
+  background-color: var(--green-main);
+  color: var(--green-main);
   padding: 2px 5px;
   border-radius: 5px;
+  color: white;
 }
 
 .options {
@@ -145,14 +153,21 @@
   transition: background-color 0.3s;
 }
 
-.options li:hover {
-  background-color: #eefaef;
-}
+/* .options li:hover {
+  background-color: #ffffff;
+} */
 
 .section-title {
-  background-color: #f6f6f6;
+  background-color: var(--pink-main);
   padding: 10px 20px;
   font-weight: bold;
+  color: white;
+}
+.section-content {
+  &:hover {
+    background-color: white;
+    color: var(--pink-main);
+  }
 }
 
 .modal {
@@ -193,16 +208,16 @@
 }
 
 .modal-copy {
-  background-color: #78a75a;
+  background-color: var(--green-main);
   color: white;
 }
 
 .modal-close {
-  background-color: #78a75a;
+  background-color: var(--green-main);
   color: white;
 }
 
 .modal-copy:hover,
 .modal-close:hover {
-  background-color: rgba(120, 167, 90, 0.8);
+  background-color: var(--green-main);
 }

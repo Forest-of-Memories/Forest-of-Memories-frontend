@@ -92,14 +92,18 @@ const MyPageComponent = () => {
       </div>
       <ul className="options">
         <li className="section-title"> 내 정보</li>
-        <li onClick={handleEditClick}>닉네임 변경</li>
-        <li onClick={handleFamilyCodeClick}>가족 코드</li>
+        <li className="section-content" onClick={handleEditClick}>
+          닉네임 변경
+        </li>
+        <li className="section-content" onClick={handleFamilyCodeClick}>
+          가족 코드
+        </li>
         {/* <li className="section-title">활동내역</li>
         <li>내가 작성한 질문</li>
         <li>내가 좋아한 질문</li>
         <li>내 테마</li> */}
         <li className="section-title">고객센터</li>
-        <li>자주하는 질문</li>
+        <li className="section-content">자주하는 질문</li>
       </ul>
 
       {isModalOpen && (

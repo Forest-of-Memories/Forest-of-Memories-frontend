@@ -4,6 +4,8 @@ import { useParams, useNavigate } from "react-router-dom";
 import questionData from "../question-list/questionData";
 import Modal from "./Modal";
 import "../../../styles/color.css";
+import { ReactComponent as CommentIcon } from "../../../assets/icons/comentbtn.svg";
+import { ReactComponent as PreviousIcon } from "../../../assets/icons/previous.svg";
 
 const familyMembers = ["김엄마", "김아빠", "김동생", "김언니"];
 
@@ -117,10 +119,11 @@ const Detail = () => {
   return (
     <Wrapper>
       <Header>
-        <BackLink onClick={() => navigate(-1)}>← 돌아가기</BackLink>
+        <BackLink onClick={() => navigate(-1)}>
+          <PreviousIcon />
+        </BackLink>
         <CommentButton onClick={() => setShowCommentInput(true)}>
-          <img src="/imgs/comment.png" alt="Comment Icon" />
-          댓글 달기
+          <CommentIcon />
         </CommentButton>
       </Header>
       <Title>{question.text}</Title>
@@ -222,17 +225,19 @@ export default Detail;
 
 const Wrapper = styled.div`
   padding: 20px;
-  background-color: #f5f5f5;
   height: 100vh;
   max-height: 100vh;
   overflow-y: auto;
   position: relative;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  letter-spacing: -1.5px;
 `;
 
 const Header = styled.div`
   display: flex;
+  width: 100%;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 20px;
@@ -240,31 +245,22 @@ const Header = styled.div`
 
 const BackLink = styled.div`
   display: inline-block;
-  color: #75a47f;
+  color: var(--green-main);
   text-decoration: none;
   font-weight: bold;
   cursor: pointer;
 `;
 
 const CommentButton = styled.button`
-  background-color: #75a47f;
-  color: white;
   border: none;
-  padding: 7px 10px;
-  border-radius: 10px;
   cursor: pointer;
   display: flex;
   align-items: center;
   transition: background-color 0.3s;
-
-  img {
-    width: 20px;
-    height: 20px;
-    margin-right: 10px;
-  }
-
-  &:hover {
-    background-color: #0a6847;
+  svg {
+    &:hover {
+      filter: brightness(0.9);
+    }
   }
 `;
 
@@ -276,42 +272,53 @@ const ErrorMessage = styled.p`
 const Title = styled.h2`
   margin-top: 20px;
   font-size: 17px;
-  color: #75a47f;
+  letter-spacing: -1.5px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  margin-bottom: 10px;
+  line-height: 1.2rem;
 `;
 
 const Image = styled.img`
-  width: 80%;
+  width: 90%;
   height: auto;
-  margin: 20px auto;
-  border-radius: 20px;
-  box-shadow: 0 0 20px 10px rgba(255, 255, 255, 0.7);
+  margin-top: 10px;
+  /* border-radius: 20px; */
+  /* box-shadow: 0 0 20px 10px rgba(255, 255, 255, 0.7); */
 `;
 
 const AnswerSectionsWrapper = styled.div`
   max-height: 800px; /* Set the maximum height as needed */
   overflow-y: auto;
+  width: 90%;
 `;
 
 const AnswerSections = styled.div`
   flex: 1;
+  width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 20px;
-  margin-top: 30px;
+  gap: 5px;
+  margin-top: 5px;
 `;
 
 const AnswerSection = styled.div`
   padding: 20px;
-  background-color: rgba(250, 255, 250, 0.3);
-  border-radius: 10px;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  /* background-color: rgba(250, 255, 250, 0.3); */
+  /* background-color: white; */
+  width: 100%;
+  /* border-radius: 10px; */
+  border-bottom: 1px solid var(--gray-color);
+  /* box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1); */
   position: relative;
 `;
 
 const SectionTitle = styled.h3`
   margin: 0 0 15px 0;
   font-size: 16px;
-  color: #75a47f;
+  /* color: var(--green-main); */
 `;
 
 const AnswersContainer = styled.div`
@@ -335,14 +342,14 @@ const AddAnswerButton = styled.button`
   padding: 5px 10px;
   font-size: 20px;
   color: #fff;
-  background-color: #75a47f;
+  background-color: var(--pink-main);
   border: none;
   border-radius: 50%;
   cursor: pointer;
   transition: background-color 0.4s;
 
   &:hover {
-    background-color: #0a6847;
+    background-color: var(--pink-main);
   }
 `;
 
@@ -353,14 +360,14 @@ const EditAnswerButton = styled.button`
   padding: 5px 8px;
   font-size: 12px;
   color: #fff;
-  background-color: #75a47f;
+  background-color: var(--green-main);
   border: none;
   border-radius: 10px;
   cursor: pointer;
   transition: background-color 0.4s;
-
+  letter-spacing: -1.5px;
   &:hover {
-    background-color: #0a6847;
+    background-color: var(--pink-main);
   }
 `;
 
@@ -369,9 +376,10 @@ const DeleteAnswerButton = styled.button`
   top: 10px;
   right: 10px;
   font-size: 12px;
-  color: #75a47f;
+  color: var(--green-main);
   background-color: transparent;
   border: none;
+  letter-spacing: -1.5px;
   cursor: pointer;
   transition: background-color 0.3s;
 
@@ -414,7 +422,7 @@ const CommentDate = styled.span`
 const DeleteButton = styled.button`
   background: none;
   border: none;
-  color: #75a47f;
+  color: var(--green-main);
   cursor: pointer;
   font-size: 14px;
   transition: background-color 0.3s;
@@ -447,14 +455,14 @@ const SubmitButton = styled.button`
   padding: 10px;
   font-size: 16px;
   color: #fff;
-  background-color: #75a47f;
+  background-color: var(--pink-main);
   border: none;
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s;
 
   &:hover {
-    background-color: #0a6847;
+    background-color: var(--green-main);
   }
 `;
 
@@ -486,14 +494,14 @@ const ConfirmButton = styled.button`
   padding: 10px 20px;
   font-size: 16px;
   color: #ffffff;
-  background-color: #75a47f;
+  background-color: var(--green-main);
   border: none;
   border-radius: 10px;
   cursor: pointer;
   transition: background-color 0.3s;
-
+  letter-spacing: -1.5px;
   &:hover {
-    background-color: #0a6847;
+    background-color: var(--green-main);
   }
 `;
 

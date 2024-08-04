@@ -41,6 +41,10 @@ const Router = createBrowserRouter([
         element: <QuestionList />,
       },
       {
+        path: "/my/list",
+        element: <QuestionList />,
+      },
+      {
         path: "/store",
         element: <StoreTree />,
       },

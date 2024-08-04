@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-
+import { ReactComponent as RightIcon } from "../../assets/icons/right.svg";
+import { ReactComponent as LeftIcon } from "../../assets/icons/left.svg";
 const PostDetailContent = ({ content }) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
@@ -25,7 +26,7 @@ const PostDetailContent = ({ content }) => {
         <ImageContainer>
           {images.length > 1 && (
             <ArrowButton onClick={handlePrevImage} direction="left">
-              ◀
+              <LeftIcon />
             </ArrowButton>
           )}
           <ImageWrapper>
@@ -36,7 +37,7 @@ const PostDetailContent = ({ content }) => {
           </ImageWrapper>
           {images.length > 1 && (
             <ArrowButton onClick={handleNextImage} direction="right">
-              ▶
+              <RightIcon />
             </ArrowButton>
           )}
         </ImageContainer>
@@ -51,7 +52,11 @@ const PostDetailContent = ({ content }) => {
 export default PostDetailContent;
 
 const ContentContainer = styled.div`
-  padding: 6px 20px;
+  /* padding: 6px 20px; */
+  letter-spacing: -1.5px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
 `;
 
 const ImageContainer = styled.div`
@@ -59,8 +64,7 @@ const ImageContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 100%;
-  margin: 10px 0;
+  /* margin: 10px 0; */
 `;
 
 const ImageWrapper = styled.div`
@@ -77,15 +81,14 @@ const ArrowButton = styled.button`
   top: 50%;
   ${({ direction }) => (direction === "left" ? "left: 10px;" : "right: 10px;")}
   transform: translateY(-50%);
-  background: rgba(0, 0, 0, 0.5);
+  /* background: rgba(0, 0, 0, 0.5); */
   color: white;
   border: none;
   border-radius: 50%;
   cursor: pointer;
   padding: 10px;
-
   &:hover {
-    background: rgba(0, 0, 0, 0.8);
+    /* background: rgba(0, 0, 0, 0.8); */
   }
 `;
 
@@ -102,4 +105,6 @@ const Description = styled.p`
   font-size: 18px;
   line-height: 1.5;
   margin-bottom: 10px;
+  padding: 0 10px;
+  letter-spacing: -1.5px;
 `;

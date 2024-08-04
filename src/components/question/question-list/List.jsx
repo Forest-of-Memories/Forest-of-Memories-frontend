@@ -1,10 +1,8 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./List.css";
-import styled from "styled-components";
 import "../../../styles/color.css";
-import { createBrowserRouter } from "react-router-dom";
-
+import { ReactComponent as BookMarkIcon } from "../../../assets/icons/bookmark.svg";
 const List = ({ questions, onQuestionClick, showOnlyLiked }) => {
   const [liked, setLiked] = useState(Array(questions.length).fill(false));
   const navigate = useNavigate();
@@ -35,17 +33,23 @@ const List = ({ questions, onQuestionClick, showOnlyLiked }) => {
           <li key={index} onClick={() => handleQuestionClick(index)}>
             <span className="question-number">#{index + 1}</span>
             <span className="question-text">{question.text}</span>
-            <img
-              src={
-                liked[index] ? "/imgs/like_full.png" : "/imgs/like_empty.png"
-              }
-              alt="heart icon"
-              className="heart-icon"
-              onClick={(e) => {
-                e.stopPropagation();
-                handleHeartClick(index);
-              }}
-            />
+            {liked[index] ? (
+              <BookMarkIcon
+                className="heart-icon clicked"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handleHeartClick(index);
+                }}
+              />
+            ) : (
+              <BookMarkIcon
+                className="heart-icon"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handleHeartClick(index);
+                }}
+              />
+            )}
           </li>
         ))}
     </ul>
