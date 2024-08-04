@@ -15,7 +15,7 @@ const Footer = () => {
         <img src="/imgs/footer_storage.png" alt="Storage Icon" />
         <span>추억 저장소</span>
       </div>
-      <Link to="/storage/post/write" className="plus-button">
+      <Link to="/storage/post/image" className="plus-button">
         <img src="/imgs/plus_button.png" alt="Plus Icon" />
       </Link>
       <Link to="/question/list" className="footer-item">
