@@ -1,12 +1,51 @@
+.settings-page {
+  background-color: #ffffff;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-top: 20px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  width: 100%;
+  position: relative;
+}
+
+.header h1 {
+  font-size: 24px;
+  margin: 0 auto;
+}
+
+.back-arrow {
+  position: absolute;
+  left: 20px;
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+}
+
+.settings-icon {
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+}
+
 .mypage-wrapper {
   background-color: #ffffff;
   height: 92vh;
   overflow-y: auto;
+  width: 100%;
 }
 
 .back-icon,
 .settings-icon {
-  width: 24px;
+  width: 35px;
   height: 24px;
   cursor: pointer;
 }
@@ -19,7 +58,7 @@
   display: flex;
   align-items: center;
   padding: 20px;
-  background-color: rgba(254, 185, 198);
+  background-color: rgba(120, 167, 90, 0.3); /* Use #78A75A color */
   color: #f6f6f6;
 }
 
@@ -56,7 +95,7 @@
   border: none;
   border-radius: 5px;
   background-color: #ffffff;
-  color: #ff8b8b;
+  color: #78a75a;
   cursor: pointer;
 }
 
@@ -86,7 +125,7 @@
 .profile-stats span {
   font-size: 12px;
   background-color: #f6f6f6;
-  color: #ff8b8b;
+  color: #78a75a;
   padding: 2px 5px;
   border-radius: 5px;
 }
@@ -95,6 +134,7 @@
   list-style: none;
   padding: 0;
   margin: 0;
+  width: 100%;
 }
 
 .options li {
@@ -151,16 +191,16 @@
 }
 
 .modal-copy {
-  background-color: rgba(254, 185, 198);
+  background-color: #78a75a;
   color: white;
 }
 
 .modal-close {
-  background-color: rgba(254, 185, 198);
+  background-color: #78a75a;
   color: white;
 }
 
 .modal-copy:hover,
 .modal-close:hover {
-  background-color: rgba(255, 164, 179, 0.9);
+  background-color: rgba(120, 167, 90, 0.8);
 }

@@ -7,7 +7,7 @@
 
 .back-button,
 .next-button {
-  background-color: #ff8b8b;
+  background-color: #7aba78;
   border: none;
   color: white;
   padding: 10px 20px;
@@ -22,7 +22,7 @@
 
 .back-button:disabled,
 .next-button:disabled {
-  background-color: gray;
+  background-color: #d9edbf;
   cursor: not-allowed;
 }
 
@@ -34,10 +34,10 @@
 .indicator-dot {
   width: 10px;
   height: 10px;
-  background-color: lightgray;
+  background-color: #d9edbf;
   border-radius: 50%;
 }
 
 .indicator-dot.active {
-  background-color: #ff8b8b;
+  background-color: #7aba78;
 }

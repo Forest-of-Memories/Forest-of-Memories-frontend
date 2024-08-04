@@ -1,14 +1,15 @@
 import React, { useState } from "react";
 import "./MyPageComponent.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const MyPageComponent = () => {
   const FAMILY_CODE = "Xhgdieu1564";
 
   const [name, setName] = useState("이세림");
-  const [email, setEmail] = useState("reems0815@sogang.ac.kr");
+  const [email, setEmail] = useState("");
   const [isEditing, setIsEditing] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const navigate = useNavigate();
 
   const handleNameChange = (e) => {
     setName(e.target.value);
@@ -41,14 +42,19 @@ const MyPageComponent = () => {
     alert("가족 코드가 복사되었습니다.");
   };
 
+  const handleSettingsClick = () => {
+    navigate("/settings");
+  };
+
   return (
     <div className="mypage-wrapper">
       <div className="header">
         <h1>마이페이지</h1>
         <img
-          src="/imgs/footer_mypage.png"
+          src="/imgs/setting.png"
           alt="Settings"
           className="settings-icon"
+          onClick={handleSettingsClick}
         />
       </div>
 

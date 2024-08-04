@@ -2,6 +2,7 @@ import React from "react";
 import "./Header.css";
 import styled from "styled-components";
 import "../../../styles/color.css";
+import { Link } from "react-router-dom";
 
 const Header = ({ onShowOnlyLiked }) => {
   return (
@@ -10,11 +11,11 @@ const Header = ({ onShowOnlyLiked }) => {
       <div className="header-icons">
         <div className="header-item">
           <img src="/imgs/service_question.png" alt="Service Question icon" />
-          <span>서비스 질문</span>
+          <Link to="/question/list">서비스 질문</Link>
         </div>
         <div className="header-item">
           <img src="/imgs/user_question.png" alt="User Question icon" />
-          <span>내 질문</span>
+          <Link to="/my/list">내 질문</Link>
         </div>
         <div className="header-item" onClick={onShowOnlyLiked}>
           <img src="/imgs/like_full.png" alt="Save icon" />

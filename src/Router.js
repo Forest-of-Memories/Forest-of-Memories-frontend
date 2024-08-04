@@ -16,6 +16,8 @@ import StorageGalleryWrite from "./pages/memory-storage/storage-gallery-write";
 import LocationSearch from "./pages/memory-storage/LocationSearch";
 import PostDetail from "./pages/memory-storage/postDetail";
 import NoLayout from "./components/common/no-layout";
+import MyListPage from "./pages/question/MyListPage";
+import SettingsPage from "./pages/mypage/SettingPage";
 
 const Router = createBrowserRouter([
   {
@@ -35,8 +37,16 @@ const Router = createBrowserRouter([
         element: <MyPage />,
       },
       {
+        path: "/settings",
+        element: <SettingsPage />,
+      },
+      {
         path: "/question/list",
         element: <QuestionList />,
+      },
+      {
+        path: "/my/list",
+        element: <MyListPage />,
       },
       {
         path: "/store",

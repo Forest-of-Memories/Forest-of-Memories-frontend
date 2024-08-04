@@ -240,14 +240,14 @@ const Header = styled.div`
 
 const BackLink = styled.div`
   display: inline-block;
-  color: #ff8b8b;
+  color: #75a47f;
   text-decoration: none;
   font-weight: bold;
   cursor: pointer;
 `;
 
 const CommentButton = styled.button`
-  background-color: rgba(255, 164, 179, 0.6);
+  background-color: #75a47f;
   color: white;
   border: none;
   padding: 7px 10px;
@@ -271,13 +271,13 @@ const ErrorMessage = styled.p`
 const Title = styled.h2`
   margin-top: 20px;
   font-size: 17px;
-  color: #333;
+  color: #75a47f;
 `;
 
 const Image = styled.img`
-  width: 80%; /* 이미지 너비를 80%로 설정하여 크기 줄이기 */
+  width: 80%;
   height: auto;
-  margin: 20px auto; /* 중앙에 위치시키기 위해 margin: 0 auto 설정 */
+  margin: 20px auto;
   border-radius: 20px;
   box-shadow: 0 0 20px 10px rgba(255, 255, 255, 0.7);
 `;
@@ -297,7 +297,7 @@ const AnswerSections = styled.div`
 
 const AnswerSection = styled.div`
   padding: 20px;
-  background-color: rgba(255, 193, 204, 0.1);
+  background-color: rgba(250, 255, 250, 0.3);
   border-radius: 10px;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
   position: relative;
@@ -306,7 +306,7 @@ const AnswerSection = styled.div`
 const SectionTitle = styled.h3`
   margin: 0 0 15px 0;
   font-size: 16px;
-  color: #ff8a80;
+  color: #75a47f;
 `;
 
 const AnswersContainer = styled.div`
@@ -330,14 +330,14 @@ const AddAnswerButton = styled.button`
   right: 10px;
   padding: 5px 10px;
   font-size: 20px;
-  color: #ffffff;
-  background-color: rgba(255, 164, 179, 0.6);
+  color: #fff;
+  background-color: #75a47f;
   border: none;
   border-radius: 50%;
   cursor: pointer;
 
   &:hover {
-    background-color: rgba(255, 164, 179, 0.9);
+    background-color: #0a6847;
   }
 `;
 
@@ -347,14 +347,14 @@ const EditAnswerButton = styled.button`
   right: 10px;
   padding: 5px 10px;
   font-size: 12px;
-  color: #ffffff;
-  background-color: rgba(255, 164, 179, 0.6);
+  color: #fff;
+  background-color: #75a47f;
   border: none;
   border-radius: 10px;
   cursor: pointer;
 
   &:hover {
-    background-color: rgba(255, 164, 179, 0.9);
+    background-color: #0a6847;
   }
 `;
 
@@ -363,7 +363,7 @@ const DeleteAnswerButton = styled.button`
   top: 10px;
   right: 10px;
   font-size: 12px;
-  color: #ff8b8b;
+  color: #75a47f;
   background-color: transparent;
   border: none;
   cursor: pointer;
@@ -407,7 +407,7 @@ const CommentDate = styled.span`
 const DeleteButton = styled.button`
   background: none;
   border: none;
-  color: #ff8b8b;
+  color: #75a47f;
   cursor: pointer;
   font-size: 14px;
 
@@ -438,14 +438,14 @@ const Input = styled.input`
 const SubmitButton = styled.button`
   padding: 10px;
   font-size: 16px;
-  color: #ffffff;
-  background-color: rgba(255, 164, 179, 0.6);
+  color: #fff;
+  background-color: #75a47f;
   border: none;
   border-radius: 5px;
   cursor: pointer;
 
   &:hover {
-    background-color: rgba(255, 164, 179, 0.9);
+    background-color: #0a6847;
   }
 `;
 
@@ -477,13 +477,13 @@ const ConfirmButton = styled.button`
   padding: 10px 20px;
   font-size: 16px;
   color: #ffffff;
-  background-color: rgba(255, 164, 179, 0.6);
+  background-color: #75a47f;
   border: none;
   border-radius: 10px;
   cursor: pointer;
 
   &:hover {
-    background-color: rgba(255, 164, 179, 0.9);
+    background-color: #0a6847;
   }
 `;
 

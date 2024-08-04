@@ -44,7 +44,7 @@ export default QGuide;
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 15px;
   overflow-y: scroll;
 `;
 
@@ -57,6 +57,7 @@ const ListBox = styled.div`
     color: var(--pink-main);
     font-size: 20px;
     font-weight: 800;
+    margin-right: 10px;
   }
   &:hover {
     background-color: var(--gray-800);
