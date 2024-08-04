@@ -77,7 +77,7 @@ const PopUpWrapper = styled.div`
 
 const Wrapper = styled.div`
   position: relative;
-  background-color: #ffffff;
+  background-color: #fff5d2;
   height: 100%;
   display: grid;
 `;
