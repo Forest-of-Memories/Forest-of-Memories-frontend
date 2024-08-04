@@ -6,7 +6,7 @@ const WriteHeader = () => {
   const navigate = useNavigate();
 
   const handleCancel = () => {
-    navigate("/storage");
+    navigate(-1);
   };
 
   const handleCheck = () => {
