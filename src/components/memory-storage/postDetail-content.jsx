@@ -28,10 +28,12 @@ const PostDetailContent = ({ content }) => {
               ◀
             </ArrowButton>
           )}
-          <PostImage
-            src={images[currentImageIndex]}
-            alt={`Post image ${currentImageIndex}`}
-          />
+          <ImageWrapper>
+            <PostImage
+              src={images[currentImageIndex]}
+              alt={`Post image ${currentImageIndex}`}
+            />
+          </ImageWrapper>
           {images.length > 1 && (
             <ArrowButton onClick={handleNextImage} direction="right">
               ▶
@@ -61,6 +63,15 @@ const ImageContainer = styled.div`
   margin: 10px 0;
 `;
 
+const ImageWrapper = styled.div`
+  width: 100%;
+  height: 350px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+`;
+
 const ArrowButton = styled.button`
   position: absolute;
   top: 50%;
@@ -79,8 +90,11 @@ const ArrowButton = styled.button`
 `;
 
 const PostImage = styled.img`
-  width: 100%;
-  height: auto;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  // width: 100%;
+  // height: auto;
   //border-radius: 5px;
 `;
 

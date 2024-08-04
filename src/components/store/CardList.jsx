@@ -3,9 +3,8 @@ import styled from "styled-components";
 
 import o2Image from "../../assets/imgs/o2.png";
 
-const CardList = ({ cards, handleCardClick, isTreePurchased }) => {
+const CardList = ({ cardsClass, cards, handleCardClick, isTreePurchased }) => {
   const [checkedItems, setCheckedItems] = useState({});
-
   const toggleCheck = (name) => {
     setCheckedItems((prev) => ({
       ...prev,
@@ -17,6 +16,7 @@ const CardList = ({ cards, handleCardClick, isTreePurchased }) => {
     <List>
       {cards.map((item, index) => (
         <Card
+          className={cardsClass}
           key={index}
           onClick={() => {
             handleCardClick(item);
@@ -25,8 +25,8 @@ const CardList = ({ cards, handleCardClick, isTreePurchased }) => {
           purchased={isTreePurchased(item.name)}
           checked={checkedItems[item.name] || false}
         >
-          <CardImage src={item.image} alt={item.name} />
-          <CardText>{item.name}</CardText>
+          <CardImage className={cardsClass} src={item.image} alt={item.name} />
+          <CardText className={cardsClass}>{item.name}</CardText>
           <CardPrice>
             <O2Icon src={o2Image} alt="O2" />
             {item.price}
@@ -41,44 +41,74 @@ export default CardList;
 
 const List = styled.div`
   display: flex;
+  height: 400px;
   overflow-y: auto;
   flex-wrap: wrap;
-  gap: 25px;
-  padding: 15px 27px;
-  justify-content: flex-start;
+  gap: 22px;
+  padding: 15px;
+  justify-content: center;
 `;
 
 const Card = styled.div`
-  flex: 0 1 101px;
   background-color: ${({ purchased, checked }) =>
     purchased
       ? "var(--gray-400)"
       : checked
-        ? "var(--gray-200)"
+        ? "var(--gray-100)"
         : "var(--gray-100)"};
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  height: 125px;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
+  justify-content: center;
   align-items: center;
   padding-bottom: 3px;
   border-radius: 7px;
   cursor: pointer;
   position: relative;
+  &.tree {
+    height: auto;
+    width: 45%;
+  }
+  &.background {
+    height: auto;
+    width: 90%;
+  }
+  &.object {
+    height: auto;
+    width: 29%;
+  }
 `;
 
 const CardImage = styled.img`
-  height: 72%;
-  width: 100%;
   object-fit: contain;
-  margin-bottom: 2px;
+  &.tree {
+    height: 68%;
+    width: 100%;
+  }
+  &.background {
+    height: 70%;
+    width: 100%;
+  }
+  &.object {
+    height: 65%;
+    width: 100%;
+  }
 `;
 
 const CardText = styled.div`
-  font-size: 13px;
+  &.tree {
+    font-size: 16px;
+    padding-top: 15px;
+  }
+  &.background {
+    font-size: 16px;
+    padding-top: 10px;
+  }
+  &.object {
+    font-size: 14px;
+    padding-top: 2px;
+  }
   color: var(--gray-900);
-  padding-top: 1px;
   padding-bottom: 2px;
 `;
 

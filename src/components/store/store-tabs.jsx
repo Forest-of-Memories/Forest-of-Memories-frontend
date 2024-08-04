@@ -31,7 +31,7 @@ const Tabs = styled.div`
 const Tab = styled.div`
   flex: 1;
   text-align: center;
-  padding: 9px;
+  padding: 11px;
   margin: 0 17px;
   border-radius: 15px 15px 0 0;
   font-size: 21px;

@@ -3,8 +3,8 @@ import styled from "styled-components";
 import o2Image from "../../assets/imgs/o2.png";
 
 const Modal = ({
-  selectedTrees = [], // 변경된 부분
-  selectedBackgrounds = [], // 변경된 부분
+  selectedTrees = [],
+  selectedBackgrounds = [],
   selectedObjects = [],
   handleCloseModal,
   handleConfirmBuy,

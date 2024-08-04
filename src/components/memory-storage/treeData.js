@@ -5,6 +5,7 @@ import bigtreeImg3 from "../../assets/imgs/bigtree3.png";
 import busan from "../../assets/imgs/busan.png";
 import postdog from "../../assets/imgs/postdog.png";
 import postfamily from "../../assets/imgs/postfamily.png";
+import building from "../../assets/imgs/building.png";
 
 const treeData = [
   {
@@ -65,6 +66,7 @@ const treeData = [
         image: busan,
         description: "부산 여행에 다녀왔어요!",
         content: [
+          { type: "image", value: building },
           { type: "image", value: busan },
           { type: "image", value: postdog },
           { type: "image", value: postfamily },

@@ -51,22 +51,22 @@ const Container = styled.div`
   align-items: center;
   width: 100%;
   position: relative;
-  height: 300px;
+  height: 46%;
   background-color: var(--red-600);
 `;
 
 const TreeImage = styled.div`
-  height: 85%;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: -15px;
+  margin-top: -5%;
+  z-index: 1;
+
   img {
     max-height: 100%;
     max-width: 100%;
     object-fit: contain;
   }
-  z-index: 1;
 `;
 
 const BackgroundImage = styled.img`
@@ -78,10 +78,10 @@ const BackgroundImage = styled.img`
 
 const ObjectImage = styled.img`
   position: absolute;
-  right: 22%;
+  right: 28%;
   bottom: 3%;
-  max-height: 25%;
-  max-width: 25%;
+  max-height: 23%;
+  max-width: 23%;
   object-fit: contain;
   z-index: 2;
 `;

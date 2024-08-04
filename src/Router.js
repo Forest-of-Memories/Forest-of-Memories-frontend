@@ -40,7 +40,7 @@ const Router = createBrowserRouter([
       },
 
       {
-        path: "/storage",
+        path: "/storage/:num",
         element: <StorageGallery />,
       },
     ],
