@@ -4,7 +4,8 @@ import Tree from "../../components/home/tree";
 import LevelGauge from "../../components/home/level-gauge";
 import Notifications from "../../components/home/notifications";
 import PictureSelect from "../../components/home/picture-select";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { instance } from "../../api/instance";
 const imgUrls = [
   "https://cafe24.poxo.com/ec01/wbskinramudali/HOvhRhvOk+Cp2KY4JuusAlHhNnmah66F2yGVAu2J1sWfERGpMMgqq+V9hZaChQo+UMQHi7H1JnIpdUOgkLEc5w==/_/web/product/big/202205/5efed93f9ef8712ac155c23c1c43f4a7.jpg",
   "https://flexible.img.hani.co.kr/flexible/normal/960/960/imgdb/resize/2019/0121/00501111_20190121.JPG",
@@ -15,9 +16,24 @@ const Home = () => {
   const [clickedId, setClickedId] = useState();
   const [imgUrlList, setImgUrlList] = useState(imgUrls);
   const [progress, setProgress] = useState(0);
+  const [homeData, setHomeData] = useState([]);
+
   const handleClick = () => {
     setIsClicked((prev) => !prev);
   };
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await instance.get(`/memory/home`);
+        setHomeData(res.data);
+      } catch (e) {
+        console.log(e);
+        // alert(e);
+      }
+    };
+    fetchData();
+    console.log(homeData);
+  }, []);
   return (
     <Wrapper>
       <DurationBox>

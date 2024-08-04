@@ -15,7 +15,7 @@ const LocationSearch = () => {
 
   const handleSelectLocation = (location) => {
     // 선택된 장소를 이전 페이지로 전달
-    navigate("/storage-gallery/write", {
+    navigate("/storage/write", {
       state: { selectedLocation: location },
     });
   };
