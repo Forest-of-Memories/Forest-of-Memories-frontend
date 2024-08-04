@@ -17,6 +17,7 @@ import LocationSearch from "./pages/memory-storage/LocationSearch";
 import PostDetail from "./pages/memory-storage/postDetail";
 import NoLayout from "./components/common/no-layout";
 import PostImage from "./pages/memory-storage/post-image";
+import SettingsPage from "./pages/mypage/SettingPage";
 
 const Router = createBrowserRouter([
   {
@@ -92,6 +93,10 @@ const Router = createBrowserRouter([
       {
         path: "/question/detail/:index",
         element: <QuestionDetail />,
+      },
+      {
+        path: "/settings",
+        element: <SettingsPage />,
       },
     ],
   },
