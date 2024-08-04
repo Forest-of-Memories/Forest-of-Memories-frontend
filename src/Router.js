@@ -38,12 +38,9 @@ const Router = createBrowserRouter([
         path: "/question/list",
         element: <QuestionList />,
       },
+
       {
-        path: "/store",
-        element: <StoreTree />,
-      },
-      {
-        path: "/storage",
+        path: "/storage/:num",
         element: <StorageGallery />,
       },
     ],
@@ -87,6 +84,10 @@ const Router = createBrowserRouter([
       {
         path: "/question/detail/:index",
         element: <QuestionDetail />,
+      },
+      {
+        path: "/store",
+        element: <StoreTree />,
       },
     ],
   },

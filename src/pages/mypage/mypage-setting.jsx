@@ -6,7 +6,6 @@ const MyPage = () => {
   return (
     <div>
       <My />
-      <Footer />
     </div>
   );
 };

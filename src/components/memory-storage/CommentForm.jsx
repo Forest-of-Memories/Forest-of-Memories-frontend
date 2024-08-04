@@ -1,4 +1,3 @@
-// src/components/CommentForm.jsx
 import React from "react";
 import styled from "styled-components";
 
@@ -22,11 +21,17 @@ export default CommentForm;
 const InputSection = styled.div`
   display: flex;
   align-items: center;
-  margin-top: 8px;
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 9px;
+  background-color: white;
+  z-index: 1000;
 `;
 
 const CommentInput = styled.input`
-  flex: 1;
+  width: 46vh;
   padding: 9px;
   font-size: 13px;
   border: 1px solid #cccccc;
@@ -35,6 +40,7 @@ const CommentInput = styled.input`
 `;
 
 const SubmitButton = styled.button`
+  width: 7vh;
   padding: 9px 11px;
   font-size: 12px;
   color: #ffffff;
