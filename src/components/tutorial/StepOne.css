@@ -8,7 +8,7 @@
 }
 
 .step-title {
-  font-size: 24px;
+  font-size: 20px;
   color: #7c7c7c;
   margin-bottom: 20px;
   margin-top: 20px;
@@ -23,7 +23,7 @@
 .step-item {
   display: flex;
   align-items: center;
-  font-size: 18px;
+  font-size: 10px;
   color: #4a4a4a;
   margin: 30px 0;
   padding: 10px;

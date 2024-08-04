@@ -1,11 +1,15 @@
 import React, { useState } from "react";
 import "./MyPageComponent.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const MyPageComponent = () => {
+  const FAMILY_CODE = "Xhgdieu1564";
+
   const [name, setName] = useState("이세림");
-  const [email, setEmail] = useState("reems0815@sogang.ac.kr");
+  const [email, setEmail] = useState("");
   const [isEditing, setIsEditing] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const navigate = useNavigate();
 
   const handleNameChange = (e) => {
     setName(e.target.value);
@@ -25,14 +29,32 @@ const MyPageComponent = () => {
     }
   };
 
+  const handleFamilyCodeClick = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
+
+  const handleCopyFamilyCode = () => {
+    navigator.clipboard.writeText(FAMILY_CODE);
+    alert("가족 코드가 복사되었습니다.");
+  };
+
+  const handleSettingsClick = () => {
+    navigate("/settings");
+  };
+
   return (
     <div className="mypage-wrapper">
       <div className="header">
         <h1>마이페이지</h1>
         <img
-          src="/imgs/footer_mypage.png"
+          src="/imgs/setting.png"
           alt="Settings"
           className="settings-icon"
+          onClick={handleSettingsClick}
         />
       </div>
 
@@ -71,7 +93,7 @@ const MyPageComponent = () => {
       <ul className="options">
         <li className="section-title"> 내 정보</li>
         <li onClick={handleEditClick}>닉네임 변경</li>
-        <li>가족 코드</li>
+        <li onClick={handleFamilyCodeClick}>가족 코드</li>
         {/* <li className="section-title">활동내역</li>
         <li>내가 작성한 질문</li>
         <li>내가 좋아한 질문</li>
@@ -79,6 +101,23 @@ const MyPageComponent = () => {
         <li className="section-title">고객센터</li>
         <li>자주하는 질문</li>
       </ul>
+
+      {isModalOpen && (
+        <div>
+          <div className="modal-overlay" onClick={handleCloseModal}></div>
+          <div className="modal">
+            <p>가족 코드: {FAMILY_CODE}</p>
+            <div className="button-group">
+              <button onClick={handleCopyFamilyCode} className="modal-copy">
+                복사하기
+              </button>
+              <button onClick={handleCloseModal} className="modal-close">
+                닫기
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

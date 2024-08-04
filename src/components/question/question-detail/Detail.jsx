@@ -1,27 +1,64 @@
-import React, { useState, useRef, useEffect } from "react";
-import { useParams, Link, useNavigate } from "react-router-dom";
+import React, { useState } from "react";
 import styled from "styled-components";
-import "../../../styles/color.css";
+import { useParams, useNavigate } from "react-router-dom";
 import questionData from "../question-list/questionData";
 import Modal from "./Modal";
+import "../../../styles/color.css";
+
+const familyMembers = ["김엄마", "김아빠", "김동생", "김언니"];
 
 const Detail = () => {
   const { index } = useParams();
   const questionIndex = parseInt(index, 10);
   const reverseIndex = questionData.length - 1 - questionIndex;
   const question = questionData[reverseIndex];
+  const navigate = useNavigate();
 
+  const [newAnswer, setNewAnswer] = useState("");
+  const [selectedMember, setSelectedMember] = useState("");
+  const [showAnswerInput, setShowAnswerInput] = useState(false);
+  const [showCommentInput, setShowCommentInput] = useState(false);
   const [newComment, setNewComment] = useState("");
   const [comments, setComments] = useState([]);
-  const [showCommentInput, setShowCommentInput] = useState(false);
-  const navigate = useNavigate();
-  if (!question) {
-    return (
-      <Wrapper>
-        <ErrorMessage>선택된 질문을 찾을 수 없습니다.</ErrorMessage>
-      </Wrapper>
-    );
-  }
+  const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
+  const [deleteAnswerMember, setDeleteAnswerMember] = useState("");
+
+  const handleAnswerChange = (e) => {
+    setNewAnswer(e.target.value);
+  };
+
+  const handleAnswerKeyDown = (e) => {
+    if (e.key === "Enter") {
+      handleAnswerSubmit();
+    }
+  };
+
+  const handleAnswerSubmit = () => {
+    if (newAnswer.trim()) {
+      const newAnswerObject = {
+        author: selectedMember,
+        text: newAnswer.trim(),
+      };
+
+      const existingAnswerIndex = question.answers.findIndex(
+        (answer) => answer.author === selectedMember
+      );
+
+      if (existingAnswerIndex !== -1) {
+        question.answers[existingAnswerIndex] = newAnswerObject;
+      } else {
+        question.answers.push(newAnswerObject);
+      }
+
+      setNewAnswer("");
+      setShowAnswerInput(false);
+    }
+  };
+
+  const toggleAnswerInput = (member) => {
+    setSelectedMember(member);
+    setShowAnswerInput(true);
+  };
 
   const handleCommentChange = (e) => {
     setNewComment(e.target.value);
@@ -37,7 +74,7 @@ const Detail = () => {
 
       setComments([...comments, newCommentObject]);
       setNewComment("");
-      // setShowCommentInput(false); //
+      // setShowCommentInput(false);
     }
   };
 
@@ -52,30 +89,96 @@ const Detail = () => {
     setComments(updatedComments);
   };
 
-  const toggleCommentInput = () => {
-    setShowCommentInput(!showCommentInput);
+  const handleDeleteAnswer = (member) => {
+    setDeleteAnswerMember(member);
+    setShowDeleteConfirmation(true);
   };
+
+  const confirmDeleteAnswer = () => {
+    const updatedAnswers = question.answers.filter(
+      (answer) => answer.author !== deleteAnswerMember
+    );
+    question.answers = updatedAnswers;
+    setShowDeleteConfirmation(false);
+  };
+
+  const cancelDeleteAnswer = () => {
+    setShowDeleteConfirmation(false);
+  };
+
+  if (!question) {
+    return (
+      <Wrapper>
+        <ErrorMessage>선택된 질문을 찾을 수 없습니다.</ErrorMessage>
+      </Wrapper>
+    );
+  }
 
   return (
     <Wrapper>
       <Header>
         <BackLink onClick={() => navigate(-1)}>← 돌아가기</BackLink>
-        <CommentButton onClick={toggleCommentInput}>
+        <CommentButton onClick={() => setShowCommentInput(true)}>
           <img src="/imgs/comment.png" alt="Comment Icon" />
           댓글 달기
         </CommentButton>
       </Header>
       <Title>{question.text}</Title>
       <Image src="/imgs/watercolor.avif" alt="List Icon" />
-      <Answers>
-        {question.answers.map((answer, idx) => (
-          <Answer key={idx}>
-            <AnswerAuthor>{answer.author}</AnswerAuthor>
-            <AnswerText>{answer.text}</AnswerText>
-          </Answer>
-        ))}
-      </Answers>
-      <Modal show={showCommentInput} handleClose={toggleCommentInput}>
+      <AnswerSectionsWrapper>
+        <AnswerSections>
+          {familyMembers.map((member, idx) => (
+            <AnswerSection key={idx}>
+              <SectionTitle>{member}</SectionTitle>
+              <AnswersContainer>
+                {question.answers
+                  .filter((answer) => answer.author === member)
+                  .map((answer, idx) => (
+                    <Answer key={idx}>
+                      <AnswerText>{answer.text}</AnswerText>
+                    </Answer>
+                  ))}
+              </AnswersContainer>
+              {question.answers.some((answer) => answer.author === member) ? (
+                <>
+                  <EditAnswerButton onClick={() => toggleAnswerInput(member)}>
+                    수정하기
+                  </EditAnswerButton>
+                  <DeleteAnswerButton
+                    onClick={() => handleDeleteAnswer(member)}
+                  >
+                    답변 삭제하기
+                  </DeleteAnswerButton>
+                </>
+              ) : (
+                <AddAnswerButton onClick={() => toggleAnswerInput(member)}>
+                  +
+                </AddAnswerButton>
+              )}
+            </AnswerSection>
+          ))}
+        </AnswerSections>
+      </AnswerSectionsWrapper>
+      <Modal
+        show={showAnswerInput}
+        handleClose={() => setShowAnswerInput(false)}
+      >
+        <ModalTitle>{selectedMember}의 답변 달기</ModalTitle>
+        <InputSection>
+          <Input
+            type="text"
+            value={newAnswer}
+            onChange={handleAnswerChange}
+            onKeyDown={handleAnswerKeyDown}
+            placeholder="답변을 입력하세요"
+          />
+          <SubmitButton onClick={handleAnswerSubmit}>답변 달기</SubmitButton>
+        </InputSection>
+      </Modal>
+      <Modal
+        show={showCommentInput}
+        handleClose={() => setShowCommentInput(false)}
+      >
         <ModalTitle>댓글 달기</ModalTitle>
         <InputSection>
           <Input
@@ -102,6 +205,15 @@ const Detail = () => {
           ))}
         </CommentsContainer>
       </Modal>
+      {showDeleteConfirmation && (
+        <DeleteConfirmationModal>
+          <p>답변을 삭제하시겠습니까?</p>
+          <ButtonGroup>
+            <ConfirmButton onClick={confirmDeleteAnswer}>예</ConfirmButton>
+            <CancelButton onClick={cancelDeleteAnswer}>아니요</CancelButton>
+          </ButtonGroup>
+        </DeleteConfirmationModal>
+      )}
     </Wrapper>
   );
 };
@@ -115,6 +227,8 @@ const Wrapper = styled.div`
   max-height: 100vh;
   overflow-y: auto;
   position: relative;
+  display: flex;
+  flex-direction: column;
 `;
 
 const Header = styled.div`
@@ -124,28 +238,33 @@ const Header = styled.div`
   margin-bottom: 20px;
 `;
 
-const BackLink = styled(Link)`
+const BackLink = styled.div`
   display: inline-block;
-  color: #ff8b8b;
+  color: #75a47f;
   text-decoration: none;
   font-weight: bold;
   cursor: pointer;
 `;
 
 const CommentButton = styled.button`
-  background: #ff8b8b;
+  background-color: #75a47f;
   color: white;
   border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
+  padding: 7px 10px;
+  border-radius: 10px;
   cursor: pointer;
   display: flex;
   align-items: center;
+  transition: background-color 0.3s;
 
   img {
     width: 20px;
     height: 20px;
     margin-right: 10px;
+  }
+
+  &:hover {
+    background-color: #0a6847;
   }
 `;
 
@@ -155,43 +274,116 @@ const ErrorMessage = styled.p`
 `;
 
 const Title = styled.h2`
-  margin-top: 30px;
-  font-size: 18px;
-  margin-bottom: 30px;
-  color: #333;
+  margin-top: 20px;
+  font-size: 17px;
+  color: #75a47f;
 `;
 
 const Image = styled.img`
-  width: 410px;
+  width: 80%;
   height: auto;
-  margin-bottom: 20px;
-  margin-top: 20px;
-  display: flex;
-  justify-content: center;
+  margin: 20px auto;
+  border-radius: 20px;
+  box-shadow: 0 0 20px 10px rgba(255, 255, 255, 0.7);
 `;
 
-const Answers = styled.div`
+const AnswerSectionsWrapper = styled.div`
+  max-height: 800px; /* Set the maximum height as needed */
+  overflow-y: auto;
+`;
+
+const AnswerSections = styled.div`
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
   margin-top: 30px;
 `;
 
-const Answer = styled.div`
-  margin-bottom: 30px;
+const AnswerSection = styled.div`
   padding: 20px;
-  background-color: #fff;
+  background-color: rgba(250, 255, 250, 0.3);
   border-radius: 10px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  position: relative;
 `;
 
-const AnswerAuthor = styled.h3`
+const SectionTitle = styled.h3`
   margin: 0 0 15px 0;
-  font-size: 20px;
-  color: #ff8a80;
+  font-size: 16px;
+  color: #75a47f;
+`;
+
+const AnswersContainer = styled.div`
+  max-height: 180px;
+  overflow-y: auto;
+`;
+
+const Answer = styled.div`
+  margin-bottom: 25px;
 `;
 
 const AnswerText = styled.p`
-  margin: 0;
   font-size: 15px;
   color: #666;
+`;
+
+const AddAnswerButton = styled.button`
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  padding: 5px 10px;
+  font-size: 20px;
+  color: #fff;
+  background-color: #75a47f;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 0.4s;
+
+  &:hover {
+    background-color: #0a6847;
+  }
+`;
+
+const EditAnswerButton = styled.button`
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  padding: 5px 8px;
+  font-size: 12px;
+  color: #fff;
+  background-color: #75a47f;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.4s;
+
+  &:hover {
+    background-color: #0a6847;
+  }
+`;
+
+const DeleteAnswerButton = styled.button`
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 12px;
+  color: #75a47f;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+
+  &:hover {
+    text-decoration: underline;
+  }
+`;
+
+const CommentsWrapper = styled.div`
+  flex: 1;
+  overflow-y: auto;
+  margin-top: 20px;
 `;
 
 const CommentsContainer = styled.div`
@@ -210,21 +402,22 @@ const CommentHeader = styled.div`
 
 const CommentAuthor = styled.h3`
   margin: 0;
-  font-size: 20px;
+  font-size: 15px;
 `;
 
 const CommentDate = styled.span`
   font-size: 12px;
+  margin-left: 150px;
   color: #888;
-  margin-left: 220px;
 `;
 
 const DeleteButton = styled.button`
   background: none;
   border: none;
-  color: #ff8b8b;
+  color: #75a47f;
   cursor: pointer;
   font-size: 14px;
+  transition: background-color 0.3s;
 
   &:hover {
     text-decoration: underline;
@@ -253,14 +446,15 @@ const Input = styled.input`
 const SubmitButton = styled.button`
   padding: 10px;
   font-size: 16px;
-  color: #ffffff;
-  background-color: #ff8b8b;
+  color: #fff;
+  background-color: #75a47f;
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  transition: background-color 0.3s;
 
   &:hover {
-    background-color: #f6f6f6;
+    background-color: #0a6847;
   }
 `;
 
@@ -268,4 +462,52 @@ const ModalTitle = styled.h2`
   font-size: 18px;
   color: #333;
   margin-bottom: 20px;
+`;
+
+const DeleteConfirmationModal = styled.div`
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #ffffff;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  z-index: 1000;
+`;
+
+const ButtonGroup = styled.div`
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+`;
+
+const ConfirmButton = styled.button`
+  padding: 10px 20px;
+  font-size: 16px;
+  color: #ffffff;
+  background-color: #75a47f;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+
+  &:hover {
+    background-color: #0a6847;
+  }
+`;
+
+const CancelButton = styled.button`
+  padding: 10px 20px;
+  font-size: 16px;
+  color: #ffffff;
+  background-color: #cccccc;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+
+  &:hover {
+    background-color: #b3b3b3;
+  }
 `;

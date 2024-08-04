@@ -1,8 +1,8 @@
 import styled from "styled-components";
 const guideList = [
-  "이건 질문 가이드 입니다. 이건 질문리스트 입니다. 클릭해서 복사해 보세요.1",
-  "이건 질문 가이드 입니다. 이건 질문리스트 입니다. 클릭해서 복사해 보세요.2",
-  "이건 질문 가이드 입니다. 이건 질문리스트 입니다. 클릭해서 복사해 보세요.3",
+  "내가 가장 성장했다고 느낀 순간은 언제였어?",
+  "나에게 가장 속상할 때는 언제였어?",
+  "나와의 대화 중 가장 의미 있었던 대화는 무엇이었어?",
   "이건 질문 가이드 입니다. 이건 질문리스트 입니다. 클릭해서 복사해 보세요.4",
   "이건 질문 가이드 입니다. 이건 질문리스트 입니다. 클릭해서 복사해 보세요.5",
   "이건 질문 가이드 입니다. 이건 질문리스트 입니다. 클릭해서 복사해 보세요.6",
@@ -44,7 +44,7 @@ export default QGuide;
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 15px;
   overflow-y: scroll;
 `;
 
@@ -57,6 +57,7 @@ const ListBox = styled.div`
     color: var(--pink-main);
     font-size: 20px;
     font-weight: 800;
+    margin-right: 10px;
   }
   &:hover {
     background-color: var(--gray-800);
