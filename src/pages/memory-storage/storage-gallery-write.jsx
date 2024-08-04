@@ -3,7 +3,7 @@ import styled from "styled-components";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { ko } from "date-fns/locale";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 import WriteHeader from "../../components/memory-storage/write-header";
 import WriteFooter from "../../components/memory-storage/write-footer";
@@ -11,12 +11,13 @@ import TitlePeopleInput from "../../components/memory-storage/write-input-titlep
 
 const StorageGalleryWrite = () => {
   const navigate = useNavigate();
+  const loca = useLocation();
   const [title, setTitle] = useState("");
   const [people, setPeople] = useState("");
   const [location, setLocation] = useState("");
   const [dates, setDates] = useState([new Date(), new Date()]);
   const [content, setContent] = useState("");
-
+  const [imgUrls, setImgUrls] = useState(loca.state);
   const handleDateChange = (dates) => {
     const [start, end] = dates;
     setDates([start, end]);
@@ -29,8 +30,9 @@ const StorageGalleryWrite = () => {
   };
 
   const handleLocationClick = () => {
-    navigate("/storage/write/location"); // 장소 검색 페이지로 이동
+    navigate("/storage/write/location");
   };
+  console.log(loca.state);
 
   return (
     <Wrapper>
@@ -42,13 +44,13 @@ const StorageGalleryWrite = () => {
           people={people}
           setPeople={setPeople}
         />
-        <Input
+        {/* <Input
           type="text"
           placeholder=" 장소 추가 >"
           value={location}
           onClick={handleLocationClick} // 클릭 이벤트 핸들러
           readOnly
-        />
+        /> */}
         <DatePickerWrapper>
           <DatePicker
             selected={dates[0]}
@@ -60,6 +62,11 @@ const StorageGalleryWrite = () => {
             customInput={<DateInput />}
           />
         </DatePickerWrapper>
+        <ImgContainer>
+          {imgUrls.map((el) => (
+            <img src={el} />
+          ))}
+        </ImgContainer>
         <Textarea
           placeholder="내용을 입력하세요"
           value={content}
@@ -72,7 +79,14 @@ const StorageGalleryWrite = () => {
 };
 
 export default StorageGalleryWrite;
-
+const ImgContainer = styled.div`
+  height: 20vw;
+  overflow-x: scroll;
+  flex-wrap: nowrap;
+  img {
+    width: 30%;
+  }
+`;
 const DateInput = React.forwardRef(({ value, onClick }, ref) => (
   <StyledDateInput onClick={onClick} ref={ref}>
     {value} 📅

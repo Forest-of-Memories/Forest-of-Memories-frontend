@@ -26,6 +26,9 @@ const AppContainer = styled.div`
   overflow: scroll;
   margin: 0 auto;
   background-color: white;
+  @media (max-width: 768px) {
+    width: 100%;
+  }
 `;
 
 export default App;

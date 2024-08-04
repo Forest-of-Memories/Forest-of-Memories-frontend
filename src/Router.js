@@ -16,6 +16,7 @@ import StorageGalleryWrite from "./pages/memory-storage/storage-gallery-write";
 import LocationSearch from "./pages/memory-storage/LocationSearch";
 import PostDetail from "./pages/memory-storage/postDetail";
 import NoLayout from "./components/common/no-layout";
+import PostImage from "./pages/memory-storage/post-image";
 
 const Router = createBrowserRouter([
   {
@@ -72,6 +73,10 @@ const Router = createBrowserRouter([
       {
         path: "/storage/post/write",
         element: <StorageGalleryWrite />,
+      },
+      {
+        path: "/storage/post/image",
+        element: <PostImage />,
       },
       {
         path: "/storage/write/location",
