@@ -14,7 +14,7 @@ const StoreTabs = ({ activeTab, onTabClick }) => {
         배경
       </Tab>
       <Tab active={activeTab === "object"} onClick={() => onTabClick("object")}>
-        오브제
+        장식
       </Tab>
     </Tabs>
   );
@@ -25,18 +25,18 @@ export default StoreTabs;
 const Tabs = styled.div`
   display: flex;
   justify-content: space-around;
-  padding: 0 5px;
-  background-color: white;
+  background-color: var(--red-600);
 `;
 
 const Tab = styled.div`
   flex: 1;
   text-align: center;
-  padding: 9px 0;
+  padding: 11px;
+  margin: 0 17px;
+  border-radius: 15px 15px 0 0;
   font-size: 21px;
-  border-bottom: ${({ active }) =>
-    active ? "2px solid var(--red-600)" : "none"};
   font-weight: ${({ active }) => (active ? "bold" : "normal")};
-  color: ${({ active }) => (active ? "var(--red-600)" : "#333")};
+  color: ${({ active }) => (active ? "var(--pink-main)" : "#333")};
+  background-color: ${({ active }) => (active ? "white" : "var(--red-600)")};
   cursor: pointer;
 `;

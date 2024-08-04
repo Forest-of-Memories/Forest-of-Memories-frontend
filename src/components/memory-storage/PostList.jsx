@@ -12,18 +12,13 @@ const PostList = ({ posts }) => {
   return (
     <Container>
       {posts.map((post) => (
-        <Post key={post.id} onClick={() => handlePostClick(post.id)}>
+        <PostCard key={post.id} onClick={() => handlePostClick(post.id)}>
           <PostImage src={post.image} alt={post.title} />
           <PostContent>
-            <TitleRow>
-              <PostTitle>{post.title}</PostTitle>
-              <PostWriter>by. {post.writer}</PostWriter>
-            </TitleRow>
+            <PostTitle>{post.title}</PostTitle>
             <PostDate>{post.date}</PostDate>
-            <PostPeople>{post.people}</PostPeople>
-            <PostDescription>{post.description}</PostDescription>
           </PostContent>
-        </Post>
+        </PostCard>
       ))}
     </Container>
   );
@@ -32,63 +27,47 @@ const PostList = ({ posts }) => {
 export default PostList;
 
 const Container = styled.div`
-  width: 100%;
-  height: 33vh;
-  padding: 0 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 12px 18px;
 `;
 
-const Post = styled.div`
-  display: flex;
-  padding: 10px 5px;
-  border-bottom: 1px solid #ddd;
+const PostCard = styled.div`
+  width: 176px;
+  height: 190px;
+
+  background: #fff;
+  //border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
   cursor: pointer;
+  //width: calc(50% - 20px);
+  transition: transform 0.2s;
 
   &:hover {
-    background-color: #f9f9f9;
+    transform: translateY(-5px);
   }
 `;
 
 const PostImage = styled.img`
-  width: 105px;
-  height: 105px;
+  width: 100%;
+  height: 130px;
   object-fit: cover;
-  border-radius: 8px;
 `;
 
 const PostContent = styled.div`
-  display: flex;
-  flex-direction: column;
-  margin-left: 20px;
-`;
-const TitleRow = styled.div`
-  display: flex;
-  align-items: flex-end;
-  margin-bottom: 5px;
+  padding: 9px 12px;
 `;
 
 const PostTitle = styled.h2`
-  font-size: 18px;
-  margin: 0;
-  margin-right: 10px;
-`;
-
-const PostWriter = styled.h2`
-  font-size: 14px;
-  color: #666;
+  font-size: 19px;
+  font-weight: bold;
+  padding-bottom: 5px;
 `;
 
 const PostDate = styled.p`
-  font-size: 14px;
+  font-size: 15px;
   color: #888;
-  margin-bottom: 3px;
-`;
-
-const PostPeople = styled.p`
-  font-size: 14px;
-  color: #888;
-  margin: 0 0 12px;
-`;
-
-const PostDescription = styled.p`
-  font-size: 14px;
+  margin: 0;
 `;

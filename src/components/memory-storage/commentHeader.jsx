@@ -5,7 +5,7 @@ const CommentHeader = ({ handleClose }) => {
   return (
     <Header>
       <Title>댓글</Title>
-      <CloseButton onClick={handleClose}>×</CloseButton>
+      <CloseButton onClick={handleClose}>X</CloseButton>
     </Header>
   );
 };
@@ -17,16 +17,16 @@ const Header = styled.div`
   justify-content: space-between;
   align-items: center;
   width: 100%;
+  padding-bottom: 7px;
+  border-bottom: 1px solid var(--gray-400);
 `;
 
 const Title = styled.div`
-  font-size: 15px;
+  font-size: 19px;
+  font-weight: bold;
 `;
 
 const CloseButton = styled.button`
-  background: none;
-  color: #333;
-  border: none;
   font-size: 19px;
   cursor: pointer;
 `;

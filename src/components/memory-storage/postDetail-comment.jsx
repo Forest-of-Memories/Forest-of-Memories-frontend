@@ -44,21 +44,21 @@ const PostDetailComment = () => {
 
   return (
     <Wrapper>
-      <Footer>
-        <CommentButton onClick={toggleCommentInput}>
-          <img src={CommentIcon} alt="Comment Icon" />
-          댓글
-        </CommentButton>
-      </Footer>
       <CommentModal show={showCommentInput} handleClose={toggleCommentInput}>
+        <CommentList comments={comments} onDelete={handleCommentDelete} />
         <CommentForm
           newComment={newComment}
           onChange={handleCommentChange}
           onSubmit={handleCommentSubmit}
           onKeyDown={handleKeyDown}
         />
-        <CommentList comments={comments} onDelete={handleCommentDelete} />
       </CommentModal>
+      <PostDetailFooter>
+        <CommentButton onClick={toggleCommentInput}>
+          <img src={CommentIcon} alt="Comment Icon" />
+          댓글
+        </CommentButton>
+      </PostDetailFooter>
     </Wrapper>
   );
 };
@@ -66,25 +66,28 @@ const PostDetailComment = () => {
 export default PostDetailComment;
 
 const Wrapper = styled.div`
-  padding: 20px;
-  background-color: #ffffff;
-  height: 100vh;
-  max-height: 100vh;
-  //overflow-y: auto;
+  //background-color: beige;
+  position: relative;
+  padding-bottom: 6vh; /* PostDetailFooter 높이만큼 padding 추가 */
 `;
 
-const Footer = styled.footer`
+const PostDetailFooter = styled.div`
   display: flex;
   align-items: center;
   position: fixed;
   bottom: 0;
-  width: 56.25vh;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 56.25vh;
   height: 8vh;
-  background-color: var(--gray-50);
+  background-color: white;
+  padding: 0 20px;
+  //z-index: 1;
 `;
 
 const CommentButton = styled.button`
-  background: var(--red-600);
+  background: var(--pink-main);
   color: white;
   border: none;
   padding: 7px 15px;
@@ -92,10 +95,10 @@ const CommentButton = styled.button`
   cursor: pointer;
   display: flex;
   align-items: center;
-
+  font-size: 15px;
   img {
-    width: 20px;
-    height: 20px;
+    width: 25px;
+    height: 25px;
     margin-right: 10px;
   }
 

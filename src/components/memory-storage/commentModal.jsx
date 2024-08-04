@@ -29,6 +29,7 @@ const ModalOverlay = styled.div`
   align-items: flex-end;
   background: transparent;
   box-shadow: rgba(0, 0, 0, 0.65) 0px 5px 15px;
+  z-index: 2;
 `;
 
 const ModalContent = styled.div`
@@ -36,7 +37,7 @@ const ModalContent = styled.div`
   padding: 10px 17px 0 17px;
   border-radius: 5px 5px 0 0;
   width: 56.25vh;
-  min-height: 30vh;
-  max-height: 70vh;
+  min-height: 32vh;
+  max-height: 50vh;
   position: relative;
 `;

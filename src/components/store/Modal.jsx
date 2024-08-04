@@ -3,9 +3,9 @@ import styled from "styled-components";
 import o2Image from "../../assets/imgs/o2.png";
 
 const Modal = ({
-  selectedTree,
-  selectedBackground,
-  selectedObjects,
+  selectedTrees = [],
+  selectedBackgrounds = [],
+  selectedObjects = [],
   handleCloseModal,
   handleConfirmBuy,
   totalPrice,
@@ -13,17 +13,25 @@ const Modal = ({
   <ModalOverlay>
     <ModalContent>
       <p>구매 확정하시겠습니까?</p>
-      {selectedTree && (
-        <ModalPrice>
-          {selectedTree.name} : <O2Icon src={o2Image} alt="O2" />
-          {selectedTree.price}
-        </ModalPrice>
+      {selectedTrees.map(
+        (
+          tree // 변경된 부분
+        ) => (
+          <ModalPrice key={tree.name}>
+            {tree.name} : <O2Icon src={o2Image} alt="O2" />
+            {tree.price}
+          </ModalPrice>
+        )
       )}
-      {selectedBackground && (
-        <ModalPrice>
-          {selectedBackground.name} : <O2Icon src={o2Image} alt="O2" />
-          {selectedBackground.price}
-        </ModalPrice>
+      {selectedBackgrounds.map(
+        (
+          bg // 변경된 부분
+        ) => (
+          <ModalPrice key={bg.name}>
+            {bg.name} : <O2Icon src={o2Image} alt="O2" />
+            {bg.price}
+          </ModalPrice>
+        )
       )}
       {selectedObjects.map((obj) => (
         <ModalPrice key={obj.name}>
