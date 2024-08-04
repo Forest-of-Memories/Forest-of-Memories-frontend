@@ -1,4 +1,5 @@
 .settings-page {
+  letter-spacing: -1.5px;
   background-color: #ffffff;
   height: 100vh;
   display: flex;
@@ -37,8 +38,8 @@
 }
 
 .mypage-wrapper {
-  background-color: #ffffff;
-  height: 92vh;
+  /* background-color: #ff0000; */
+  height: 100%;
   overflow-y: auto;
   width: 100%;
 }
@@ -58,7 +59,7 @@
   display: flex;
   align-items: center;
   padding: 20px;
-  background-color: rgba(120, 167, 90, 0.3); /* Use #78A75A color */
+  background-color: var(--green-main); /* Use  var(--green-main) color */
   color: #f6f6f6;
 }
 
@@ -95,7 +96,7 @@
   border: none;
   border-radius: 5px;
   background-color: #ffffff;
-  color: #78a75a;
+  color: var(--green-main);
   cursor: pointer;
   transition: background-color 0.3s;
 }
@@ -126,7 +127,7 @@
 .profile-stats span {
   font-size: 12px;
   background-color: #f6f6f6;
-  color: #78a75a;
+  color: var(--green-main);
   padding: 2px 5px;
   border-radius: 5px;
 }
@@ -193,16 +194,16 @@
 }
 
 .modal-copy {
-  background-color: #78a75a;
+  background-color: var(--green-main);
   color: white;
 }
 
 .modal-close {
-  background-color: #78a75a;
+  background-color: var(--green-main);
   color: white;
 }
 
 .modal-copy:hover,
 .modal-close:hover {
-  background-color: rgba(120, 167, 90, 0.8);
+  background-color: var(--green-main);
 }

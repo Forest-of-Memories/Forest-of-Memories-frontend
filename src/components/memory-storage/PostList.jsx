@@ -31,6 +31,7 @@ const Container = styled.div`
   flex-wrap: wrap;
   gap: 20px;
   padding: 12px 18px;
+  letter-spacing: -1.5px;
 `;
 
 const PostCard = styled.div`
@@ -39,7 +40,7 @@ const PostCard = styled.div`
 
   background: #fff;
   //border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
   overflow: hidden;
   cursor: pointer;
   //width: calc(50% - 20px);
@@ -61,13 +62,14 @@ const PostContent = styled.div`
 `;
 
 const PostTitle = styled.h2`
-  font-size: 19px;
+  font-size: 1.1rem;
   font-weight: bold;
   padding-bottom: 5px;
 `;
 
 const PostDate = styled.p`
   font-size: 15px;
-  color: #888;
+  font-weight: 100;
+  color: var(--gray-color);
   margin: 0;
 `;

@@ -73,7 +73,6 @@ const Wrapper = styled.div`
   justify-content: flex-start;
   width: 56.25vh;
   height: 100%;
-  background-color: var(--gray-50);
   position: relative;
   overflow-y: auto;
 `;

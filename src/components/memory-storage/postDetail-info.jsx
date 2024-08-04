@@ -18,7 +18,8 @@ export default PostDetailInfo;
 
 const Container = styled.div`
   padding: 50px 20px 10px;
-  border-bottom: 2px solid #ccc;
+  /* border-bottom: 2px solid #ccc; */
+  letter-spacing: -1.5px;
 `;
 
 const TitleContainer = styled.div`

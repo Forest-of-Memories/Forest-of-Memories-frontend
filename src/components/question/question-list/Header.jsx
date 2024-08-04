@@ -1,25 +1,35 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./Header.css";
 import styled from "styled-components";
 import "../../../styles/color.css";
-import { Link } from "react-router-dom";
-
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { ReactComponent as BookMarkBtn } from "../../../assets/icons/bookmarkbtn.svg";
 const Header = ({ onShowOnlyLiked }) => {
+  const [isSystem, setIsSystem] = useState(true);
+  const location = useLocation();
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (location.pathname.split("/")[1] === "my") setIsSystem(false);
+    else if (location.pathname.split("/")[1] === "question") setIsSystem(true);
+  }, [location]);
   return (
     <header className="header">
-      <h1 className="title">List</h1>
       <div className="header-icons">
-        <div className="header-item">
-          <img src="/imgs/service_question.png" alt="Service Question icon" />
-          <Link to="/question/list">서비스 질문</Link>
+        <div
+          onClick={() => navigate("/question/list")}
+          className={isSystem ? "header-item" : "header-item selected"}
+        >
+          <div>시스템 질문</div>
         </div>
-        <div className="header-item">
-          <img src="/imgs/user_question.png" alt="User Question icon" />
-          <Link to="/my/list">내 질문</Link>
+        <div
+          onClick={() => navigate("/my/list")}
+          className={isSystem ? "header-item selected" : "header-item"}
+        >
+          <div>가족이 만든 질문</div>
         </div>
-        <div className="header-item" onClick={onShowOnlyLiked}>
-          <img src="/imgs/like_full.png" alt="Save icon" />
-          <span>좋아요</span>
+        <div className="bookmark" onClick={onShowOnlyLiked}>
+          <BookMarkBtn />
+          {/* <span>좋아요</span> */}
         </div>
       </div>
     </header>

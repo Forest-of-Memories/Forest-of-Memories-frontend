@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
+import { ReactComponent as PreviousIcon } from "../../assets/icons/previous.svg";
 
 const PostDetailHeader = () => {
   const navigate = useNavigate();
@@ -11,8 +12,10 @@ const PostDetailHeader = () => {
 
   return (
     <Header>
-      <Button onClick={handleCancel}>⬅️</Button>
-      <Title>이건 post detail</Title>
+      <Button onClick={handleCancel}>
+        <PreviousIcon />
+      </Button>
+      {/* <Title>이건 post detail</Title> */}
     </Header>
   );
 };
@@ -20,12 +23,12 @@ const PostDetailHeader = () => {
 export default PostDetailHeader;
 
 const Header = styled.header`
+  letter-spacing: -1.5px;
   display: flex;
   justify-content: center;
   align-items: center;
   width: 56.25vh;
   height: 6vh;
-  background-color: var(--gray-50);
   padding: 0 20px;
   position: fixed;
   top: 0;

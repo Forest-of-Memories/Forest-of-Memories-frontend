@@ -1,16 +1,18 @@
 import React from "react";
-<<<<<<< HEAD
-
-=======
->>>>>>> d108803a46ee7b156e7741593a2db1fcacaa7d43
 import My from "../../components/mypage/MyPageComponent";
+import styled from "styled-components";
 
 const MyPage = () => {
   return (
-    <div>
+    <Wrapper>
       <My />
-    </div>
+    </Wrapper>
   );
 };
 
 export default MyPage;
+
+const Wrapper = styled.div`
+  height: 100%;
+  width: 100%;
+`;

@@ -4,11 +4,10 @@ import "../../styles/color.css";
 import Header from "../../components/question/question-list/Header";
 import List from "../../components/question/question-list/List";
 import questionData from "../../components/question/question-list/questionData";
-import Footer from "../../components/common/footer";
 
 const QuestionList = () => {
   const handleQuestionClick = (index) => {
-    console.log(`Question ${index + 1} clicked`);
+    // console.log(`Question ${index + 1} clicked`);
   };
 
   const [showOnlyLiked, setShowOnlyLiked] = useState(false);
@@ -32,6 +31,8 @@ const QuestionList = () => {
 export default QuestionList;
 
 const Wrapper = styled.div`
-  background-color: var(--red-600);
+  /* display: grid; */
+  /* grid-template-rows: 2fr 9fr; */
   height: 100%;
+  width: 100%;
 `;

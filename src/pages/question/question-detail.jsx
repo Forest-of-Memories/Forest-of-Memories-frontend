@@ -19,6 +19,5 @@ const QuestionDetail = () => {
 export default QuestionDetail;
 
 const Wrapper = styled.div`
-  background-color: var(--red-600);
   height: 100%;
 `;

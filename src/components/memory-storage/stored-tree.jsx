@@ -1,16 +1,17 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-
+import { ReactComponent as RightIcon } from "../../assets/icons/right.svg";
+import { ReactComponent as LeftIcon } from "../../assets/icons/left.svg";
 const StoredTree = ({ image, handlePrevious, handleNext }) => (
   <Container>
     <ArrowButton direction="left" onClick={handlePrevious}>
-      ◀
+      <LeftIcon />
     </ArrowButton>
     <TreeImage>
       <img src={image} alt="Stored Tree" />
     </TreeImage>
     <ArrowButton direction="right" onClick={handleNext}>
-      ▶
+      <RightIcon />
     </ArrowButton>
   </Container>
 );
@@ -19,7 +20,7 @@ export default StoredTree;
 
 const Container = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-direction: co lumn;
   justify-content: center;
   align-items: center;
   // width: 100%;
@@ -48,7 +49,7 @@ const ArrowButton = styled.button`
   ${({ direction }) => (direction === "left" ? "left: 10px;" : "right: 10px;")}
   transform: translateY(-50%);
   //background-color: beige;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
   color: var(--pink-main);
   border: none;
   padding: 10px;

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-
+import { ReactComponent as RightIcon } from "../../assets/icons/right.svg";
+import { ReactComponent as LeftIcon } from "../../assets/icons/left.svg";
 const PostDetailContent = ({ content }) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
@@ -25,7 +26,7 @@ const PostDetailContent = ({ content }) => {
         <ImageContainer>
           {images.length > 1 && (
             <ArrowButton onClick={handlePrevImage} direction="left">
-              ◀
+              <LeftIcon />
             </ArrowButton>
           )}
           <ImageWrapper>
@@ -36,7 +37,7 @@ const PostDetailContent = ({ content }) => {
           </ImageWrapper>
           {images.length > 1 && (
             <ArrowButton onClick={handleNextImage} direction="right">
-              ▶
+              <RightIcon />
             </ArrowButton>
           )}
         </ImageContainer>
@@ -52,6 +53,7 @@ export default PostDetailContent;
 
 const ContentContainer = styled.div`
   padding: 6px 20px;
+  letter-spacing: -1.5px;
 `;
 
 const ImageContainer = styled.div`
@@ -77,7 +79,7 @@ const ArrowButton = styled.button`
   top: 50%;
   ${({ direction }) => (direction === "left" ? "left: 10px;" : "right: 10px;")}
   transform: translateY(-50%);
-  background: rgba(0, 0, 0, 0.5);
+  /* background: rgba(0, 0, 0, 0.5); */
   color: white;
   border: none;
   border-radius: 50%;
@@ -85,7 +87,7 @@ const ArrowButton = styled.button`
   padding: 10px;
 
   &:hover {
-    background: rgba(0, 0, 0, 0.8);
+    /* background: rgba(0, 0, 0, 0.8); */
   }
 `;
 
