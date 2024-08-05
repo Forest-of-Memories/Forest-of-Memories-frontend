@@ -1,7 +1,6 @@
 import { useState } from "react";
 import styled from "styled-components";
 import "../../styles/color.css";
-
 const levelNames = ["-", "씨앗", "새싹", "묘목", "작은 나무", "큰 나무"];
 
 const LevelGauge = ({ progress }) => {
@@ -10,11 +9,13 @@ const LevelGauge = ({ progress }) => {
     <Wrapper>
       <GaugeBox>
         <div className="gauge">
-          {Array(progress)
-            .fill(0)
-            .map((_, key) => (
-              <GaugeDetail className={`key${key}`} key={key} />
-            ))}
+          <div className="gauge-bg">
+            {Array(progress)
+              .fill(0)
+              .map((_, key) => (
+                <GaugeDetail className={`key${key}`} key={key} />
+              ))}
+          </div>
         </div>
       </GaugeBox>
       <LevelNameBox>
@@ -30,16 +31,25 @@ const LevelNameBox = styled.div`
   width: 100%;
   display: flex;
   justify-content: space-between;
+  letter-spacing: -1.5px;
   div {
-    color: var(--red-600);
+    color: var(--green-main);
     font-weight: 800;
   }
 `;
 
 const GaugeDetail = styled.div`
-  background-color: var(--red-600);
-  width: 19.4%;
-  height: 60%;
+  background: rgb(72, 206, 173);
+  background: linear-gradient(
+    180deg,
+    rgba(72, 206, 173, 1) 0%,
+    rgba(72, 206, 173, 1) 22%,
+    rgba(19, 176, 138, 1) 100%
+  );
+  width: 20%;
+  height: 95%;
+  z-index: 2;
+
   &.key0 {
     border-radius: 24px 0 0 24px;
     /* background-color: blue; */
@@ -54,17 +64,37 @@ const GaugeBox = styled.div`
   display: flex;
   justify-content: center;
   width: 100%;
-  height: 25px;
+  height: 35px;
   margin-bottom: 10px;
   .gauge {
-    background-color: var(--gray-200);
+    padding: 0 5px;
+    background-color: white;
+    box-shadow:
+      rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+      rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
     width: 90%;
     border-radius: 20px;
     height: 90%;
     display: flex;
     overflow: hidden;
     align-items: center;
-    padding-left: 12px;
+    /* padding-left: 6px; */
+    .gauge-bg {
+      width: 100%;
+      height: 60%;
+      border-radius: 24px;
+      display: flex;
+      overflow: hidden;
+      align-items: center;
+      /* padding-left: 6px; */
+      background: rgb(218, 241, 216);
+      background: linear-gradient(
+        180deg,
+        rgba(218, 241, 216, 1) 0%,
+        rgba(218, 241, 216, 1) 22%,
+        rgba(170, 200, 168, 1) 100%
+      );
+    }
   }
 `;
 const Wrapper = styled.div`
@@ -73,4 +103,5 @@ const Wrapper = styled.div`
   justify-content: center;
   padding: 0 20px;
   width: 100%;
+  transform: translateY(-50%);
 `;
