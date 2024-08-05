@@ -3,6 +3,7 @@
   display: flex;
   justify-content: center;
   height: 15%;
+  width: 100%;
 }
 
 .title {
@@ -45,7 +46,7 @@
   background-color: var(--pink-main);
   cursor: pointer;
   div {
-    font-size: 1rem;
+    font-size: 0.8rem;
     letter-spacing: -1.5px;
   }
 }
