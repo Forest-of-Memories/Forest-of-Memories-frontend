@@ -19,6 +19,8 @@ const Home = () => {
   const [clickedId, setClickedId] = useState();
   const [imgUrlList, setImgUrlList] = useState(imgUrls);
   const [progress, setProgress] = useState(0);
+  const [level, setLevel] = useState(1);
+  const [skin, setSkin] = useState("winter");
   const [homeData, setHomeData] = useState([]);
   const navigate = useNavigate();
   const user_id = 2;
@@ -55,13 +57,14 @@ const Home = () => {
         </Date>
       </Header>
       <Tree
+        skin={skin}
         setProgress={setProgress}
         setClickedId={setClickedId}
         imgUrlList={imgUrlList}
-        level={5}
+        level={level}
         handleClick={handleClick}
       />
-      <LevelGauge progress={progress} />
+      <LevelGauge level={level} setLevel={setLevel} progress={progress} />
       <Notifications />
       {isClicked ? (
         <PopUpWrapper>

@@ -97,4 +97,5 @@ const Wrapper = styled.div`
   @media (max-height: 700px) {
     gap: 2%;
   }
+  transform: translateY(-20%);
 `;

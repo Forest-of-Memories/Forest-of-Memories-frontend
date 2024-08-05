@@ -1,16 +1,22 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 import "../../styles/color.css";
-const levelNames = ["-", "씨앗", "새싹", "묘목", "작은 나무", "큰 나무"];
+const levelNames = ["-", "새싹", "묘목", "작은 나무", "큰 나무", "완료"];
 
-const LevelGauge = ({ progress }) => {
-  const [level, setLevel] = useState(3);
+const LevelGauge = ({ level, setLevel, progress }) => {
+  useEffect(() => {
+    if (progress >= 23) {
+      setLevel(4);
+    } else {
+      setLevel(Math.floor(progress / 6) + 1);
+    }
+  }, [progress]);
   return (
     <Wrapper>
       <GaugeBox>
         <div className="gauge">
           <div className="gauge-bg">
-            {Array(progress)
+            {Array(progress % 6)
               .fill(0)
               .map((_, key) => (
                 <GaugeDetail className={`key${key}`} key={key} />
