@@ -2,43 +2,67 @@ import styled from "styled-components";
 import bigTreeImg from "../../assets/imgs/bigtree.png";
 import "../../styles/color.css";
 import { ReactComponent as WaterIcon } from "../../assets/icons/water.svg";
+import { useEffect, useState } from "react";
 
-const pos = [
-  { left: "50%", top: "5%", deg: "30deg" },
-  { left: "30%", top: "20%", deg: "45deg" },
-  { left: "50%", top: "40%", deg: "-30deg" },
+const posA = [
+  { left: "35%", top: "15%", deg: "30deg" },
+  { left: "25%", top: "40%", deg: "45deg" },
+  { left: "55%", top: "30%", deg: "-30deg" },
 ];
-
+const posB = [
+  { left: "39%", top: "20%", deg: "30deg" },
+  { left: "29%", top: "45%", deg: "45deg" },
+  { left: "49%", top: "57%", deg: "-30deg" },
+];
+const nums = ["one", "two", "three", "four"];
 const Tree = ({
+  skin,
   setProgress,
   setClickedId,
   imgUrlList,
   level,
   handleClick,
 }) => {
+  const [treeSrc, setTreeSrc] = useState("");
+  const [pos, setPos] = useState("");
+  useEffect(() => {
+    if (skin === "christmas") setPos(posB);
+    else setPos(posA);
+  }, []);
+  useEffect(() => {
+    setTreeSrc(`tree-${skin}-${nums[level - 1]}`);
+  }, [level]);
   return (
     <Wrapper>
-      <TreeImg src={bigTreeImg} alt="" />
-      <WaterImg onClick={() => setProgress((prev) => (prev + 1) % 6)}>
+      <div className="tree-wrapper">
+        <TreeImg
+          className={`tree-${nums[level - 1]}`}
+          src={`/imgs/${treeSrc}.png`}
+          alt={`tree-${skin}-${nums[level - 1]}`}
+        />
+      </div>
+      <WaterImg onClick={() => setProgress((prev) => prev + 1)}>
         <WaterIcon />
         <WaterLeft>2</WaterLeft>
       </WaterImg>
       <FertilizerImg>비료주머니</FertilizerImg>
-      {pos.map((el, key) => (
-        <Pictures
-          bgImage={imgUrlList[key]}
-          onClick={() => {
-            handleClick();
-            setClickedId(key);
-          }}
-          key={key}
-          deg={el.deg}
-          left={el.left}
-          top={el.top}
-        >
-          {key}
-        </Pictures>
-      ))}
+      {level === 4
+        ? pos.map((el, key) => (
+            <Pictures
+              bgImage={imgUrlList[key]}
+              onClick={() => {
+                handleClick();
+                setClickedId(key);
+              }}
+              key={key}
+              deg={el.deg}
+              left={el.left}
+              top={el.top}
+            >
+              {key}
+            </Pictures>
+          ))
+        : null}
     </Wrapper>
   );
 };
@@ -50,8 +74,8 @@ const Pictures = styled.div`
   justify-content: center;
   align-items: center;
   border-radius: 50%;
-  width: 90px;
-  height: 90px;
+  width: 7rem;
+  height: 7rem;
   background-color: var(--red-600);
   position: absolute;
   top: ${(props) => props.top};
@@ -69,7 +93,16 @@ const Pictures = styled.div`
 `;
 
 const TreeImg = styled.img`
-  height: 60vh;
+  height: 80%;
+  &.tree-one {
+    height: 40%;
+  }
+  &.tree-two {
+    height: 60%;
+  }
+  &.tree-four {
+    height: 100%;
+  }
 `;
 const WaterLeft = styled.div`
   background-color: var(--green-main);
@@ -130,4 +163,13 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: center;
   margin-top: 10px;
+  div {
+    &.tree-wrapper {
+      width: 100%;
+      height: 50vh;
+      display: flex;
+      align-items: end;
+      justify-content: center;
+    }
+  }
 `;
