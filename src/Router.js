@@ -44,10 +44,7 @@ const Router = createBrowserRouter([
         path: "/my/list",
         element: <QuestionList />,
       },
-      {
-        path: "/store",
-        element: <StoreTree />,
-      },
+
       {
         path: "/storage",
         element: <StorageGallery />,
@@ -74,6 +71,10 @@ const Router = createBrowserRouter([
       </ProtectedRoute>
     ),
     children: [
+      {
+        path: "/store",
+        element: <StoreTree />,
+      },
       {
         path: "/question/create",
         element: <QuestionCreate />,

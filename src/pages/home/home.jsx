@@ -6,6 +6,9 @@ import Notifications from "../../components/home/notifications";
 import PictureSelect from "../../components/home/picture-select";
 import { useEffect, useState } from "react";
 import { instance } from "../../api/instance";
+import { ReactComponent as StoreIcon } from "../../assets/icons/shopimage.svg";
+import { useNavigate } from "react-router-dom";
+
 const imgUrls = [
   "https://cafe24.poxo.com/ec01/wbskinramudali/HOvhRhvOk+Cp2KY4JuusAlHhNnmah66F2yGVAu2J1sWfERGpMMgqq+V9hZaChQo+UMQHi7H1JnIpdUOgkLEc5w==/_/web/product/big/202205/5efed93f9ef8712ac155c23c1c43f4a7.jpg",
   "https://flexible.img.hani.co.kr/flexible/normal/960/960/imgdb/resize/2019/0121/00501111_20190121.JPG",
@@ -17,18 +20,25 @@ const Home = () => {
   const [imgUrlList, setImgUrlList] = useState(imgUrls);
   const [progress, setProgress] = useState(0);
   const [homeData, setHomeData] = useState([]);
-
+  const navigate = useNavigate();
+  const user_id = 2;
   const handleClick = () => {
     setIsClicked((prev) => !prev);
   };
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await instance.get(`/memory/home`);
+        const res = await instance.post(`/memory/question/comment`, {
+          index: 1,
+          nickname: "닉네임",
+          id: 3,
+          time: "203010231540",
+          cmt_txt: "댓글 내용",
+        });
+        console.dir(res);
         setHomeData(res.data);
       } catch (e) {
         console.log(e);
-        // alert(e);
       }
     };
     fetchData();
@@ -36,16 +46,14 @@ const Home = () => {
   }, []);
   return (
     <Wrapper>
-      <DurationBox>
-        <div className="date">2024.07.17</div>
-        <div className="desc">부터 키우고 있어요</div>
-      </DurationBox>
-      <Title>
-        <div>매일 질문에 대한 답을 남기며</div>
-        <div>
-          <span>우리 가족만의 나무</span>를 키워보아요!
-        </div>
-      </Title>
+      <Header>
+        <Date>
+          <span className="start">24.01.07</span>
+          <span>~</span>
+          <span className="today">24.07.30</span>
+          <StoreIcon onClick={() => navigate("/store")} />
+        </Date>
+      </Header>
       <Tree
         setProgress={setProgress}
         setClickedId={setClickedId}
@@ -93,36 +101,51 @@ const PopUpWrapper = styled.div`
 
 const Wrapper = styled.div`
   position: relative;
-  /* background-color: #ffffff; */
   height: 100%;
-  display: grid;
-`;
-
-const Title = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  div {
-    font-weight: 800;
-    font-size: 1.3rem;
-    line-height: 1.8rem;
-    span {
-      color: var(--red-600);
-    }
-  }
 `;
-
-const DurationBox = styled.div`
+const Header = styled.div`
   display: flex;
   justify-content: center;
-  color: var(--red-600);
   align-items: end;
-  .date {
-    font-size: 32px;
-    font-weight: 800;
+  padding-bottom: 10px;
+  width: 100%;
+  height: 10%;
+  position: relative;
+`;
+const Date = styled.div`
+  background-color: white;
+  border-radius: 15px;
+  box-shadow:
+    rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  padding: 5px 1rem;
+  width: 40%;
+  font-size: 1.2rem;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  letter-spacing: -1.5px;
+  span {
+    letter-spacing: -2px;
+    font-weight: 100;
+    color: var(--gray-600);
+    &.today {
+      color: var(--green-main);
+      font-weight: 700;
+    }
   }
-  .desc {
-    font-weight: 700;
+  svg {
+    position: absolute;
+    top: 10%;
+    right: 5%;
+    cursor: pointer;
+    &:hover {
+      filter: brightness(0.9);
+    }
+    &:active {
+      scale: 0.9;
+    }
   }
 `;
