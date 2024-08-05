@@ -1,18 +1,18 @@
 #question-list {
-  max-height: 80vh;
-  height: 100%;
-  overflow-y: auto;
+  /* max-height: 80vh; */
+  /* height: 20%; */
+  /* flex-grow: 1; */
+  overflow-y: scroll;
   list-style-type: none;
-  padding: 0;
-  margin: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 4px;
   letter-spacing: -1.8px;
+  /* background-color: red; */
 }
 
-#question-list li {
+#question-list div {
   background-color: white;
   border-radius: 20px;
   display: flex;
@@ -23,7 +23,7 @@
   width: 95%;
 }
 
-#question-list li:hover {
+#question-list div:hover {
   background-color: rgb(240, 247, 237);
 }
 

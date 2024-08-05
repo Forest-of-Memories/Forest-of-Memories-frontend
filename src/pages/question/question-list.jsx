@@ -32,7 +32,10 @@ export default QuestionList;
 
 const Wrapper = styled.div`
   /* display: grid; */
-  /* grid-template-rows: 2fr 9fr; */
+  /* grid-template-rows: 2fr 8fr; */
   height: 100%;
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  /* background-color: blue; */
 `;

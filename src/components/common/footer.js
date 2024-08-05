@@ -140,4 +140,5 @@ const Wrapper = styled.div`
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   box-shadow: rgba(0, 0, 0, 0.25) 0px 18px 70px 10px;
+  flex-shrink: 0;
 `;
