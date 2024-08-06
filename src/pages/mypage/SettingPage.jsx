@@ -1,25 +1,26 @@
 import React, { useState } from "react";
 import "./SettingPage.css";
 import { useNavigate } from "react-router-dom";
+import { auth } from "../../firebase";
 
 const SettingsPage = () => {
   const navigate = useNavigate();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalType, setModalType] = useState(""); // "logout" or "delete"
 
-  const handleLogout = () => {
+  const handleLogout = async () => {
     setModalType("logout");
     setIsModalOpen(true);
   };
 
-  const handleDeleteAccount = () => {
-    setModalType("delete");
-    setIsModalOpen(true);
-  };
+  // const handleDeleteAccount = () => {
+  //   setModalType("delete");
+  //   setIsModalOpen(true);
+  // };
 
-  const handleConfirm = () => {
+  const handleConfirm = async () => {
     if (modalType === "logout") {
-      // 로그아웃 기능 구현
+      await auth.signOut();
       console.log("로그아웃");
     } else if (modalType === "delete") {
       // 회원탈퇴 기능 구현
@@ -37,7 +38,7 @@ const SettingsPage = () => {
       <h1>설정</h1>
       <ul className="settings-options">
         <li onClick={handleLogout}>로그아웃</li>
-        <li onClick={handleDeleteAccount}>회원탈퇴</li>
+        {/* <li onClick={handleDeleteAccount}>회원탈퇴</li> */}
       </ul>
 
       {isModalOpen && (

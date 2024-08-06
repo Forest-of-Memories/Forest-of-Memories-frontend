@@ -7,7 +7,7 @@
 
 .back-button,
 .next-button {
-  background-color: #7aba78;
+  background-color: var(--green-main);
   border: none;
   color: white;
   padding: 10px 20px;
@@ -18,11 +18,14 @@
   margin: 4px 2px;
   cursor: pointer;
   border-radius: 16px;
+  &:hover {
+    filter: brightness(0.9);
+  }
 }
 
 .back-button:disabled,
 .next-button:disabled {
-  background-color: #d9edbf;
+  background-color: #bfedc8;
   cursor: not-allowed;
 }
 
@@ -34,10 +37,10 @@
 .indicator-dot {
   width: 10px;
   height: 10px;
-  background-color: #d9edbf;
+  background-color: #bfedc8;
   border-radius: 50%;
 }
 
 .indicator-dot.active {
-  background-color: #7aba78;
+  background-color: var(--green-main);
 }

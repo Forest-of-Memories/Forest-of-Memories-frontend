@@ -5,11 +5,24 @@
   margin: 20px 0;
   height: 84vh;
   text-align: center;
+  letter-spacing: -1.5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  h2 {
+    font-weight: 800;
+    color: var(--gray-800);
+  }
+  h5 {
+    color: var(--green-main);
+    font-weight: 100;
+    font-size: 1rem;
+    font-style: italic;
+  }
 }
 
 .step-title {
   font-size: 20px;
-  color: #7c7c7c;
   margin-bottom: 20px;
   margin-top: 20px;
 }
@@ -18,15 +31,25 @@
   list-style-type: none;
   padding: 20px;
   margin: 30px;
+  display: flex;
+  width: 70%;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
 .step-item {
+  width: 100%;
   display: flex;
+  justify-content: space-between;
   align-items: center;
   font-size: 10px;
-  color: #4a4a4a;
+  color: var(--gray-color);
   margin: 30px 0;
   padding: 10px;
+  span {
+    width: 70%;
+    font-size: 1rem;
+  }
 }
 
 .step-item img {

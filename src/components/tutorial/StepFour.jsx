@@ -28,9 +28,10 @@ const StepFour = () => {
         />
       </div>
       <p className="step-instruction">
-        물뿌리개를 눌러 홈화면으로 이동해보세요!
+        물뿌리개를 눌러 <br />
+        홈화면으로 이동해보세요!
       </p>
-      <p className="step-instruction">여러분의 여정을 응원합니다!</p>
+      <p className="step-sub">여러분의 여정을 응원합니다!</p>
     </div>
   );
 };

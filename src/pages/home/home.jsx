@@ -20,23 +20,20 @@ const Home = () => {
   const [imgUrlList, setImgUrlList] = useState(imgUrls);
   const [progress, setProgress] = useState(0);
   const [level, setLevel] = useState(1);
-  const [skin, setSkin] = useState("winter");
+  const [skin, setSkin] = useState("fall");
   const [homeData, setHomeData] = useState([]);
   const navigate = useNavigate();
   const user_id = 2;
   const handleClick = () => {
     setIsClicked((prev) => !prev);
   };
+  const userName = "김엄마";
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await instance.post(`/memory/question/comment`, {
-          index: 1,
-          nickname: "닉네임",
-          id: 3,
-          time: "203010231540",
-          cmt_txt: "댓글 내용",
-        });
+        const res = await instance.get(
+          `/memory/personal-questions/?user_name=${userName}`
+        );
         console.dir(res);
         setHomeData(res.data);
       } catch (e) {
@@ -45,10 +42,21 @@ const Home = () => {
     };
     fetchData();
     console.log(homeData);
-  }, []);
+  }, [skin]);
+
   return (
     <Wrapper>
       <Header>
+        <ThemeContainer>
+          <img onClick={() => setSkin("basic")} src="/imgs/theme-basic.png" />
+          <img onClick={() => setSkin("spring")} src="/imgs/theme-spring.png" />
+          <img onClick={() => setSkin("fall")} src="/imgs/theme-fall.png" />
+          <img
+            onClick={() => setSkin("christmas")}
+            src="/imgs/theme-christmas.png"
+          />
+          <img onClick={() => setSkin("winter")} src="/imgs/theme-winter.png" />
+        </ThemeContainer>
         <Date>
           <span className="start">24.01.07</span>
           <span>~</span>
@@ -82,7 +90,22 @@ const Home = () => {
 };
 
 export default Home;
-
+const ThemeContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2px;
+  img {
+    width: 5%;
+    cursor: pointer;
+    &:hover {
+      filter: brightness(0.92);
+    }
+    &:active {
+      scale: 0.9;
+    }
+  }
+`;
 const PopUpWrapper = styled.div`
   @keyframes Position {
     from {
@@ -110,12 +133,14 @@ const Wrapper = styled.div`
 `;
 const Header = styled.div`
   display: flex;
-  justify-content: center;
-  align-items: end;
+  flex-direction: column;
+  justify-content: end;
+  align-items: center;
   padding-bottom: 10px;
   width: 100%;
   height: 10%;
   position: relative;
+  gap: 5%;
 `;
 const Date = styled.div`
   background-color: white;
@@ -133,16 +158,18 @@ const Date = styled.div`
   span {
     letter-spacing: -2px;
     font-weight: 100;
-    color: var(--gray-600);
+    color: var(--gray-400);
     &.today {
       color: var(--green-main);
-      font-weight: 700;
+      font-weight: 100;
     }
   }
   svg {
     position: absolute;
     top: 10%;
     right: 5%;
+    width: 4rem;
+    height: 4rem;
     cursor: pointer;
     &:hover {
       filter: brightness(0.9);
