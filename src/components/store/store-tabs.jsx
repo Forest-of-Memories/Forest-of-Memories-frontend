@@ -25,10 +25,10 @@ export default StoreTabs;
 const Tabs = styled.div`
   display: flex;
   justify-content: space-around;
-  background-color: var(--red-600);
 `;
 
 const Tab = styled.div`
+  letter-spacing: -1.5px;
   flex: 1;
   text-align: center;
   padding: 11px;
@@ -36,7 +36,8 @@ const Tab = styled.div`
   border-radius: 15px 15px 0 0;
   font-size: 21px;
   font-weight: ${({ active }) => (active ? "bold" : "normal")};
-  color: ${({ active }) => (active ? "var(--pink-main)" : "#333")};
-  background-color: ${({ active }) => (active ? "white" : "var(--red-600)")};
+  color: ${({ active }) =>
+    active ? "var(--green-main)" : "var(--gray-color)"};
+  background-color: ${({ active }) => (active ? "white" : "var(--bg-color)")};
   cursor: pointer;
 `;

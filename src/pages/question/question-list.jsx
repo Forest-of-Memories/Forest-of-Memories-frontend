@@ -6,30 +6,52 @@ import Header from "../../components/question/question-list/Header";
 import List from "../../components/question/question-list/List";
 import { instance } from "../../api/instance";
 import questionData from "../../components/question/question-list/questionData";
+import { useLocation, useParams } from "react-router-dom";
 const QuestionList = () => {
   const [questions, setQuestions] = useState([]);
   const [likedQuestions, setLikedQuestions] = useState([]);
   const [showOnlyLiked, setShowOnlyLiked] = useState(false);
-  const user_id = 2;
+  const userName = "aa";
   const family_id = 3;
-
+  const userId = 1;
+  const pathname = useLocation();
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const res = await instance.get(`/memory/common-questions/${user_id}`);
-        // console.log("API response: ", res.data);
-        const fetchedQuestions = res.data.questions.map((q) => ({
-          text: q.content,
-        }));
-        setQuestions(fetchedQuestions);
-        setLikedQuestions(res.data.likes);
-      } catch (error) {
-        console.error("Error fetching questions:", error);
-      }
-    };
-
-    fetchData();
-  }, []);
+    if (pathname.pathname.split("/")[1] === "question") {
+      const fetchData = async () => {
+        try {
+          setQuestions([]);
+          const res = await instance.get(
+            `/memory/common-questions/?user_name=${userName}`
+          );
+          const fetchedQuestions = res.data.questions.map((q) => ({
+            text: q.content,
+          }));
+          setQuestions(fetchedQuestions);
+          setLikedQuestions(res.data.likes);
+        } catch (error) {
+          console.error("Error fetching questions:", error);
+        }
+      };
+      fetchData();
+    } else {
+      setQuestions([]);
+      const fetchData = async () => {
+        try {
+          const res = await instance.get(
+            `/memory/personal-questions/?user_name=${userName}`
+          );
+          const fetchedQuestions = res.data.questions.map((q) => ({
+            text: q.content,
+          }));
+          setQuestions(fetchedQuestions);
+          setLikedQuestions(res.data.likes);
+        } catch (error) {
+          console.error("Error fetching questions:", error);
+        }
+      };
+      fetchData();
+    }
+  }, [pathname]);
 
   const handleShowOnlyLiked = () => {
     setShowOnlyLiked(!showOnlyLiked);

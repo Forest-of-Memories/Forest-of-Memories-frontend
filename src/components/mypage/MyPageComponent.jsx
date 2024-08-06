@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import "./MyPageComponent.css";
 import { Link, useNavigate } from "react-router-dom";
+import { auth } from "../../firebase";
 
 const MyPageComponent = () => {
   const FAMILY_CODE = "Xhgdieu1564";
 
-  const [name, setName] = useState("이세림");
+  const [name, setName] = useState(auth.currentUser?.displayName);
   const [email, setEmail] = useState("");
   const [isEditing, setIsEditing] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);

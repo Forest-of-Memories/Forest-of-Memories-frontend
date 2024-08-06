@@ -5,6 +5,7 @@ import "../../styles/color.css";
 import { useNavigate } from "react-router-dom";
 import QGuide from "../../components/question/question-create/q-guide";
 import { useState } from "react";
+import { instance } from "../../api/instance";
 const familyList = ["김아빠", "최엄마", "김언니"];
 
 export default function QuestionCreate() {
@@ -30,10 +31,20 @@ export default function QuestionCreate() {
   const onInputChange = (e) => {
     setQuestion(e.target.value);
   };
-  const onSubmit = () => {
-    console.log("question:", question);
-    console.log("respondents:", respondents);
-    console.log("viewers:", viewers);
+  const onSubmit = async () => {
+    // console.log("question:", question);
+    // console.log("respondents:", respondents);
+    // console.log("viewers:", viewers);
+    try {
+      const res = await instance.post("/question/personal/", {
+        content: question,
+        id: 1,
+      });
+    } catch (error) {
+      console.error("Error submitting answer:", error);
+    } finally {
+      navigate("/my/list");
+    }
   };
   return (
     <Wrapper>

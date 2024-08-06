@@ -4,6 +4,7 @@ import "../../styles/color.css";
 import { ReactComponent as WaterIcon } from "../../assets/icons/water.svg";
 import CatSrc from "../../assets/imgs/3d-fluency-cat.png";
 import { useEffect, useState } from "react";
+import { instance } from "../../api/instance";
 
 const posA = [
   { left: "35%", top: "15%", deg: "30deg" },
@@ -17,6 +18,7 @@ const posB = [
 ];
 const nums = ["one", "two", "three", "four"];
 const Tree = ({
+  progress,
   skin,
   setProgress,
   setClickedId,
@@ -25,7 +27,9 @@ const Tree = ({
   handleClick,
 }) => {
   const [treeSrc, setTreeSrc] = useState("");
-  const [pos, setPos] = useState("");
+  const [pos, setPos] = useState(posA);
+  const [isDone, setIsDone] = useState(false);
+  const [treeId, setTreeID] = useState(2);
   useEffect(() => {
     if (skin === "christmas") setPos(posB);
     else setPos(posA);
@@ -33,6 +37,30 @@ const Tree = ({
   useEffect(() => {
     setTreeSrc(`tree-${skin}-${nums[level - 1]}`);
   }, [level, skin]);
+  const handleWaterClick = async () => {
+    if (progress === 23) {
+      setIsDone(true);
+      try {
+        const res = await instance.post("/memory/memories/", {
+          id: treeId,
+          tree_start_dt: "2024-06-12",
+          tree_end_dt: "2024-08-07",
+          first_feed_id: null,
+          second_feed_id: null,
+          third_feed_id: null,
+          skin_id: 1,
+          family: 1,
+        });
+        console.log(res);
+      } catch (error) {
+        console.error("Error submitting answer:", error);
+      } finally {
+        setProgress(0);
+        console.log(treeId);
+        setTreeID(treeId + 1);
+      }
+    } else setProgress((prev) => prev + 1);
+  };
   return (
     <Wrapper>
       <div className="tree-wrapper">
@@ -43,9 +71,9 @@ const Tree = ({
           alt={`tree-${skin}-${nums[level - 1]}`}
         />
       </div>
-      <WaterImg onClick={() => setProgress((prev) => prev + 1)}>
+      <WaterImg onClick={handleWaterClick}>
         <WaterIcon />
-        <WaterLeft>2</WaterLeft>
+        <WaterLeft>{23 - progress >= 0 ? 23 - progress : "끝"}</WaterLeft>
       </WaterImg>
       <FertilizerImg>
         <img src={CatSrc} alt="cat" />
@@ -76,8 +104,8 @@ const Pictures = styled.div`
   justify-content: center;
   align-items: center;
   border-radius: 50%;
-  width: 7rem;
-  height: 7rem;
+  width: 5.5rem;
+  height: 5.5rem;
   background-color: var(--red-600);
   position: absolute;
   top: ${(props) => props.top};
@@ -111,7 +139,7 @@ const TreeImg = styled.img`
   }
 `;
 const WaterLeft = styled.div`
-  background-color: var(--green-main);
+  background-color: #0085ff;
   border-radius: 50%;
   color: white;
   width: 30px;
@@ -135,6 +163,7 @@ const WaterImg = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 2;
   cursor: pointer;
   &:hover {
     /* background-color: var(--gray-600); */
@@ -154,10 +183,10 @@ const WaterImg = styled.div`
 
 const FertilizerImg = styled.div`
   position: absolute;
-  bottom: 5%;
-  right: 25%;
-  width: 8rem;
-  height: 8rem;
+  bottom: 2%;
+  right: 15%;
+  width: 7rem;
+  height: 7rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -166,6 +195,10 @@ const FertilizerImg = styled.div`
     width: 100%;
   }
   z-index: 2;
+  @media (max-height: 700px) {
+    width: 6rem;
+    bottom: 1%;
+  }
 `;
 
 const Wrapper = styled.div`

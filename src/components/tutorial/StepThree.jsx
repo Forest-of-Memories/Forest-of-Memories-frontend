@@ -1,8 +1,16 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 // import "./TutorialPage.css";
 import "./StepThree.css";
+import { auth } from "../../firebase";
 
 const StepThree = () => {
+  const [name, setName] = useState(auth.currentUser?.displayName);
+  const onInputChange = (e) => {
+    setName(e.target.value);
+  };
+  useEffect(() => {
+    window.localStorage.setItem("name", name);
+  }, [name]);
   return (
     <div className="step-container">
       <h2 className="step-title">추억의 숲에서 사용할 닉네임을 정해볼까요?</h2>
@@ -15,7 +23,12 @@ const StepThree = () => {
       <p className="step-instruction">
         {/* 먼저 추억의 숲에서 사용할 닉네임을 정해보아요 */}
       </p>
-      <input className="nickname-input" placeholder="추억의 숲 팬 1호" />
+      <input
+        value={name}
+        onChange={onInputChange}
+        className="nickname-input"
+        placeholder="추억의 숲 팬 1호"
+      />
       <p className="step-tip">이제 우리 가족만의 여정을 시작해볼까요?</p>
     </div>
   );

@@ -7,7 +7,9 @@ import PictureSelect from "../../components/home/picture-select";
 import { useEffect, useState } from "react";
 import { instance } from "../../api/instance";
 import { ReactComponent as StoreIcon } from "../../assets/icons/shopimage.svg";
+import { ReactComponent as CloseIcon } from "../../assets/icons/x.svg";
 import { useNavigate } from "react-router-dom";
+import dayjs from "dayjs";
 
 const imgUrls = [
   "https://cafe24.poxo.com/ec01/wbskinramudali/HOvhRhvOk+Cp2KY4JuusAlHhNnmah66F2yGVAu2J1sWfERGpMMgqq+V9hZaChQo+UMQHi7H1JnIpdUOgkLEc5w==/_/web/product/big/202205/5efed93f9ef8712ac155c23c1c43f4a7.jpg",
@@ -20,30 +22,27 @@ const Home = () => {
   const [imgUrlList, setImgUrlList] = useState(imgUrls);
   const [progress, setProgress] = useState(0);
   const [level, setLevel] = useState(1);
-  const [skin, setSkin] = useState("fall");
+  const [skin, setSkin] = useState("basic");
   const [homeData, setHomeData] = useState([]);
   const navigate = useNavigate();
-  const user_id = 2;
   const handleClick = () => {
     setIsClicked((prev) => !prev);
   };
+  const familyID = 1;
   const userName = "김엄마";
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await instance.get(
-          `/memory/personal-questions/?user_name=${userName}`
-        );
-        console.dir(res);
-        setHomeData(res.data);
+        const res = await instance.get(`/memory/memories/`);
+        setHomeData(res.data.filter((el) => el.family === familyID));
       } catch (e) {
-        console.log(e);
+        console.error(e);
+      } finally {
+        // setSkin(homeData[0]?.tree_skin);
       }
     };
     fetchData();
-    console.log(homeData);
   }, [skin]);
-
   return (
     <Wrapper>
       <Header>
@@ -58,13 +57,22 @@ const Home = () => {
           <img onClick={() => setSkin("winter")} src="/imgs/theme-winter.png" />
         </ThemeContainer>
         <Date>
-          <span className="start">24.01.07</span>
+          <span className="start">
+            {homeData[0]?.tree_start_dt
+              .split("")
+              .slice(2)
+              .map((el) => {
+                if (el === "-") return ".";
+                else return el;
+              })}
+          </span>
           <span>~</span>
-          <span className="today">24.07.30</span>
+          <span className="today">{dayjs().format("YY.MM.DD")}</span>
           <StoreIcon onClick={() => navigate("/store")} />
         </Date>
       </Header>
       <Tree
+        progress={progress}
         skin={skin}
         setProgress={setProgress}
         setClickedId={setClickedId}
@@ -76,7 +84,9 @@ const Home = () => {
       <Notifications />
       {isClicked ? (
         <PopUpWrapper>
-          <button onClick={handleClick}>닫기</button>
+          <button onClick={handleClick}>
+            <CloseIcon style={{ strokeWidth: 8 }} />
+          </button>
           <PictureSelect
             setImgUrlList={setImgUrlList}
             clickedId={clickedId}
@@ -123,6 +133,16 @@ const PopUpWrapper = styled.div`
   border-radius: 30px 30px 0 0;
   box-shadow: rgba(0, 0, 0, 0.65) 0px 5px 15px;
   animation: ease-out 0.3s Position;
+  z-index: 3;
+  padding: 10px;
+  button {
+    svg {
+      stroke-width: 8;
+      &:hover {
+        filter: brightness(0.9);
+      }
+    }
+  }
 `;
 
 const Wrapper = styled.div`

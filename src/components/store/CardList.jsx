@@ -14,7 +14,7 @@ const CardList = ({ cardsClass, cards, handleCardClick, isTreePurchased }) => {
 
   return (
     <List>
-      {cards.map((item, index) => (
+      {cards?.map((item, index) => (
         <Card
           className={cardsClass}
           key={index}
@@ -25,11 +25,15 @@ const CardList = ({ cardsClass, cards, handleCardClick, isTreePurchased }) => {
           purchased={isTreePurchased(item.name)}
           checked={checkedItems[item.name] || false}
         >
-          <CardImage className={cardsClass} src={item.image} alt={item.name} />
-          <CardText className={cardsClass}>{item.name}</CardText>
+          <CardImage
+            className={cardsClass}
+            src={item.item_photo}
+            alt={item.item_name}
+          />
+          <CardText className={cardsClass}>{item.item_name}</CardText>
           <CardPrice>
             <O2Icon src={o2Image} alt="O2" />
-            {item.price}
+            {item.item_price}
           </CardPrice>
         </Card>
       ))}
@@ -47,6 +51,8 @@ const List = styled.div`
   gap: 22px;
   padding: 15px;
   justify-content: center;
+  background-color: white;
+  letter-spacing: -1.5px;
 `;
 
 const Card = styled.div`

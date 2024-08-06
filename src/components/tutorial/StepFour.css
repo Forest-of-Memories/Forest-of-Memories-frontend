@@ -49,6 +49,7 @@
   font-size: 1.3rem;
   color: var(--green-main);
   margin-top: 20px;
+  font-weight: 800;
 }
 .step-sub {
   font-size: 1rem;
