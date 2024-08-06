@@ -35,7 +35,6 @@ const TreeImage = styled.div`
   width: 75%;
   height: 340px;
 
-  background-color: var(--gray-400);
   img {
     max-height: 100%;
     max-width: 100%;

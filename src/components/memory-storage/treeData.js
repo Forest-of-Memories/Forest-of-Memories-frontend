@@ -1,11 +1,13 @@
-import bigTreeImg from "../../assets/imgs/bigtree.png";
-import bigtreeImg2 from "../../assets/imgs/bigtree2.png"; // 예시로 추가된 이미지
-import bigtreeImg3 from "../../assets/imgs/bigtree3.png";
+import bigTreeImg from "../../assets/imgs/tree-basic-four.png";
+import bigtreeImg2 from "../../assets/imgs/tree-spring-four.png"; // 예시로 추가된 이미지
+import bigtreeImg3 from "../../assets/imgs/tree-christmas-four.png";
 
 import busan from "../../assets/imgs/busan.png";
 import postdog from "../../assets/imgs/postdog.png";
 import postfamily from "../../assets/imgs/postfamily.png";
 import building from "../../assets/imgs/building.png";
+import beach from "../../assets/imgs/beach.jpg";
+import walk from "../../assets/imgs/walk.jpg";
 
 const treeData = [
   {
@@ -20,11 +22,11 @@ const treeData = [
         date: "24.04.12",
         people: ["엄마", "아빠"],
         writer: "엄마",
-        image: "path/to/image4.jpg",
+        image: walk,
         description: "봄날의 산책",
         content: [
           { type: "text", value: "봄날의 산책" },
-          { type: "image", value: "path/to/image4.jpg" },
+          { type: "image", value: walk },
           { type: "text", value: "즐거운 시간을 보냈어요." },
         ],
       },
@@ -42,11 +44,11 @@ const treeData = [
         date: "23.06.15 ~ 23.06.18",
         people: ["엄마", "나"],
         writer: "나",
-        image: "path/to/image3.jpg",
+        image: beach,
         description: "해변에서 신나는 시간!",
         content: [
           { type: "text", value: "해변에서 신나는 시간!" },
-          { type: "image", value: "path/to/image3.jpg" },
+          { type: "image", value: beach },
         ],
       },
     ],
@@ -73,7 +75,7 @@ const treeData = [
           {
             type: "text",
             value:
-              "가나dddddd다ㅁㄴ아럼;ㅣㄴ아럼;ㅣㄴㅇ라ㅓㅁ;ㅣㅈ다ㅓㄻ;ㅐ냥펌;ㅣ낭펌;ㅣㅈ댜험;ㅣㅈ아퍼;ㅣㅁㄴ;이럼;ㅈ디ㅑㄹ머;ㅈ대ㅑ럼;니아퍼ㅡㅁ;ㅈ닿러;매쟏헢ㅎ;미나프;재댷럼;닝ㄹ파;ㅈ대ㅑㅎ허민ㅇ러ㅏㅁ;ㅣ자덕;매쟈ㅓㅍㅁ;ㅣㄴ앛프;미자더ㅔ;ㅐㅈ댜허미;ㄴㄹㅇ파ㅓㅡㅁ;짇헒;ㅐㄴ얄펌;ㄴㅇㄹ파ㅓㅐㅣ;ㅑㅂ재;댜걺;ㅣㅏㄴ엎;미쟏럼;ㅐ쟏러미;ㄴ아퍼;ㅐㅑㅓ;ㅣ라바사다아자카차마니아리ㅏㅓ안녀안ㅇ나ㅣㅇ러ㅣㅁ낭러ㅣㅏㄴ어ㅁㄴㅇㄻㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴ이다빈.엔터를 치고 싶어요.안되는군요.ㅁ니아ㅓㄹ민아ㅓㄹ;ㅣ나얼;ㅣㅁ나얼;ㅣ마넝ㄹ;ㅣ마넝리;.ㅣㅏㄴ어리ㅏ너이라ㅓㅣㄴ아러ㅣㄴ어ㅣㄴ라ㅓ.ㅏㅓㄴ이라ㅓ니아러ㅣ낭러ㅣㅁ낭러ㅣㅁ나얼;ㅣㅁ나어린ㅇ.ㅣㅓㅣㄴ아ㅓㄻ;ㅣ나얼;ㅣㅁ나얼;ㅣㅁ나얼;ㅣㄴ;이라ㅓㄴ;ㅣ하ㅓ;ㅣ허.",
+              "즐거운 여행이었다.ㅎㅎ즐거운 여행이었다.ㅎㅎ즐거운 여행이었다.ㅎㅎ즐거운 여행이었다.ㅎㅎ",
           },
         ],
       },
