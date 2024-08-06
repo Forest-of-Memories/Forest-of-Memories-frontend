@@ -24,11 +24,11 @@ const Home = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await instance.get(`/memory/home`);
+        const res = await instance.get(`/memory/shop-items`);
+        console.dir(res);
         setHomeData(res.data);
       } catch (e) {
         console.log(e);
-        // alert(e);
       }
     };
     fetchData();

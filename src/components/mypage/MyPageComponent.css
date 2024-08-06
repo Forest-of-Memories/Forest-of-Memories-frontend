@@ -15,6 +15,7 @@
   align-items: center;
   padding: 10px 20px;
   width: 100%;
+  height: 8vh;
   position: relative;
 }
 
@@ -38,7 +39,6 @@
 }
 
 .mypage-wrapper {
-  /* background-color: #ff0000; */
   height: 100%;
   overflow-y: auto;
   width: 100%;
@@ -62,7 +62,6 @@
   background-color: white;
   color: black;
   font-weight: 700;
-  border-top: 2px solid var(--pink-main);
 }
 
 .profile-icon {
@@ -72,7 +71,6 @@
   margin-right: 10px;
   padding: 10px;
   border: 2px solid var(--green-main);
-  /* background-color: white; */
 }
 
 .profile-info {
@@ -100,7 +98,7 @@
   font-size: 13px;
   border: none;
   border-radius: 5px;
-  background-color: var(--pink-main);
+  background-color: var(--green-main);
   color: white;
   cursor: pointer;
   transition: background-color 0.3s;
@@ -148,25 +146,21 @@
 
 .options li {
   padding: 15px 20px;
-  border-bottom: 1px solid #afafaf;
-  cursor: pointer;
   transition: background-color 0.3s;
 }
 
-/* .options li:hover {
-  background-color: #ffffff;
-} */
-
 .section-title {
-  background-color: var(--pink-main);
   padding: 10px 20px;
-  font-weight: bold;
-  color: white;
+  color: var(--green-main);
+  cursor: default;
+  font-size: 13px;
 }
+
 .section-content {
   &:hover {
     background-color: white;
-    color: var(--pink-main);
+    color: var(--green-main);
+    cursor: pointer;
   }
 }
 

@@ -1,21 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { useParams, useNavigate } from "react-router-dom";
-import questionData from "../question-list/questionData";
 import Modal from "./Modal";
 import "../../../styles/color.css";
 import { ReactComponent as CommentIcon } from "../../../assets/icons/comentbtn.svg";
 import { ReactComponent as PreviousIcon } from "../../../assets/icons/previous.svg";
+import { instance } from "../../../api/instance";
 
 const familyMembers = ["김엄마", "김아빠", "김동생", "김언니"];
 
 const Detail = () => {
   const { index } = useParams();
   const questionIndex = parseInt(index, 10);
-  const reverseIndex = questionData.length - 1 - questionIndex;
-  const question = questionData[reverseIndex];
   const navigate = useNavigate();
 
+  const [question, setQuestion] = useState(null);
   const [newAnswer, setNewAnswer] = useState("");
   const [selectedMember, setSelectedMember] = useState("");
   const [showAnswerInput, setShowAnswerInput] = useState(false);
@@ -24,6 +23,33 @@ const Detail = () => {
   const [comments, setComments] = useState([]);
   const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
   const [deleteAnswerMember, setDeleteAnswerMember] = useState("");
+  const user_id = 2;
+  const family_id = 3;
+
+  useEffect(() => {
+    const fetchQuestion = async () => {
+      try {
+        const res = await instance.get(
+          `/memory/common-questions/int:${family_id}/commonanswer/`
+        );
+        setQuestion(res.data);
+      } catch (error) {
+        console.error("Error fetching question:", error);
+      }
+    };
+
+    const fetchComments = async () => {
+      try {
+        const res = await instance.get(`/memory/question/comment/${user_id}`);
+        setComments(res.data);
+      } catch (error) {
+        console.error("Error fetching comments:", error);
+      }
+    };
+
+    fetchQuestion();
+    fetchComments();
+  }, [index]);
 
   const handleAnswerChange = (e) => {
     setNewAnswer(e.target.value);
@@ -35,25 +61,27 @@ const Detail = () => {
     }
   };
 
-  const handleAnswerSubmit = () => {
+  const handleAnswerSubmit = async () => {
     if (newAnswer.trim()) {
-      const newAnswerObject = {
-        author: selectedMember,
-        text: newAnswer.trim(),
-      };
+      try {
+        const res = await instance.post("/memory/question/answer", {
+          index: questionIndex,
+          nickname: selectedMember,
+          id: 1,
+          time: new Date().toISOString(),
+          ans_txt: newAnswer.trim(),
+        });
 
-      const existingAnswerIndex = question.answers.findIndex(
-        (answer) => answer.author === selectedMember
-      );
+        setQuestion((prevQuestion) => ({
+          ...prevQuestion,
+          answers: [...prevQuestion.answers, res.data],
+        }));
 
-      if (existingAnswerIndex !== -1) {
-        question.answers[existingAnswerIndex] = newAnswerObject;
-      } else {
-        question.answers.push(newAnswerObject);
+        setNewAnswer("");
+        setShowAnswerInput(false);
+      } catch (error) {
+        console.error("Error submitting answer:", error);
       }
-
-      setNewAnswer("");
-      setShowAnswerInput(false);
     }
   };
 
@@ -66,23 +94,29 @@ const Detail = () => {
     setNewComment(e.target.value);
   };
 
-  const handleCommentSubmit = () => {
+  const handleCommentSubmit = async () => {
     if (newComment.trim()) {
-      const newCommentObject = {
-        author: "익명", // 예시
-        text: newComment.trim(),
-        date: new Date().toLocaleString(),
-      };
+      try {
+        const res = await instance.post("/memory/question/comment", {
+          index: questionIndex,
+          nickname: "익명",
+          id: 1,
+          time: new Date().toISOString(),
+          cmt_txt: newComment.trim(),
+        });
 
-      setComments([...comments, newCommentObject]);
-      setNewComment("");
-      // setShowCommentInput(false);
+        setComments((prevComments) => [...prevComments, res.data]);
+        setNewComment("");
+        setShowCommentInput(false);
+      } catch (error) {
+        console.error("Error submitting comment:", error);
+      }
     }
   };
 
   const handleKeyDown = (e) => {
     if (e.key === "Enter") {
-      handleCommentSubmit(e);
+      handleCommentSubmit();
     }
   };
 
@@ -100,7 +134,10 @@ const Detail = () => {
     const updatedAnswers = question.answers.filter(
       (answer) => answer.author !== deleteAnswerMember
     );
-    question.answers = updatedAnswers;
+    setQuestion((prevQuestion) => ({
+      ...prevQuestion,
+      answers: updatedAnswers,
+    }));
     setShowDeleteConfirmation(false);
   };
 

@@ -1,21 +1,26 @@
+import React, { useState } from "react";
 import styled from "styled-components";
 import { ReactComponent as QuestionIcon } from "../../assets/icons/question.svg";
 import { ReactComponent as PreviousIcon } from "../../assets/icons/previous.svg";
 import "../../styles/color.css";
 import { useNavigate } from "react-router-dom";
 import QGuide from "../../components/question/question-create/q-guide";
-import { useState } from "react";
+import { instance } from "../../api/instance";
+
 const familyList = ["김아빠", "최엄마", "김언니"];
 
-export default function QuestionCreate() {
+export default function QuestionCreate({ onQuestionCreated }) {
   const navigate = useNavigate();
   const [isClicked, setIsClicked] = useState(false);
   const [respondents, setRespondents] = useState(familyList);
   const [viewers, setViewers] = useState(familyList);
   const [question, setQuestion] = useState("");
+  const family_id = 1;
+
   const handleClick = () => {
     setIsClicked((prev) => !prev);
   };
+
   const onCheckClick = (e) => {
     if (!e.target.checked) {
       e.target.className === "respondent"
@@ -27,14 +32,24 @@ export default function QuestionCreate() {
         : setViewers([...viewers, e.target.value]);
     }
   };
+
   const onInputChange = (e) => {
     setQuestion(e.target.value);
   };
-  const onSubmit = () => {
-    console.log("question:", question);
-    console.log("respondents:", respondents);
-    console.log("viewers:", viewers);
+
+  const onSubmit = async () => {
+    try {
+      const res = await instance.post("/memory/question/personal", {
+        content: question,
+        id: 1, //family-id
+      });
+      console.log("Question created:", res.data);
+      onQuestionCreated(res.data);
+    } catch (error) {
+      console.error("Error creating question:", error);
+    }
   };
+
   return (
     <Wrapper>
       <Header>
@@ -94,6 +109,7 @@ export default function QuestionCreate() {
     </Wrapper>
   );
 }
+
 const PopUpWrapper = styled.div`
   @keyframes Position {
     from {
@@ -115,6 +131,7 @@ const PopUpWrapper = styled.div`
   flex-direction: column;
   padding: 20px 30px;
 `;
+
 const SubmitBtn = styled.div`
   width: 50%;
   margin-top: 30px;
@@ -130,6 +147,7 @@ const SubmitBtn = styled.div`
     opacity: 0.8;
   }
 `;
+
 const SelectionBox = styled.form`
   display: flex;
   align-items: center;
@@ -142,6 +160,7 @@ const SelectionBox = styled.form`
     }
   }
 `;
+
 const SelectionWrapper = styled.div`
   border-bottom: 1px solid var(--gray-600);
   padding: 20px 0;
@@ -155,6 +174,7 @@ const SelectionWrapper = styled.div`
     gap: 20px;
   }
 `;
+
 const Input = styled.textarea`
   margin-bottom: 15px;
   width: 90%;
@@ -174,10 +194,10 @@ const Input = styled.textarea`
     letter-spacing: -1px;
   }
   &:focus {
-    /* outline: 1px solid var(--pink-main); */
     outline: none;
   }
 `;
+
 const Header = styled.div`
   width: 100%;
   height: 8%;
@@ -210,6 +230,7 @@ const Wrapper = styled.div`
   align-items: center;
   overflow-y: hidden;
 `;
+
 const Button = styled.button`
   font-size: 16px;
   letter-spacing: -1px;
@@ -219,7 +240,6 @@ const Button = styled.button`
   color: var(--gray-600);
   display: flex;
   align-items: center;
-  /* justify-content:space-between; */
   svg {
     margin-right: 10px;
     width: 30px;

@@ -1,12 +1,25 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./List.css";
 import "../../../styles/color.css";
 import { ReactComponent as BookMarkIcon } from "../../../assets/icons/bookmark.svg";
 import styled from "styled-components";
-const List = ({ questions, onQuestionClick, showOnlyLiked }) => {
-  const [liked, setLiked] = useState(Array(questions.length).fill(false));
+
+const List = ({
+  questions,
+  onQuestionClick,
+  showOnlyLiked,
+  likedQuestions,
+}) => {
+  const [liked, setLiked] = useState([]);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const initialLikedState = questions.map((_, index) =>
+      likedQuestions.includes(index)
+    );
+    setLiked(initialLikedState);
+  }, [questions, likedQuestions]);
 
   const handleHeartClick = (index) => {
     const newLiked = [...liked];
