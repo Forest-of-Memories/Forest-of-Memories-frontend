@@ -2,6 +2,7 @@ import styled from "styled-components";
 import bigTreeImg from "../../assets/imgs/bigtree.png";
 import "../../styles/color.css";
 import { ReactComponent as WaterIcon } from "../../assets/icons/water.svg";
+import CatSrc from "../../assets/imgs/3d-fluency-cat.png";
 import { useEffect, useState } from "react";
 
 const posA = [
@@ -28,13 +29,14 @@ const Tree = ({
   useEffect(() => {
     if (skin === "christmas") setPos(posB);
     else setPos(posA);
-  }, []);
+  }, [skin]);
   useEffect(() => {
     setTreeSrc(`tree-${skin}-${nums[level - 1]}`);
-  }, [level]);
+  }, [level, skin]);
   return (
     <Wrapper>
       <div className="tree-wrapper">
+        {/* <img className="rain" src="/imgs/rain.png" /> */}
         <TreeImg
           className={`tree-${nums[level - 1]}`}
           src={`/imgs/${treeSrc}.png`}
@@ -45,7 +47,9 @@ const Tree = ({
         <WaterIcon />
         <WaterLeft>2</WaterLeft>
       </WaterImg>
-      <FertilizerImg>비료주머니</FertilizerImg>
+      <FertilizerImg>
+        <img src={CatSrc} alt="cat" />
+      </FertilizerImg>
       {level === 4
         ? pos.map((el, key) => (
             <Pictures
@@ -58,9 +62,7 @@ const Tree = ({
               deg={el.deg}
               left={el.left}
               top={el.top}
-            >
-              {key}
-            </Pictures>
+            ></Pictures>
           ))
         : null}
     </Wrapper>
@@ -89,6 +91,10 @@ const Pictures = styled.div`
   }
   &:active {
     scale: 0.9;
+  }
+  @media (max-height: 700px) {
+    width: 4rem;
+    height: 4rem;
   }
 `;
 
@@ -122,7 +128,7 @@ const WaterLeft = styled.div`
 const WaterImg = styled.div`
   position: absolute;
   bottom: 10%;
-  left: 20%;
+  left: 10%;
   border-radius: 50%;
   width: 100px;
   height: 100px;
@@ -140,21 +146,26 @@ const WaterImg = styled.div`
   svg {
     width: 100%;
     height: 100%;
+    &:hover {
+      filter: brightness(0.95);
+    }
   }
 `;
 
 const FertilizerImg = styled.div`
   position: absolute;
-  bottom: 10%;
-  right: 15%;
-  border-radius: 50%;
-  background-color: var(--gray-200);
-  width: 100px;
-  height: 100px;
+  bottom: 5%;
+  right: 25%;
+  width: 8rem;
+  height: 8rem;
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
+  img {
+    width: 100%;
+  }
+  z-index: 2;
 `;
 
 const Wrapper = styled.div`
@@ -165,11 +176,17 @@ const Wrapper = styled.div`
   margin-top: 10px;
   div {
     &.tree-wrapper {
+      position: relative;
       width: 100%;
       height: 50vh;
       display: flex;
       align-items: end;
       justify-content: center;
+    }
+    .rain {
+      position: absolute;
+      top: 2%;
+      width: 40%;
     }
   }
 `;

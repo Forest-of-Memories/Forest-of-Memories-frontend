@@ -11,20 +11,20 @@ const StepOne = () => {
 
       <ul className="step-list">
         <li className="step-item">
-          <img src="/imgs/pink_tree.png" alt="icon1" /> 질문을 통해 서로에 대해
-          알아가요!
+          <img src="/imgs/tree-basic-one.png" alt="icon1" />
+          <span>질문을 통해 서로에 대해 알아가요!</span>
         </li>
         <li className="step-item">
-          <img src="/imgs/yellow_tree.png" alt="icon2" /> 우리 가족만의 나무를
-          키워봐요!
+          <img src="/imgs/tree-spring-one.png" alt="icon2" />
+          <span>우리 가족만의 나무를 키워봐요!</span>
         </li>
         <li className="step-item">
-          <img src="/imgs/green_tree.png" alt="icon3" /> 사진과 글로 추억을
-          기록해요!
+          <img src="/imgs/tree-fall-one.png" alt="icon3" />
+          <span>사진과 글로 추억을 기록해요!</span>
         </li>
         <li className="step-item">
-          <img src="/imgs/blue_tree.png" alt="icon4" /> 평소에 전하지 못했던
-          진심을 전해봐요!
+          <img src="/imgs/tree-winter-one.png" alt="icon4" />
+          <span>평소에 전하지 못했던 진심을 전해봐요!</span>
         </li>
       </ul>
     </div>

@@ -4,11 +4,13 @@ import styled from "styled-components";
 import { GlobalStyle } from "./styles/GlobalStyles";
 import LoadingScreen from "./components/common/loading-screen";
 import { RouterProvider } from "react-router-dom";
+import { auth } from "./firebase";
 
 function App() {
-  const [isLoding, setLoading] = useState(false);
+  const [isLoding, setLoading] = useState(true);
   const init = async () => {
-    //사용자가 로그인을 했냐 안했냐를 확인한다.
+    await auth.authStateReady();
+    setLoading(false);
   };
   useEffect(() => {
     init();
