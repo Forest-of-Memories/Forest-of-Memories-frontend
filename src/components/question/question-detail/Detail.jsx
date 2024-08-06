@@ -41,11 +41,9 @@ const Detail = () => {
         author: selectedMember,
         text: newAnswer.trim(),
       };
-
       const existingAnswerIndex = question.answers.findIndex(
         (answer) => answer.author === selectedMember
       );
-
       if (existingAnswerIndex !== -1) {
         question.answers[existingAnswerIndex] = newAnswerObject;
       } else {
@@ -73,7 +71,6 @@ const Detail = () => {
         text: newComment.trim(),
         date: new Date().toLocaleString(),
       };
-
       setComments([...comments, newCommentObject]);
       setNewComment("");
       // setShowCommentInput(false);

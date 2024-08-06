@@ -52,6 +52,7 @@
       width: 10%;
     }
     span {
+      letter-spacing: -1.5px;
       color: var(--gray-color);
       font-size: 1rem;
       &:hover {
@@ -59,6 +60,11 @@
       }
       &:active {
         scale: 0.9;
+      }
+      &.success {
+        color: var(--green-main);
+        font-weight: 900;
+        letter-spacing: -1.5px;
       }
     }
   }

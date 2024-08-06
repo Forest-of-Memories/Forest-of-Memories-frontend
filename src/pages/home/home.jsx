@@ -7,6 +7,7 @@ import PictureSelect from "../../components/home/picture-select";
 import { useEffect, useState } from "react";
 import { instance } from "../../api/instance";
 import { ReactComponent as StoreIcon } from "../../assets/icons/shopimage.svg";
+import { ReactComponent as CloseIcon } from "../../assets/icons/x.svg";
 import { useNavigate } from "react-router-dom";
 import dayjs from "dayjs";
 
@@ -21,13 +22,14 @@ const Home = () => {
   const [imgUrlList, setImgUrlList] = useState(imgUrls);
   const [progress, setProgress] = useState(0);
   const [level, setLevel] = useState(1);
-  const [skin, setSkin] = useState("fall");
+  const [skin, setSkin] = useState("basic");
   const [homeData, setHomeData] = useState([]);
   const navigate = useNavigate();
   const handleClick = () => {
     setIsClicked((prev) => !prev);
   };
   const familyID = 1;
+  const userName = "김엄마";
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -36,12 +38,11 @@ const Home = () => {
       } catch (e) {
         console.error(e);
       } finally {
-        setSkin(homeData[0]?.tree_skin);
+        // setSkin(homeData[0]?.tree_skin);
       }
     };
     fetchData();
   }, [skin]);
-
   return (
     <Wrapper>
       <Header>
@@ -83,7 +84,9 @@ const Home = () => {
       <Notifications />
       {isClicked ? (
         <PopUpWrapper>
-          <button onClick={handleClick}>닫기</button>
+          <button onClick={handleClick}>
+            <CloseIcon style={{ strokeWidth: 8 }} />
+          </button>
           <PictureSelect
             setImgUrlList={setImgUrlList}
             clickedId={clickedId}
@@ -130,6 +133,16 @@ const PopUpWrapper = styled.div`
   border-radius: 30px 30px 0 0;
   box-shadow: rgba(0, 0, 0, 0.65) 0px 5px 15px;
   animation: ease-out 0.3s Position;
+  z-index: 3;
+  padding: 10px;
+  button {
+    svg {
+      stroke-width: 8;
+      &:hover {
+        filter: brightness(0.9);
+      }
+    }
+  }
 `;
 
 const Wrapper = styled.div`

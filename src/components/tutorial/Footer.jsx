@@ -5,8 +5,10 @@ import { updateProfile } from "firebase/auth";
 import { FirebaseError } from "firebase/app";
 
 const Footer = ({ handleBack, handleNext, currentStep, totalSteps }) => {
+  const [loading, setLoading] = useState(false);
   const handleName = async () => {
     try {
+      setLoading(true);
       if (auth.currentUser) {
         await updateProfile(auth.currentUser, {
           displayName: window.localStorage.getItem("name"),
@@ -18,6 +20,7 @@ const Footer = ({ handleBack, handleNext, currentStep, totalSteps }) => {
         console.error(e);
       }
     } finally {
+      setLoading(false);
     }
   };
   return (
@@ -43,7 +46,7 @@ const Footer = ({ handleBack, handleNext, currentStep, totalSteps }) => {
           className="next-button"
           disabled={currentStep === totalSteps}
         >
-          Next
+          {loading ? "loading..." : "Next"}
         </button>
       ) : (
         <button

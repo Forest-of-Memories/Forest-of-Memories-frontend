@@ -1,7 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 
-import bigTreeImg from "../../assets/imgs/bigtree.png";
+import { ReactComponent as PreviousIcon } from "../../assets/icons/previous.svg";
+import { useNavigate } from "react-router-dom";
 
 const TreeImageContainer = ({
   selectedTrees,
@@ -10,8 +11,12 @@ const TreeImageContainer = ({
   isTreePurchased,
   handleBuyClick,
 }) => {
+  const navigate = useNavigate();
   return (
     <Container>
+      <Back onClick={() => navigate(-1)}>
+        <PreviousIcon />
+      </Back>
       {selectedBackgrounds.length > 0 && (
         <BackgroundImage
           src={selectedBackgrounds[0].item_photo}
@@ -26,9 +31,7 @@ const TreeImageContainer = ({
           />
         </TreeImage>
       ) : (
-        <TreeImage>
-          <img src={bigTreeImg} alt="My Tree" />
-        </TreeImage>
+        <TreeImage></TreeImage>
       )}
       {selectedObjects.length > 0 && (
         <ObjectImage
@@ -46,7 +49,13 @@ const TreeImageContainer = ({
 };
 
 export default TreeImageContainer;
-
+const Back = styled.div`
+  position: absolute;
+  z-index: 4;
+  top: 10px;
+  left: 10px;
+  cursor: pointer;
+`;
 const Container = styled.div`
   display: flex;
   justify-content: center;
@@ -63,7 +72,7 @@ const TreeImage = styled.div`
   margin-top: -5%;
   z-index: 1;
   img {
-    width: 50%;
+    width: 70%;
   }
 `;
 
@@ -77,7 +86,7 @@ const BackgroundImage = styled.img`
 const ObjectImage = styled.img`
   position: absolute;
   right: 28%;
-  bottom: 3%;
+  bottom: 5%;
   max-height: 23%;
   max-width: 23%;
   object-fit: contain;

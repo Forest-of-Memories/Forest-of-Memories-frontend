@@ -4,7 +4,7 @@ export default function LoadingScreen() {
   return (
     <Wrapper>
       <img src="/imgs/loading.gif" />
-      <div>로그인 여부를 확인 중입니다...</div>
+      <div>잠시만 기다려 주세요...</div>
     </Wrapper>
   );
 }

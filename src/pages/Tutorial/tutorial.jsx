@@ -5,6 +5,7 @@ import StepThree from "../../components/tutorial/StepThree";
 import StepFour from "../../components/tutorial/StepFour";
 import Footer from "../../components/tutorial/Footer";
 import "../../components/tutorial/TutorialPage.css";
+import { auth } from "../../firebase";
 
 const TutorialPage = () => {
   const [currentStep, setCurrentStep] = useState(1);
@@ -26,6 +27,13 @@ const TutorialPage = () => {
   };
 
   const handleNext = () => {
+    if (currentStep === 2) {
+      if (auth.currentUser) setCurrentStep(currentStep + 1);
+      else {
+        alert("로그인을 해주세요");
+        return;
+      }
+    }
     if (currentStep < totalSteps) {
       setCurrentStep(currentStep + 1);
     }

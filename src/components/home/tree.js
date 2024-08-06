@@ -4,6 +4,7 @@ import "../../styles/color.css";
 import { ReactComponent as WaterIcon } from "../../assets/icons/water.svg";
 import CatSrc from "../../assets/imgs/3d-fluency-cat.png";
 import { useEffect, useState } from "react";
+import { instance } from "../../api/instance";
 
 const posA = [
   { left: "35%", top: "15%", deg: "30deg" },
@@ -26,7 +27,9 @@ const Tree = ({
   handleClick,
 }) => {
   const [treeSrc, setTreeSrc] = useState("");
-  const [pos, setPos] = useState("");
+  const [pos, setPos] = useState(posA);
+  const [isDone, setIsDone] = useState(false);
+  const [treeId, setTreeID] = useState(2);
   useEffect(() => {
     if (skin === "christmas") setPos(posB);
     else setPos(posA);
@@ -34,6 +37,30 @@ const Tree = ({
   useEffect(() => {
     setTreeSrc(`tree-${skin}-${nums[level - 1]}`);
   }, [level, skin]);
+  const handleWaterClick = async () => {
+    if (progress === 23) {
+      setIsDone(true);
+      try {
+        const res = await instance.post("/memory/memories/", {
+          id: treeId,
+          tree_start_dt: "2024-06-12",
+          tree_end_dt: "2024-08-07",
+          first_feed_id: null,
+          second_feed_id: null,
+          third_feed_id: null,
+          skin_id: 1,
+          family: 1,
+        });
+        console.log(res);
+      } catch (error) {
+        console.error("Error submitting answer:", error);
+      } finally {
+        setProgress(0);
+        console.log(treeId);
+        setTreeID(treeId + 1);
+      }
+    } else setProgress((prev) => prev + 1);
+  };
   return (
     <Wrapper>
       <div className="tree-wrapper">
@@ -44,7 +71,7 @@ const Tree = ({
           alt={`tree-${skin}-${nums[level - 1]}`}
         />
       </div>
-      <WaterImg onClick={() => setProgress((prev) => prev + 1)}>
+      <WaterImg onClick={handleWaterClick}>
         <WaterIcon />
         <WaterLeft>{23 - progress >= 0 ? 23 - progress : "끝"}</WaterLeft>
       </WaterImg>

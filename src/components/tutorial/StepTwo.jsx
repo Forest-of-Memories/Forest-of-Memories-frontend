@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import "./StepTwo.css";
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { auth } from "../../firebase";
 import { ReactComponent as GoogleIcon } from "../../assets/icons/google.svg";
+import { useNavigate } from "react-router-dom";
 const StepTwo = () => {
+  const [loginSuccess, setLoginSuccess] = useState(false);
   const onLogInClick = async () => {
     try {
       const provider = new GoogleAuthProvider();
@@ -11,10 +13,10 @@ const StepTwo = () => {
     } catch (error) {
       console.log(error);
     } finally {
-      //USer post하는 로직
       console.log(auth.currentUser?.displayName);
       console.log(auth.currentUser?.email);
       console.log(auth.currentUser?.uid);
+      setLoginSuccess(true);
     }
   };
   const onLogOutClick = async () => {
@@ -31,7 +33,11 @@ const StepTwo = () => {
         <button onClick={onLogInClick} className="kakao-login-button">
           {/* <img src="/imgs/kakao_login.png" alt="Kakao Login" /> */}
           <GoogleIcon />
-          <span>구글로 로그인하기</span>
+          {loginSuccess ? (
+            <span className="success">구글 로그인 완료</span>
+          ) : (
+            <span>구글로 로그인하기</span>
+          )}
         </button>
       </div>
       <p className="tip">
