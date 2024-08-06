@@ -128,12 +128,14 @@ const StoreTree = () => {
         handleBuyClick={handleBuyClick}
       />
       <StoreTabs activeTab={activeTab} onTabClick={handleTabClick} />
-      <CardList
-        cards={cards}
-        cardsClass={activeTab}
-        handleCardClick={handleCardClick}
-        isTreePurchased={isTreePurchased}
-      />
+      {shopData ? (
+        <CardList
+          cards={cards}
+          cardsClass={activeTab}
+          handleCardClick={handleCardClick}
+          isTreePurchased={isTreePurchased}
+        />
+      ) : null}
       {showModal && (
         <Modal
           selectedTrees={selectedTrees}

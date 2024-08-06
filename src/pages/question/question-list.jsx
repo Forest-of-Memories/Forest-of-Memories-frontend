@@ -11,9 +11,9 @@ const QuestionList = () => {
   const [questions, setQuestions] = useState([]);
   const [likedQuestions, setLikedQuestions] = useState([]);
   const [showOnlyLiked, setShowOnlyLiked] = useState(false);
-  const userName = "김엄마";
+  const userName = "aa";
   const family_id = 3;
-  const userId = "1";
+  const userId = 1;
   const pathname = useLocation();
   useEffect(() => {
     if (pathname.pathname.split("/")[1] === "question") {
@@ -21,7 +21,7 @@ const QuestionList = () => {
         try {
           setQuestions([]);
           const res = await instance.get(
-            `/memory/common-questions/?user_id=${userId}`
+            `/memory/common-questions/?user_name=${userName}`
           );
           const fetchedQuestions = res.data.questions.map((q) => ({
             text: q.content,
