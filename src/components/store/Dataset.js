@@ -30,6 +30,7 @@ import heart from "../../assets/imgs/3d-fluency-red-heart.png";
 import rose from "../../assets/imgs/3d-fluency-rose.png";
 import star from "../../assets/imgs/3d-fluency-star.png";
 import flowerYellow from "../../assets/imgs/3d-fluency-yellow-flower.png";
+import { useState } from "react";
 
 export const treeSets = [
   { name: "기본나무", price: "0", image: defaultTree },

@@ -109,5 +109,5 @@ const Wrapper = styled.div`
   justify-content: center;
   padding: 0 20px;
   width: 100%;
-  transform: translateY(-50%);
+  transform: translateY(-30%);
 `;

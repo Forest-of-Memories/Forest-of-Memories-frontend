@@ -17,6 +17,7 @@ const posB = [
 ];
 const nums = ["one", "two", "three", "four"];
 const Tree = ({
+  progress,
   skin,
   setProgress,
   setClickedId,
@@ -45,7 +46,7 @@ const Tree = ({
       </div>
       <WaterImg onClick={() => setProgress((prev) => prev + 1)}>
         <WaterIcon />
-        <WaterLeft>2</WaterLeft>
+        <WaterLeft>{23 - progress >= 0 ? 23 - progress : "끝"}</WaterLeft>
       </WaterImg>
       <FertilizerImg>
         <img src={CatSrc} alt="cat" />
@@ -76,8 +77,8 @@ const Pictures = styled.div`
   justify-content: center;
   align-items: center;
   border-radius: 50%;
-  width: 7rem;
-  height: 7rem;
+  width: 5.5rem;
+  height: 5.5rem;
   background-color: var(--red-600);
   position: absolute;
   top: ${(props) => props.top};
@@ -111,7 +112,7 @@ const TreeImg = styled.img`
   }
 `;
 const WaterLeft = styled.div`
-  background-color: var(--green-main);
+  background-color: #0085ff;
   border-radius: 50%;
   color: white;
   width: 30px;
@@ -135,6 +136,7 @@ const WaterImg = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 2;
   cursor: pointer;
   &:hover {
     /* background-color: var(--gray-600); */
@@ -154,10 +156,10 @@ const WaterImg = styled.div`
 
 const FertilizerImg = styled.div`
   position: absolute;
-  bottom: 5%;
-  right: 25%;
-  width: 8rem;
-  height: 8rem;
+  bottom: 2%;
+  right: 15%;
+  width: 7rem;
+  height: 7rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -166,6 +168,10 @@ const FertilizerImg = styled.div`
     width: 100%;
   }
   z-index: 2;
+  @media (max-height: 700px) {
+    width: 6rem;
+    bottom: 1%;
+  }
 `;
 
 const Wrapper = styled.div`

@@ -64,7 +64,7 @@ const QuestionBox = styled.div`
     rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
     rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
   width: 46%;
-  padding: 15px 1rem;
+  padding: 15px 0.9rem;
   border-radius: 20px;
   display: flex;
   justify-content: center;
@@ -84,7 +84,10 @@ const QuestionBox = styled.div`
     gap: 2px;
   }
   &:hover {
-    background-color: var(--gray-200);
+    filter: brightness(0.9);
+  }
+  &:active {
+    scale: 0.9;
   }
 `;
 
@@ -97,5 +100,5 @@ const Wrapper = styled.div`
   @media (max-height: 700px) {
     gap: 2%;
   }
-  transform: translateY(-20%);
+  /* transform: translateY(-20%); */
 `;
