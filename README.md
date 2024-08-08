@@ -1,7 +1,5 @@
 ## 매일 문답으로 소통하는 우리 가족만의 힐링공간, 추억의숲
-
 ### Frontend : 김별, 이다빈, 이세림
-
 메인 화면
 
 ![메인화면](https://github.com/user-attachments/assets/ce02efea-f51b-4f4f-a4b5-809daa07766f)
