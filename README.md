@@ -1,8 +1,8 @@
-## 매일 문답으로 소통하는 우리 가족만의 힐링공간, 추억의 숲 <img src = "https://github.com/user-attachments/assets/5d2aa3c3-b8b2-4777-a871-56b090ab12b0" width="30%" height="30%"> 
+## 매일 문답으로 소통하는 우리 가족만의 힐링공간, 추억의 숲 <img src = "https://github.com/user-attachments/assets/5d2aa3c3-b8b2-4777-a871-56b090ab12b0.png" width="30%" height="30%"> 
 ### Frontend : 김별, 이다빈, 이세림
 메인 화면
 
-<img src = "https://github.com/user-attachments/assets/ce02efea-f51b-4f4f-a4b5-809daa07766f" width="70%" height="70%"> 
+<img src = "https://github.com/user-attachments/assets/ce02efea-f51b-4f4f-a4b5-809daa07766f.png" width="70%" height="70%"> 
 
 
 나무 성장 디자인
