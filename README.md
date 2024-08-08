@@ -1,11 +1,10 @@
-## 매일 문답으로 소통하는 우리 가족만의 힐링공간, 추억의 숲 ![추억의 숲 로고](https://github.com/user-attachments/assets/38af67f7-135f-4229-a83b-b424cf83678b){: width="10%" height="10%"}
+## 매일 문답으로 소통하는 우리 가족만의 힐링공간, 추억의 숲 ![추억의 숲 로고](https://github.com/user-attachments/assets/38af67f7-135f-4229-a83b-b424cf83678b)
 ### Frontend : 김별, 이다빈, 이세림
 
 
 메인 화면
 
-![메인화면](https://github.com/user-attachments/assets/e2e154a8-316e-4619-b4f2-1f99d8a19614) {: width="30%" height="30%"}
-
+![메인화면](https://github.com/user-attachments/assets/e2e154a8-316e-4619-b4f2-1f99d8a19614) 
 
 나무 성장 디자인
 
